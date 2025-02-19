@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,18 +7,19 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
-    --radius: 0.5rem;
+    --radius: 0rem;
   }
 
   body {
-    @apply bg-neutral-50 text-primary antialiased;
+    @apply bg-neutral-900 text-white antialiased;
     font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg;
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg;
   }
   
   .container-padding {
@@ -27,4 +29,16 @@
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* Blueprint grid overlay */
+.blueprint-grid {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

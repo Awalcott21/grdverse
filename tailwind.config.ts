@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,7 +27,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: "#141413",
         secondary: "#828179",
-        accent: "#8989DE",
+        accent: "#F97316", // Bright orange accent
         neutral: {
           50: "#FAFAF8",
           100: "#F0EFEA",
@@ -39,6 +40,9 @@ export default {
           800: "#191919",
           900: "#141413",
         },
+      },
+      fontFamily: {
+        sans: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -57,12 +61,17 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        'text-shift': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(5px)' },
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 6s ease-in-out infinite",
+        "text-shift": "text-shift 0.3s ease-out",
       },
     },
   },
