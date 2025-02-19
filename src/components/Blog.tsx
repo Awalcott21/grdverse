@@ -1,7 +1,23 @@
+
 import { BookOpen, Search, Clock, Tag } from "lucide-react";
 import { useState } from "react";
 
 const blogPosts = [
+  {
+    title: "The Importance of Responsive Design for Small Businesses",
+    excerpt: "In an era where over half of all internet traffic comes from mobile devices, responsive web design is more important than ever. Here's why responsive design should be a priority for your small business.",
+    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
+    category: "Web Design",
+    date: "Mar 20, 2024",
+    readTime: "4 min read",
+    content: [
+      "Better User Experience: A responsive website automatically adjusts to different screen sizes and devices, providing a smooth and consistent user experience for visitors, no matter the device they're using.",
+      "Increased Traffic and Engagement: Google's search algorithm gives preference to mobile-friendly websites. If your site isn't responsive, you could be penalized in search rankings, driving potential customers away.",
+      "Cost-Effective: Instead of building separate websites for mobile and desktop, a responsive design ensures your site works seamlessly across all devices, saving you time and money in the long run.",
+      "Better Conversion Rates: Mobile-friendly sites lead to higher conversion rates as users are more likely to complete purchases or contact you when they have a positive mobile experience.",
+      "In conclusion, responsive web design is no longer an option for small businesses—it's essential to maintaining an effective online presence and staying competitive."
+    ]
+  },
   {
     title: "How Web Design Affects Your Brand's Success",
     excerpt: "Your website is often the first point of contact potential customers have with your brand. A website that's visually appealing, easy to navigate, and optimized for performance can significantly impact your brand's success.",
@@ -48,6 +64,7 @@ const blogPosts = [
 ];
 
 const recentPosts = [
+  "The Importance of Responsive Design for Small Businesses",
   "How Web Design Affects Your Brand's Success",
   "Why Your Business Needs a Professional Website in 2025",
   "5 Tips for Optimizing Your Small Business Website for SEO"
