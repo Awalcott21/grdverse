@@ -4,45 +4,33 @@ import { useState } from "react";
 
 const blogPosts = [
   {
-    title: "The Art of Grid-Based Website Design",
-    excerpt: "Explore how grid systems form the foundation of modern web design. Learn practical tips for creating balanced, visually appealing layouts that engage visitors and drive conversions.",
+    title: "5 Tips for Optimizing Your Small Business Website for SEO",
+    excerpt: "Search Engine Optimization (SEO) is critical to ensuring your website is visible to potential clients. Learn essential tips to boost your site's SEO and increase your chances of showing up in search results.",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    category: "Design",
+    category: "SEO",
     date: "Mar 16, 2024",
-    readTime: "5 min read"
-  },
-  {
-    title: "Building Trust Through Professional Web Design",
-    excerpt: "Discover how thoughtful design choices can build credibility and trust with your audience. From color psychology to typography, every element plays a crucial role in your brand's perception.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    category: "Branding",
-    date: "Mar 15, 2024",
-    readTime: "4 min read"
-  },
-  {
-    title: "Maximizing Conversions with Strategic Layouts",
-    excerpt: "Learn how to strategically position elements in your website design to guide visitors toward conversion. Understand the psychology behind effective call-to-action placement and user flow.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    category: "Strategy",
-    date: "Mar 14, 2024",
-    readTime: "6 min read"
+    readTime: "4 min read",
+    content: [
+      "Use Relevant Keywords: Do thorough keyword research to identify terms your potential customers are searching for. Incorporate these into your website copy, blog posts, and meta descriptions.",
+      "Mobile Optimization: With the rise of mobile internet usage, ensuring your website is mobile-friendly is crucial for SEO. A responsive design will improve user experience and your search engine ranking.",
+      "Fast Load Times: Slow websites frustrate users and drive them away. Optimize images and leverage tools to speed up your website's loading time.",
+      "Quality Content: Regularly publishing high-quality content that answers common questions or solves problems will not only engage visitors but also improve your SEO ranking.",
+      "Local SEO: If you're a local business, ensure your website is optimized for local search. Claim your Google My Business listing and include location-specific keywords on your site."
+    ]
   }
 ];
 
 const recentPosts = [
-  "The Future of Responsive Design",
-  "Creating Engaging User Experiences",
-  "Color Theory in Web Design",
-  "Typography Tips for Better Readability"
+  "5 Tips for Optimizing Your Small Business Website for SEO"
 ];
 
 const categories = [
   "All",
-  "Design",
-  "Strategy",
-  "Branding",
-  "Development",
-  "Resources"
+  "SEO",
+  "Web Design",
+  "Marketing",
+  "Business Tips",
+  "Development"
 ];
 
 const Blog = () => {
@@ -160,9 +148,9 @@ const Blog = () => {
 
             {/* CTA */}
             <div className="glass-card p-6 rounded-xl text-center bg-accent/10">
-              <h3 className="text-xl font-semibold mb-3">Need Expert Guidance?</h3>
+              <h3 className="text-xl font-semibold mb-3">Need SEO Help?</h3>
               <p className="text-neutral-400 mb-4">
-                Get a free consultation to discuss your web design needs.
+                Get a free consultation to improve your website's search ranking.
               </p>
               <button className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                 Book Free Consultation
