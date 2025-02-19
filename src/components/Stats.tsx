@@ -1,19 +1,20 @@
+
 const stats = [
   {
-    value: "99.9%",
-    label: "Uptime",
+    value: "97%",
+    label: "Customer Satisfaction",
   },
   {
-    value: "150+",
-    label: "Countries",
-  },
-  {
-    value: "$2B+",
-    label: "Processed",
+    value: "50+",
+    label: "Projects Completed",
   },
   {
     value: "24/7",
     label: "Support",
+  },
+  {
+    value: "5+",
+    label: "Years Experience",
   },
 ];
 
@@ -25,7 +26,7 @@ const Stats = () => {
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <p className="text-3xl md:text-4xl font-bold mb-2">{stat.value}</p>
-              <p className="text-neutral-600">{stat.label}</p>
+              <p className="text-neutral-400">{stat.label}</p>
             </div>
           ))}
         </div>
