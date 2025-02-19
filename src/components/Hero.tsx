@@ -13,19 +13,18 @@ const Hero = () => {
       
       <div className="max-w-5xl mx-auto relative">
         <div className="absolute -top-8 left-0 text-sm text-neutral-500 tracking-tight">
-          AI-Powered Web Development
+          Where Vision Meets the Digital Grid
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight leading-[1.1]">
           <span className="block text-lg md:text-xl text-accent mb-4 font-normal">
-            {"// Fast, Affordable, AI-Powered"}
+            {"// Your Brand, Your Universe"}
           </span>
-          Websites for Small <br/>
-          Businesses That Convert
+          Designed to Stand Out
         </h1>
         
         <p className="text-lg md:text-xl text-neutral-400 mb-12 max-w-2xl leading-relaxed tracking-tight">
-          We build high-converting websites for barbers, real estate agents, and agencies. Powered by AI, delivered at startup speed.
+          We Build the Grid, You Own the Verse. Transform your digital presence with our cutting-edge web development solutions.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4">
@@ -40,7 +39,7 @@ const Hero = () => {
         
         <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5">
           <img 
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
             alt="Website Preview"
             className="rounded-none w-full"
           />
