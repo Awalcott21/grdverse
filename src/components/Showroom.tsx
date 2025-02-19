@@ -15,63 +15,93 @@ interface Template {
 const templates: Template[] = [
   {
     id: 1,
-    title: "Freelance Portfolio",
-    description: "A minimal, dark-themed portfolio perfect for freelancers and digital creators",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d", // Placeholder - replace with actual template preview
-    category: "Portfolio",
+    title: "Business Pro",
+    description: "A sleek, professional template for established businesses and startups",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    category: "Business",
     features: [
-      "Project showcase grid",
-      "About & Services sections",
-      "Contact form integration",
-      "Blog ready",
-      "Social media integration"
+      "Responsive design",
+      "Service showcase",
+      "Team section",
+      "Client testimonials",
+      "Contact form"
     ],
-    price: "$299"
+    price: "$499"
   },
   {
     id: 2,
-    title: "Digital Consultant",
-    description: "Professional consulting website template with booking capabilities",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6", // Placeholder - replace with actual template preview
-    category: "Service",
+    title: "Creative Portfolio",
+    description: "Showcase your creative work with this modern, grid-based portfolio",
+    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
+    category: "Portfolio",
     features: [
-      "Booking system",
-      "Service packages",
-      "Client testimonials",
-      "Case studies section",
-      "Newsletter integration"
+      "Project grid layout",
+      "Filterable gallery",
+      "About section",
+      "Blog integration",
+      "Contact page"
     ],
     price: "$399"
   },
   {
     id: 3,
-    title: "Startup Launch",
-    description: "High-converting landing page for SaaS and digital products",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b", // Placeholder - replace with actual template preview
-    category: "Startup",
+    title: "E-Commerce Plus",
+    description: "A complete e-commerce solution for your online store",
+    image: "https://images.unsplash.com/photo-1557821552-17105176677c",
+    category: "E-Commerce",
     features: [
-      "Feature showcase",
-      "Pricing tables",
-      "Integration section",
-      "FAQ accordion",
-      "Analytics ready"
+      "Product catalog",
+      "Shopping cart",
+      "Secure checkout",
+      "Inventory management",
+      "Order tracking"
     ],
-    price: "$499"
+    price: "$699"
   },
   {
     id: 4,
-    title: "Digital Agency",
-    description: "Full-featured agency website with portfolio and team sections",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158", // Placeholder - replace with actual template preview
-    category: "Agency",
+    title: "Landing Page Pro",
+    description: "High-converting landing page for products and services",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    category: "Marketing",
     features: [
-      "Work portfolio",
-      "Team profiles",
-      "Service overview",
-      "Client logos",
-      "Multi-page setup"
+      "A/B testing ready",
+      "Call-to-action sections",
+      "Feature showcase",
+      "Testimonial slider",
+      "Newsletter signup"
     ],
-    price: "$599"
+    price: "$299"
+  },
+  {
+    id: 5,
+    title: "Restaurant Deluxe",
+    description: "Perfect for restaurants, cafes, and food service businesses",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+    category: "Restaurant",
+    features: [
+      "Menu display",
+      "Online ordering",
+      "Reservation system",
+      "Photo gallery",
+      "Location map"
+    ],
+    price: "$449"
+  },
+  {
+    id: 6,
+    title: "Consultant Connect",
+    description: "Professional template for consultants and service providers",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+    category: "Services",
+    features: [
+      "Service packages",
+      "Booking system",
+      "Client portal",
+      "Case studies",
+      "Blog section"
+    ],
+    price: "$549"
   }
 ];
 
