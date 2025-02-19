@@ -63,22 +63,8 @@ const blogPosts = [
   }
 ];
 
-const categories = [
-  "All",
-  "SEO",
-  "Web Design",
-  "Marketing",
-  "Business Tips",
-  "Development"
-];
-
 const Blog = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
-
-  const filteredPosts = blogPosts.filter(post => {
-    return selectedCategory === "All" || post.category === selectedCategory;
-  });
 
   return (
     <section className="py-16 container-padding bg-neutral-900">
@@ -94,7 +80,7 @@ const Blog = () => {
           <div className="lg:col-span-8 overflow-hidden">
             <div className="overflow-x-auto pb-8">
               <div className="flex gap-6 min-w-max px-4">
-                {filteredPosts.map((post, index) => (
+                {blogPosts.map((post, index) => (
                   <article key={index} className="glass-card rounded-xl overflow-hidden group w-[400px] flex-shrink-0">
                     <div className="aspect-video overflow-hidden">
                       <img 
@@ -131,26 +117,7 @@ const Blog = () => {
             </div>
           </div>
 
-          <aside className="lg:col-span-4 space-y-6">
-            <div className="glass-card p-6 rounded-xl">
-              <h3 className="font-semibold mb-4">Categories</h3>
-              <div className="space-y-2">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`block w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                      selectedCategory === category
-                        ? "bg-accent text-white"
-                        : "hover:bg-neutral-800"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-
+          <aside className="lg:col-span-4">
             <div className="glass-card p-6 rounded-xl text-center bg-accent/10">
               <h3 className="text-xl font-semibold mb-3">Need Web Design Help?</h3>
               <p className="text-neutral-400 mb-4">
