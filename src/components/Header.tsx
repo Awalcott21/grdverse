@@ -17,7 +17,7 @@ const Header = () => {
           <Link to="/#showroom" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             Showroom
           </Link>
-          <Link to="/#build" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
+          <Link to="/#features" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             What We Build
           </Link>
           <Link to="/about" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
@@ -47,7 +47,7 @@ const Header = () => {
             <Link to="/#showroom" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
               Showroom
             </Link>
-            <Link to="/#build" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
+            <Link to="/#features" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
               What We Build
             </Link>
             <Link to="/about" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
