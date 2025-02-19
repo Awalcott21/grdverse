@@ -1,4 +1,3 @@
-
 import { BookOpen, Search, Clock, Tag } from "lucide-react";
 import { useState } from "react";
 
@@ -91,59 +90,53 @@ const Blog = () => {
   });
 
   return (
-    <section className="py-20 container-padding bg-neutral-900">
+    <section className="py-16 container-padding bg-neutral-900">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Blog</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Blog</h2>
           <p className="text-xl text-neutral-400 max-w-2xl mx-auto">
             Tips, Insights, and Stories to Grow Your Online Presence
           </p>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 grid md:grid-cols-2 gap-6">
             {filteredPosts.map((post, index) => (
               <article key={index} className="glass-card rounded-xl overflow-hidden group">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="aspect-4/3 overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-4 text-sm text-neutral-500 mb-3">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        <span>{post.readTime}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Tag className="w-4 h-4" />
-                        <span>{post.category}</span>
-                      </div>
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center gap-4 text-xs text-neutral-500 mb-2">
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      <span>{post.readTime}</span>
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 group-hover:text-accent transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-neutral-400 mb-4">
-                      {post.excerpt}
-                    </p>
-                    <button className="flex items-center gap-2 text-accent hover:gap-3 transition-all">
-                      <span>Read Article</span>
-                      <BookOpen className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center gap-1">
+                      <Tag className="w-3 h-3" />
+                      <span>{post.category}</span>
+                    </div>
                   </div>
+                  <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-neutral-400 mb-3 line-clamp-2">
+                    {post.excerpt}
+                  </p>
+                  <button className="flex items-center gap-1 text-sm text-accent hover:gap-2 transition-all">
+                    <span>Read Article</span>
+                    <BookOpen className="w-3 h-3" />
+                  </button>
                 </div>
               </article>
             ))}
           </div>
 
-          {/* Sidebar */}
-          <aside className="lg:col-span-4 space-y-8">
-            {/* Search */}
+          <aside className="lg:col-span-4 space-y-6">
             <div className="glass-card p-6 rounded-xl">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 w-4 h-4" />
@@ -157,7 +150,6 @@ const Blog = () => {
               </div>
             </div>
 
-            {/* Categories */}
             <div className="glass-card p-6 rounded-xl">
               <h3 className="font-semibold mb-4">Categories</h3>
               <div className="space-y-2">
@@ -177,7 +169,6 @@ const Blog = () => {
               </div>
             </div>
 
-            {/* Recent Posts */}
             <div className="glass-card p-6 rounded-xl">
               <h3 className="font-semibold mb-4">Recent Posts</h3>
               <div className="space-y-3">
@@ -192,7 +183,6 @@ const Blog = () => {
               </div>
             </div>
 
-            {/* CTA */}
             <div className="glass-card p-6 rounded-xl text-center bg-accent/10">
               <h3 className="text-xl font-semibold mb-3">Need Web Design Help?</h3>
               <p className="text-neutral-400 mb-4">

@@ -47,10 +47,9 @@ const Testimonials = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
         duration: 0.6,
         staggerChildren: 0.2
@@ -59,21 +58,21 @@ const Testimonials = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
-      y: 0
+      x: 0
     }
   };
 
   return (
-    <section id="testimonials" className="py-16 container-padding bg-neutral-100">
+    <section id="testimonials" className="py-16 container-padding bg-neutral-100 overflow-hidden">
       <motion.div 
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="max-w-4xl mx-auto"
+        className="max-w-7xl mx-auto"
       >
         <motion.h2 
           variants={itemVariants}
@@ -87,27 +86,29 @@ const Testimonials = () => {
         >
           Join hundreds of small businesses that trust us with their online presence.
         </motion.p>
-        <div className="grid grid-cols-1 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="glass-card p-6 rounded-xl"
-            >
-              <p className="text-neutral-600 mb-6">{testimonial.quote}</p>
-              <div className="flex items-center gap-3">
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.author}
-                  className="w-10 h-10 rounded-full"
-                />
-                <div>
-                  <p className="font-semibold">{testimonial.author}</p>
-                  <p className="text-sm text-neutral-500">{testimonial.role}</p>
+        <div className="overflow-x-auto pb-8">
+          <div className="flex gap-6 min-w-max px-4">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="glass-card p-6 rounded-xl w-[400px] flex-shrink-0"
+              >
+                <p className="text-neutral-600 mb-6">{testimonial.quote}</p>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                    className="w-10 h-10 rounded-full"
+                  />
+                  <div>
+                    <p className="font-semibold">{testimonial.author}</p>
+                    <p className="text-sm text-neutral-500">{testimonial.role}</p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
