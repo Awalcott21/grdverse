@@ -1,3 +1,4 @@
+
 import { BookOpen, Search, Clock, Tag } from "lucide-react";
 import { useState } from "react";
 
@@ -100,40 +101,44 @@ const Blog = () => {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8 grid md:grid-cols-2 gap-6">
-            {filteredPosts.map((post, index) => (
-              <article key={index} className="glass-card rounded-xl overflow-hidden group">
-                <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-center gap-4 text-xs text-neutral-500 mb-2">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      <span>{post.readTime}</span>
+          <div className="lg:col-span-8 overflow-hidden">
+            <div className="overflow-x-auto pb-8">
+              <div className="flex gap-6 min-w-max px-4">
+                {filteredPosts.map((post, index) => (
+                  <article key={index} className="glass-card rounded-xl overflow-hidden group w-[400px] flex-shrink-0">
+                    <div className="aspect-video overflow-hidden">
+                      <img 
+                        src={post.image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Tag className="w-3 h-3" />
-                      <span>{post.category}</span>
+                    <div className="p-4">
+                      <div className="flex items-center gap-4 text-xs text-neutral-500 mb-2">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          <span>{post.readTime}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Tag className="w-3 h-3" />
+                          <span>{post.category}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-neutral-400 mb-3 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <button className="flex items-center gap-1 text-sm text-accent hover:gap-2 transition-all">
+                        <span>Read Article</span>
+                        <BookOpen className="w-3 h-3" />
+                      </button>
                     </div>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-neutral-400 mb-3 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <button className="flex items-center gap-1 text-sm text-accent hover:gap-2 transition-all">
-                    <span>Read Article</span>
-                    <BookOpen className="w-3 h-3" />
-                  </button>
-                </div>
-              </article>
-            ))}
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
 
           <aside className="lg:col-span-4 space-y-6">
