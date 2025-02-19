@@ -1,4 +1,8 @@
 
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+
 const testimonials = [
   {
     quote: "Their website design completely transformed my barbershop's online presence. We're getting more bookings than ever!",
@@ -39,18 +43,57 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0
+    }
+  };
+
   return (
     <section id="testimonials" className="py-16 container-padding bg-neutral-100">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+      <motion.div 
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className="max-w-4xl mx-auto"
+      >
+        <motion.h2 
+          variants={itemVariants}
+          className="text-3xl md:text-4xl font-bold text-center mb-4"
+        >
           See What Our Customers Are Saying
-        </h2>
-        <p className="text-neutral-600 text-center mb-12 max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p 
+          variants={itemVariants}
+          className="text-neutral-600 text-center mb-12 max-w-2xl mx-auto"
+        >
           Join hundreds of small businesses that trust us with their online presence.
-        </p>
+        </motion.p>
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="glass-card p-6 rounded-xl">
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="glass-card p-6 rounded-xl"
+            >
               <p className="text-neutral-600 mb-6">{testimonial.quote}</p>
               <div className="flex items-center gap-3">
                 <img
@@ -63,10 +106,10 @@ const Testimonials = () => {
                   <p className="text-sm text-neutral-500">{testimonial.role}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
