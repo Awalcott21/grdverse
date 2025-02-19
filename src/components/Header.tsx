@@ -10,7 +10,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b border-neutral-800">
       <nav className="container-padding mx-auto flex h-20 items-center justify-between">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-white">
-          Grdiverse™
+          GRDVERSE
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
@@ -24,12 +24,12 @@ const Header = () => {
             About
           </Link>
           <div className="flex items-center gap-4">
-            <button className="bg-white text-neutral-900 px-6 py-2.5 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium">
+            <Link to="/launch" className="bg-white text-neutral-900 px-6 py-2.5 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium">
               Launch
-            </button>
-            <button className="border border-white/20 text-white px-6 py-2.5 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium">
+            </Link>
+            <Link to="/consultation" className="border border-white/20 text-white px-6 py-2.5 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium">
               Free Consultation
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -54,12 +54,12 @@ const Header = () => {
               About
             </Link>
             <div className="flex flex-col gap-4">
-              <button className="bg-white text-neutral-900 px-6 py-2.5 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium">
+              <Link to="/launch" className="bg-white text-neutral-900 px-6 py-2.5 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium text-center">
                 Launch
-              </button>
-              <button className="border border-white/20 text-white px-6 py-2.5 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium">
+              </Link>
+              <Link to="/consultation" className="border border-white/20 text-white px-6 py-2.5 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium text-center">
                 Free Consultation
-              </button>
+              </Link>
             </div>
           </div>
         </div>
