@@ -13,24 +13,31 @@ interface Template {
 const templates: Template[] = [
   {
     id: 1,
-    title: "Modern Agency",
-    description: "Clean, minimalist design for creative agencies",
-    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
-    category: "Agency",
+    title: "Freelance Portfolio",
+    description: "Showcase your work with this minimalist portfolio template",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    category: "Portfolio",
   },
   {
     id: 2,
-    title: "Tech Startup",
-    description: "Bold, innovative layout for tech companies",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    category: "Technology",
+    title: "Digital Consultant",
+    description: "Perfect for consultants and digital service providers",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    category: "Service",
   },
   {
     id: 3,
-    title: "Digital Studio",
-    description: "Creative portfolio for design studios",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    category: "Creative",
+    title: "Startup Launch",
+    description: "Modern landing page for your digital product or SaaS",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    category: "Startup",
+  },
+  {
+    id: 4,
+    title: "Digital Agency",
+    description: "Establish your brand with a professional agency template",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    category: "Agency",
   }
 ];
 
@@ -51,10 +58,10 @@ const Showroom = () => {
         <div className="mb-16">
           <span className="text-sm text-accent tracking-tight">// Our Templates</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mt-2">
-            Showroom
+            Launch Your Digital Presence
           </h2>
           <p className="text-neutral-400 mt-4 max-w-2xl">
-            Explore our collection of premium website templates. Each design is crafted with precision and purpose.
+            Premium website templates designed specifically for entrepreneurs and digital professionals. Each template is optimized for conversion and growth.
           </p>
         </div>
 
@@ -120,6 +127,28 @@ const Showroom = () => {
           <span className="font-mono">{currentIndex + 1}</span>
           <span className="mx-2">/</span>
           <span className="font-mono">{templates.length}</span>
+        </div>
+
+        {/* Additional Info */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="glass-card p-6">
+            <h3 className="text-white text-lg font-medium mb-2">Conversion Optimized</h3>
+            <p className="text-neutral-400 text-sm">
+              Built with clear call-to-actions and user journey mapping for maximum engagement.
+            </p>
+          </div>
+          <div className="glass-card p-6">
+            <h3 className="text-white text-lg font-medium mb-2">Mobile First</h3>
+            <p className="text-neutral-400 text-sm">
+              Responsive designs that look professional on all devices and screen sizes.
+            </p>
+          </div>
+          <div className="glass-card p-6">
+            <h3 className="text-white text-lg font-medium mb-2">SEO Ready</h3>
+            <p className="text-neutral-400 text-sm">
+              Optimized structure and performance to help you rank better in search results.
+            </p>
+          </div>
         </div>
       </div>
     </section>
