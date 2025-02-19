@@ -1,8 +1,21 @@
-
 import { BookOpen, Search, Clock, Tag } from "lucide-react";
 import { useState } from "react";
 
 const blogPosts = [
+  {
+    title: "Why Your Business Needs a Professional Website in 2025",
+    excerpt: "In today's digital age, having a professional website isn't just an option — it's a necessity. As we move into 2025, businesses that don't establish a strong online presence risk being left behind.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    category: "Web Design",
+    date: "Mar 18, 2024",
+    readTime: "3 min read",
+    content: [
+      "First Impressions Matter: Your website is often the first point of contact between you and potential customers. A well-designed website communicates professionalism, credibility, and trustworthiness.",
+      "Increased Visibility: A website allows your business to be found by customers searching online. With SEO optimization, your site can rank high in search results, bringing in more traffic and leads.",
+      "Competitive Edge: In a crowded market, standing out is key. A custom-built website tailored to your brand will set you apart from competitors who rely on generic templates.",
+      "Having a website in 2025 is no longer just a trend—it's the foundation for growing your business. Whether you're a small local business or an entrepreneur, a website is your digital storefront, 24/7."
+    ]
+  },
   {
     title: "5 Tips for Optimizing Your Small Business Website for SEO",
     excerpt: "Search Engine Optimization (SEO) is critical to ensuring your website is visible to potential clients. Learn essential tips to boost your site's SEO and increase your chances of showing up in search results.",
@@ -21,6 +34,7 @@ const blogPosts = [
 ];
 
 const recentPosts = [
+  "Why Your Business Needs a Professional Website in 2025",
   "5 Tips for Optimizing Your Small Business Website for SEO"
 ];
 
@@ -148,9 +162,9 @@ const Blog = () => {
 
             {/* CTA */}
             <div className="glass-card p-6 rounded-xl text-center bg-accent/10">
-              <h3 className="text-xl font-semibold mb-3">Need SEO Help?</h3>
+              <h3 className="text-xl font-semibold mb-3">Need Web Design Help?</h3>
               <p className="text-neutral-400 mb-4">
-                Get a free consultation to improve your website's search ranking.
+                Get a free consultation to discuss your website needs.
               </p>
               <button className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                 Book Free Consultation
