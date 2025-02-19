@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
         <div className="max-w-4xl mx-auto mt-12 pt-8 border-t border-neutral-800">
           <p className="text-neutral-400 text-center">
-            © 2025 GRIDVERSE. All rights reserved.
+            © 2019 GRIDVERSE. All rights reserved.
           </p>
         </div>
       </div>
