@@ -8,36 +8,70 @@ interface Template {
   description: string;
   image: string;
   category: string;
+  features: string[];
+  price: string;
 }
 
 const templates: Template[] = [
   {
     id: 1,
     title: "Freelance Portfolio",
-    description: "Showcase your work with this minimalist portfolio template",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    description: "A minimal, dark-themed portfolio perfect for freelancers and digital creators",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d", // Placeholder - replace with actual template preview
     category: "Portfolio",
+    features: [
+      "Project showcase grid",
+      "About & Services sections",
+      "Contact form integration",
+      "Blog ready",
+      "Social media integration"
+    ],
+    price: "$299"
   },
   {
     id: 2,
     title: "Digital Consultant",
-    description: "Perfect for consultants and digital service providers",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    description: "Professional consulting website template with booking capabilities",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6", // Placeholder - replace with actual template preview
     category: "Service",
+    features: [
+      "Booking system",
+      "Service packages",
+      "Client testimonials",
+      "Case studies section",
+      "Newsletter integration"
+    ],
+    price: "$399"
   },
   {
     id: 3,
     title: "Startup Launch",
-    description: "Modern landing page for your digital product or SaaS",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    description: "High-converting landing page for SaaS and digital products",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b", // Placeholder - replace with actual template preview
     category: "Startup",
+    features: [
+      "Feature showcase",
+      "Pricing tables",
+      "Integration section",
+      "FAQ accordion",
+      "Analytics ready"
+    ],
+    price: "$499"
   },
   {
     id: 4,
     title: "Digital Agency",
-    description: "Establish your brand with a professional agency template",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    description: "Full-featured agency website with portfolio and team sections",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158", // Placeholder - replace with actual template preview
     category: "Agency",
+    features: [
+      "Work portfolio",
+      "Team profiles",
+      "Service overview",
+      "Client logos",
+      "Multi-page setup"
+    ],
+    price: "$599"
   }
 ];
 
@@ -107,10 +141,25 @@ const Showroom = () => {
                     </div>
                   </div>
                   {/* Template Info */}
-                  <div className="absolute -bottom-4 left-4 bg-neutral-900 border border-neutral-800 p-4">
-                    <span className="text-accent text-sm tracking-tight">{template.category}</span>
-                    <h3 className="text-white text-xl font-medium mt-1">{template.title}</h3>
-                    <p className="text-neutral-400 text-sm mt-1">{template.description}</p>
+                  <div className="absolute -bottom-4 left-4 bg-neutral-900 border border-neutral-800 p-4 max-w-md">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <span className="text-accent text-sm tracking-tight">{template.category}</span>
+                        <h3 className="text-white text-xl font-medium mt-1">{template.title}</h3>
+                      </div>
+                      <span className="text-white font-mono bg-accent px-2 py-1 text-sm">
+                        {template.price}
+                      </span>
+                    </div>
+                    <p className="text-neutral-400 text-sm mb-3">{template.description}</p>
+                    <ul className="grid grid-cols-2 gap-2">
+                      {template.features.map((feature, index) => (
+                        <li key={index} className="text-neutral-300 text-xs flex items-center">
+                          <span className="w-1 h-1 bg-accent mr-2 rounded-full"></span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   {/* Grid Badge */}
                   <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1.5 text-sm tracking-tight">
