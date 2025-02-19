@@ -1,6 +1,7 @@
 
 import React from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const About = () => {
   return (
@@ -68,6 +69,8 @@ const About = () => {
 
       {/* Visual Elements */}
       <div className="fixed inset-0 pointer-events-none blueprint-grid opacity-5 z-0" />
+      
+      <Footer />
     </div>
   );
 };
