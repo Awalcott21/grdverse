@@ -3,6 +3,20 @@ import { useState } from "react";
 
 const blogPosts = [
   {
+    title: "How Web Design Affects Your Brand's Success",
+    excerpt: "Your website is often the first point of contact potential customers have with your brand. A website that's visually appealing, easy to navigate, and optimized for performance can significantly impact your brand's success.",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
+    category: "Web Design",
+    date: "Mar 19, 2024",
+    readTime: "3 min read",
+    content: [
+      "Visual Identity: Your website reflects your brand's personality. The colors, fonts, and layout all contribute to creating a memorable first impression. A well-designed site strengthens brand recognition and builds trust with visitors.",
+      "User Experience: A website that's easy to navigate enhances the user experience, reducing bounce rates and increasing engagement. When users can find what they're looking for quickly, they are more likely to become loyal customers.",
+      "Conversion Optimization: Great web design leads to higher conversion rates. If your site is designed with user behavior in mind, it can guide users to take desired actions, whether that's purchasing a product or filling out a contact form.",
+      "In essence, web design isn't just about making things look pretty—it's about making your brand's online presence work for you."
+    ]
+  },
+  {
     title: "Why Your Business Needs a Professional Website in 2025",
     excerpt: "In today's digital age, having a professional website isn't just an option — it's a necessity. As we move into 2025, businesses that don't establish a strong online presence risk being left behind.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
@@ -34,6 +48,7 @@ const blogPosts = [
 ];
 
 const recentPosts = [
+  "How Web Design Affects Your Brand's Success",
   "Why Your Business Needs a Professional Website in 2025",
   "5 Tips for Optimizing Your Small Business Website for SEO"
 ];
