@@ -1,6 +1,6 @@
-
-import { BookOpen, Search, Clock, Tag } from "lucide-react";
+import { BookOpen, Clock, Tag } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -63,13 +63,6 @@ const blogPosts = [
   }
 ];
 
-const recentPosts = [
-  "The Importance of Responsive Design for Small Businesses",
-  "How Web Design Affects Your Brand's Success",
-  "Why Your Business Needs a Professional Website in 2025",
-  "5 Tips for Optimizing Your Small Business Website for SEO"
-];
-
 const categories = [
   "All",
   "SEO",
@@ -81,13 +74,10 @@ const categories = [
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return selectedCategory === "All" || post.category === selectedCategory;
   });
 
   return (
@@ -143,19 +133,6 @@ const Blog = () => {
 
           <aside className="lg:col-span-4 space-y-6">
             <div className="glass-card p-6 rounded-xl">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  className="w-full pl-10 pr-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="glass-card p-6 rounded-xl">
               <h3 className="font-semibold mb-4">Categories</h3>
               <div className="space-y-2">
                 {categories.map((category) => (
@@ -174,26 +151,15 @@ const Blog = () => {
               </div>
             </div>
 
-            <div className="glass-card p-6 rounded-xl">
-              <h3 className="font-semibold mb-4">Recent Posts</h3>
-              <div className="space-y-3">
-                {recentPosts.map((post, index) => (
-                  <button
-                    key={index}
-                    className="block w-full text-left text-neutral-400 hover:text-accent transition-colors"
-                  >
-                    {post}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div className="glass-card p-6 rounded-xl text-center bg-accent/10">
               <h3 className="text-xl font-semibold mb-3">Need Web Design Help?</h3>
               <p className="text-neutral-400 mb-4">
                 Get a free consultation to discuss your website needs.
               </p>
-              <button className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+              <button 
+                onClick={() => navigate('/consultation')}
+                className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              >
                 Book Free Consultation
               </button>
             </div>
