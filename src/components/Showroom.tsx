@@ -10,98 +10,105 @@ interface Template {
   category: string;
   features: string[];
   price: string;
+  timeline: string;
 }
 
 const templates: Template[] = [
   {
     id: 1,
-    title: "Business Pro",
-    description: "A sleek, professional template for established businesses and startups",
+    title: "Basic Package",
+    description: "Perfect for small businesses looking to establish their online presence with a professional one-page website",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    category: "Business",
+    category: "One-Page Website",
     features: [
-      "Responsive design",
-      "Service showcase",
-      "Team section",
-      "Client testimonials",
-      "Contact form"
+      "Clean, modern design",
+      "Mobile-responsive layout",
+      "Domain name included",
+      "1 year web hosting",
+      "Basic contact form"
     ],
-    price: "$499"
+    price: "$500",
+    timeline: "5-7 days"
   },
   {
     id: 2,
-    title: "Creative Portfolio",
-    description: "Showcase your creative work with this modern, grid-based portfolio",
+    title: "Standard Package",
+    description: "Comprehensive 3-page website with essential features for growing businesses",
     image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
-    category: "Portfolio",
+    category: "3-Page Website",
     features: [
-      "Project grid layout",
-      "Filterable gallery",
-      "About section",
-      "Blog integration",
-      "Contact page"
+      "3 custom pages",
+      "Mobile-responsive design",
+      "Basic SEO optimization",
+      "3 months maintenance",
+      "Domain & hosting included"
     ],
-    price: "$399"
+    price: "$900",
+    timeline: "7-10 days"
   },
   {
     id: 3,
-    title: "E-Commerce Plus",
-    description: "A complete e-commerce solution for your online store",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c",
-    category: "E-Commerce",
+    title: "Premium Package",
+    description: "Full-featured 5-page website with advanced features and extended support",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    category: "5-Page Website",
     features: [
-      "Product catalog",
-      "Shopping cart",
-      "Secure checkout",
-      "Inventory management",
-      "Order tracking"
+      "5 custom pages",
+      "Custom branding",
+      "Advanced SEO",
+      "Google Analytics",
+      "6 months maintenance"
     ],
-    price: "$699"
+    price: "$1,400",
+    timeline: "10-14 days"
   },
   {
     id: 4,
-    title: "Landing Page Pro",
-    description: "High-converting landing page for products and services",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    category: "Marketing",
+    title: "SEO Package",
+    description: "Boost your website's visibility with comprehensive SEO optimization",
+    image: "https://images.unsplash.com/photo-1572177812156-58036aae439c",
+    category: "Add-On",
     features: [
-      "A/B testing ready",
-      "Call-to-action sections",
-      "Feature showcase",
-      "Testimonial slider",
-      "Newsletter signup"
+      "Keyword research",
+      "Content optimization",
+      "Meta descriptions",
+      "3 months updates",
+      "Performance tracking"
     ],
-    price: "$299"
+    price: "$300",
+    timeline: "Ongoing"
   },
   {
     id: 5,
-    title: "Restaurant Deluxe",
-    description: "Perfect for restaurants, cafes, and food service businesses",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-    category: "Restaurant",
+    title: "E-commerce Add-on",
+    description: "Transform your website into an online store with full e-commerce capabilities",
+    image: "https://images.unsplash.com/photo-1557821552-17105176677c",
+    category: "Add-On",
     features: [
-      "Menu display",
-      "Online ordering",
-      "Reservation system",
-      "Photo gallery",
-      "Location map"
+      "Up to 10 products",
+      "Secure checkout",
+      "Inventory management",
+      "Payment integration",
+      "Order tracking"
     ],
-    price: "$449"
+    price: "$500",
+    timeline: "Additional 7 days"
   },
   {
     id: 6,
-    title: "Consultant Connect",
-    description: "Professional template for consultants and service providers",
+    title: "Maintenance Plan",
+    description: "Keep your website secure and up-to-date with regular maintenance",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-    category: "Services",
+    category: "Add-On",
     features: [
-      "Service packages",
-      "Booking system",
-      "Client portal",
-      "Case studies",
-      "Blog section"
+      "Regular updates",
+      "Security patches",
+      "Daily backups",
+      "Minor tweaks",
+      "Technical support"
     ],
-    price: "$549"
+    price: "$150/month",
+    timeline: "Monthly"
   }
 ];
 
@@ -120,12 +127,12 @@ const Showroom = () => {
     <section id="showroom" className="min-h-screen py-32 container-padding bg-neutral-900 relative">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
-          <span className="text-sm text-accent tracking-tight">// Our Templates</span>
+          <span className="text-sm text-accent tracking-tight">// Our Packages</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mt-2">
-            Launch Your Digital Presence
+            Choose Your Perfect Package
           </h2>
           <p className="text-neutral-400 mt-4 max-w-2xl">
-            Premium website templates designed specifically for entrepreneurs and digital professionals. Each template is optimized for conversion and growth.
+            From simple one-page websites to full-featured business solutions. Select the package that best fits your needs, with optional add-ons for enhanced functionality.
           </p>
         </div>
 
@@ -165,7 +172,7 @@ const Showroom = () => {
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="text-center">
                         <button className="bg-white text-black px-6 py-3 hover:bg-neutral-200 transition-colors">
-                          View Template
+                          Learn More
                         </button>
                       </div>
                     </div>
@@ -177,9 +184,14 @@ const Showroom = () => {
                         <span className="text-accent text-sm tracking-tight">{template.category}</span>
                         <h3 className="text-white text-xl font-medium mt-1">{template.title}</h3>
                       </div>
-                      <span className="text-white font-mono bg-accent px-2 py-1 text-sm">
-                        {template.price}
-                      </span>
+                      <div className="text-right">
+                        <span className="text-white font-mono bg-accent px-2 py-1 text-sm block mb-1">
+                          {template.price}
+                        </span>
+                        <span className="text-neutral-400 text-xs">
+                          {template.timeline}
+                        </span>
+                      </div>
                     </div>
                     <p className="text-neutral-400 text-sm mb-3">{template.description}</p>
                     <ul className="grid grid-cols-2 gap-2">
@@ -190,10 +202,6 @@ const Showroom = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  {/* Grid Badge */}
-                  <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1.5 text-sm tracking-tight">
-                    Grdiverse™
                   </div>
                 </div>
               ))}
@@ -211,21 +219,21 @@ const Showroom = () => {
         {/* Additional Info */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="glass-card p-6">
-            <h3 className="text-white text-lg font-medium mb-2">Conversion Optimized</h3>
+            <h3 className="text-white text-lg font-medium mb-2">Professional Design</h3>
             <p className="text-neutral-400 text-sm">
-              Built with clear call-to-actions and user journey mapping for maximum engagement.
+              Clean, modern designs tailored to your brand and optimized for all devices.
             </p>
           </div>
           <div className="glass-card p-6">
-            <h3 className="text-white text-lg font-medium mb-2">Mobile First</h3>
+            <h3 className="text-white text-lg font-medium mb-2">Quick Delivery</h3>
             <p className="text-neutral-400 text-sm">
-              Responsive designs that look professional on all devices and screen sizes.
+              Fast turnaround times with most projects completed within 5-14 days.
             </p>
           </div>
           <div className="glass-card p-6">
-            <h3 className="text-white text-lg font-medium mb-2">SEO Ready</h3>
+            <h3 className="text-white text-lg font-medium mb-2">Complete Solution</h3>
             <p className="text-neutral-400 text-sm">
-              Optimized structure and performance to help you rank better in search results.
+              Everything included: domain, hosting, maintenance, and technical support.
             </p>
           </div>
         </div>
