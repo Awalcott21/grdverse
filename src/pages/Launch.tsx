@@ -6,28 +6,18 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 
 const services = [
   {
-    title: "Custom Website Development",
-    description: "Tailored web solutions built with modern technologies.",
+    title: "A Website That Works for You",
+    description: "Your website will not only look great but also function seamlessly across all devices.",
     features: [
       "Responsive design for all devices",
-      "Custom functionality and features",
-      "SEO optimization",
-      "Performance optimization"
-    ]
-  },
-  {
-    title: "E-commerce Solutions",
-    description: "Complete online store setup and management.",
-    features: [
-      "Secure payment integration",
-      "Inventory management",
-      "Order processing system",
-      "Customer account management"
+      "Mobile-friendly interface",
+      "Speed optimization",
+      "User-centric design"
     ]
   },
   {
     title: "Web Application Development",
-    description: "Complex web applications for your business needs.",
+    description: "Complex web applications tailored to your business needs.",
     features: [
       "User authentication",
       "Real-time updates",
@@ -55,7 +45,7 @@ const Launch = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {services.map((service, index) => (
               <motion.div
                 key={index}
