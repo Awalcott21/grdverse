@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleFeatureClick = () => {
+    const element = document.getElementById('features');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b border-neutral-800">
       <nav className="container-padding mx-auto flex h-20 items-center justify-between">
@@ -17,9 +22,9 @@ const Header = () => {
           <Link to="/#showroom" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             Showroom
           </Link>
-          <Link to="/#features" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
+          <button onClick={handleFeatureClick} className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             What We Build
-          </Link>
+          </button>
           <Link to="/about" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             About
           </Link>
@@ -47,9 +52,9 @@ const Header = () => {
             <Link to="/#showroom" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
               Showroom
             </Link>
-            <Link to="/#features" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
+            <button onClick={handleFeatureClick} className="text-neutral-400 hover:text-white transition-colors tracking-tight text-left">
               What We Build
-            </Link>
+            </button>
             <Link to="/about" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
               About
             </Link>

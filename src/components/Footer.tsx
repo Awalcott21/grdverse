@@ -1,5 +1,10 @@
 
 const Footer = () => {
+  const handleFeatureClick = () => {
+    const element = document.getElementById('features');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-primary text-white">
       <div className="container-padding py-16">
@@ -8,7 +13,7 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li><a href="/#showroom" className="text-neutral-300 hover:text-white transition-colors">Showroom</a></li>
-              <li><a href="/#build" className="text-neutral-300 hover:text-white transition-colors">What We Build</a></li>
+              <li><button onClick={handleFeatureClick} className="text-neutral-300 hover:text-white transition-colors">What We Build</button></li>
               <li><a href="/about" className="text-neutral-300 hover:text-white transition-colors">About</a></li>
             </ul>
           </div>
