@@ -1,5 +1,5 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Template {
   id: number;
@@ -161,14 +161,11 @@ const templates: Template[] = [
 ];
 
 const Showroom = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
-  const nextTemplate = () => {
-    setCurrentIndex((prev) => (prev + 1) % templates.length);
-  };
-
-  const prevTemplate = () => {
-    setCurrentIndex((prev) => (prev - 1 + templates.length) % templates.length);
+  const handleGetStarted = (packageName: string) => {
+    const packageType = packageName.toLowerCase().split(' ')[0];
+    navigate(`/get-started?package=${packageType}`);
   };
 
   return (
@@ -184,70 +181,47 @@ const Showroom = () => {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevTemplate}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 p-3 backdrop-blur-sm transition-colors"
-          >
-            <ArrowLeft className="w-6 h-6 text-white" />
-          </button>
-          <button
-            onClick={nextTemplate}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 p-3 backdrop-blur-sm transition-colors"
-          >
-            <ArrowRight className="w-6 h-6 text-white" />
-          </button>
-
-          {/* Template Display */}
-          <div className="overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {templates.map((template) => (
             <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              key={template.id}
+              className="glass-card p-8 flex flex-col h-full transition-transform hover:scale-[1.02] duration-300"
             >
-              {templates.map((template) => (
-                <div 
-                  key={template.id}
-                  className="w-full flex-shrink-0 glass-card p-8"
-                >
-                  <div className="flex justify-between items-start mb-6">
-                    <div>
-                      <span className="text-accent text-sm tracking-tight">{template.category}</span>
-                      <h3 className="text-white text-2xl font-medium mt-1">{template.title}</h3>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm block mb-1 rounded">
-                        {template.price}
-                      </span>
-                      <span className="text-neutral-400 text-xs">
-                        {template.timeline}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-neutral-400 text-sm mb-6">{template.description}</p>
-                  <ul className="grid grid-cols-2 gap-4">
-                    {template.features.map((feature, index) => (
-                      <li key={index} className="text-neutral-300 text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <span className="text-accent text-sm tracking-tight">{template.category}</span>
+                  <h3 className="text-white text-2xl font-medium mt-1">{template.title}</h3>
                 </div>
-              ))}
+                <div className="text-right">
+                  <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm block mb-1 rounded">
+                    {template.price}
+                  </span>
+                  <span className="text-neutral-400 text-xs">
+                    {template.timeline}
+                  </span>
+                </div>
+              </div>
+              <p className="text-neutral-400 text-sm mb-6">{template.description}</p>
+              <ul className="space-y-3 mb-8 flex-grow">
+                {template.features.map((feature, index) => (
+                  <li key={index} className="text-neutral-300 text-sm flex items-center">
+                    <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <button 
+                onClick={() => handleGetStarted(template.title)}
+                className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group mt-auto"
+              >
+                Get Started
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* Template Counter */}
-        <div className="mt-8 text-center text-neutral-500">
-          <span className="font-mono">{currentIndex + 1}</span>
-          <span className="mx-2">/</span>
-          <span className="font-mono">{templates.length}</span>
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="glass-card p-6">
             <h3 className="text-white text-lg font-medium mb-2">Professional Design</h3>
             <p className="text-neutral-400 text-sm">
