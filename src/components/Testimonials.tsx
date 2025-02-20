@@ -1,6 +1,4 @@
-
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const testimonials = [
@@ -86,14 +84,14 @@ const Testimonials = () => {
         >
           Join hundreds of small businesses that trust us with their online presence.
         </motion.p>
-        <div className="scrollbar-none">
-          <div className="flex gap-6 min-w-max px-4 pb-4">
-            {testimonials.map((testimonial, index) => (
+        <div className="relative overflow-hidden">
+          <div className="flex gap-6 animate-scroll hover:pause min-w-max">
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="glass-card p-6 rounded-xl w-[400px] flex-shrink-0 transition-transform duration-200"
+                className="glass-card p-6 rounded-xl w-[350px] flex-shrink-0 transition-transform duration-200"
               >
                 <p className="text-neutral-600 mb-6">{testimonial.quote}</p>
                 <div className="flex items-center gap-3">

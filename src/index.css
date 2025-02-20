@@ -27,6 +27,27 @@
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-350px * 6 - 1.5rem * 6));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+.pause {
+  animation-play-state: paused;
+}
+
 .text-balance {
   text-wrap: balance;
 }

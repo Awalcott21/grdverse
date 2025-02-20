@@ -1,6 +1,4 @@
-
 import { BookOpen, Clock, Tag } from "lucide-react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const blogPosts = [
@@ -79,10 +77,10 @@ const Blog = () => {
 
         <div className="grid lg:grid-cols-12 gap-8">
           <div className="lg:col-span-8">
-            <div className="scrollbar-none">
-              <div className="flex gap-6 min-w-max px-4 pb-4">
-                {blogPosts.map((post, index) => (
-                  <article key={index} className="glass-card rounded-xl overflow-hidden group w-[400px] flex-shrink-0">
+            <div className="relative overflow-hidden">
+              <div className="flex gap-6 animate-scroll hover:pause min-w-max">
+                {[...blogPosts, ...blogPosts].map((post, index) => (
+                  <article key={index} className="glass-card rounded-xl overflow-hidden group w-[350px] flex-shrink-0">
                     <div className="aspect-video overflow-hidden">
                       <img 
                         src={post.image} 
