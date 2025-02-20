@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -165,9 +164,7 @@ const PackageComparison = () => {
 
   const handleGetStarted = () => {
     if (!selectedPackage) return;
-    const selected = allOptions.find(opt => opt.title === selectedPackage);
-    const packageType = selected ? selected.title.toLowerCase().split(' ')[0] : '';
-    navigate(`/get-started?package=${packageType}`);
+    navigate(`/get-started?package=${selectedPackage}`);
   };
 
   return (

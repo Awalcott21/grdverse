@@ -11,10 +11,27 @@ const GetStarted = () => {
   const { toast } = useToast();
   const selectedPackage = searchParams.get("package");
 
-  // Capitalize the package name for display
+  // Capitalize the package name for display and handle full package names
   const formatPackageName = (pkg: string | null) => {
     if (!pkg) return "Not Selected";
-    return pkg.charAt(0).toUpperCase() + pkg.slice(1);
+    
+    // Handle full package names that might come from the dropdown
+    if (pkg.includes("Package")) {
+      return pkg;
+    }
+    
+    // Map short package names to their full names
+    const packageMap: { [key: string]: string } = {
+      'basic': 'Basic Package',
+      'standard': 'Standard Package',
+      'premium': 'Premium Package',
+      'wix': 'Wix Website Package (Standard)',
+      'seo': 'SEO Package',
+      'ecommerce': 'E-commerce Add-on',
+      'maintenance': 'Maintenance Plan'
+    };
+    
+    return packageMap[pkg.toLowerCase()] || pkg.charAt(0).toUpperCase() + pkg.slice(1);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,7 +39,7 @@ const GetStarted = () => {
     const formData = new FormData(e.currentTarget);
     
     // Create email content
-    const mailtoLink = `mailto:hello@grdverse.com?subject=New Project Inquiry - ${formData.get("package")} Package&body=
+    const mailtoLink = `mailto:hello@grdverse.com?subject=New Project Inquiry - ${formData.get("package")}&body=
 Name: ${formData.get("name")}%0D%0A
 Email: ${formData.get("email")}%0D%0A
 Package: ${formData.get("package")}%0D%0A
@@ -64,7 +81,7 @@ Project Details:%0D%0A${formData.get("details")}`;
                 className="text-xl text-neutral-400"
               >
                 {selectedPackage 
-                  ? `You've selected our ${formatPackageName(selectedPackage)} package. Fill in your details below to get started.`
+                  ? `You've selected our ${formatPackageName(selectedPackage)}. Fill in your details below to get started.`
                   : "Select a package and fill in your details to begin your journey with us."}
               </motion.p>
             </div>
