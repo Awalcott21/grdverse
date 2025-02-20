@@ -12,7 +12,18 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
-              <li><a href="/#showroom" className="text-neutral-300 hover:text-white transition-colors">Showroom</a></li>
+              <li>
+                <a 
+                  href="/" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('showroom')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-neutral-300 hover:text-white transition-colors"
+                >
+                  Showroom
+                </a>
+              </li>
               <li><button onClick={handleFeatureClick} className="text-neutral-300 hover:text-white transition-colors">What We Build</button></li>
               <li><a href="/about" className="text-neutral-300 hover:text-white transition-colors">About</a></li>
             </ul>
