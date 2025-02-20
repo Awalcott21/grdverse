@@ -8,6 +8,7 @@ import Testimonials from "../components/Testimonials";
 import Blog from "../components/Blog";
 import Footer from "../components/Footer";
 import WebsiteComparison from "../components/WebsiteComparison";
+import PackageComparison from "../components/PackageComparison";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <main>
         <Hero />
         <Features />
+        <PackageComparison />
         <Showroom />
         <WebsiteComparison />
         <Stats />
