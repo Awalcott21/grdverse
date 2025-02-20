@@ -1,4 +1,3 @@
-
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
@@ -209,49 +208,31 @@ const Showroom = () => {
               {templates.map((template) => (
                 <div 
                   key={template.id}
-                  className="w-full flex-shrink-0 relative group"
+                  className="w-full flex-shrink-0 glass-card p-8"
                 >
-                  <div className="relative">
-                    <img
-                      src={template.image}
-                      alt={template.title}
-                      className="w-full aspect-[16/9] object-cover"
-                    />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-center">
-                        <button className="bg-white text-black px-6 py-3 hover:bg-neutral-200 transition-colors">
-                          Learn More
-                        </button>
-                      </div>
+                  <div className="flex justify-between items-start mb-6">
+                    <div>
+                      <span className="text-accent text-sm tracking-tight">{template.category}</span>
+                      <h3 className="text-white text-2xl font-medium mt-1">{template.title}</h3>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm block mb-1 rounded">
+                        {template.price}
+                      </span>
+                      <span className="text-neutral-400 text-xs">
+                        {template.timeline}
+                      </span>
                     </div>
                   </div>
-                  {/* Template Info */}
-                  <div className="absolute -bottom-4 left-4 bg-neutral-900 border border-neutral-800 p-4 max-w-md">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <span className="text-accent text-sm tracking-tight">{template.category}</span>
-                        <h3 className="text-white text-xl font-medium mt-1">{template.title}</h3>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-white font-mono bg-accent px-2 py-1 text-sm block mb-1">
-                          {template.price}
-                        </span>
-                        <span className="text-neutral-400 text-xs">
-                          {template.timeline}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 text-sm mb-3">{template.description}</p>
-                    <ul className="grid grid-cols-2 gap-2">
-                      {template.features.map((feature, index) => (
-                        <li key={index} className="text-neutral-300 text-xs flex items-center">
-                          <span className="w-1 h-1 bg-accent mr-2 rounded-full"></span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <p className="text-neutral-400 text-sm mb-6">{template.description}</p>
+                  <ul className="grid grid-cols-2 gap-4">
+                    {template.features.map((feature, index) => (
+                      <li key={index} className="text-neutral-300 text-sm flex items-center">
+                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
