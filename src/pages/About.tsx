@@ -20,36 +20,40 @@ const About = () => {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-8">About GRIDVERSE</h1>
-            <p className="text-lg text-neutral-400 mb-8">
-              GRIDVERSE is a cutting-edge web development agency dedicated to crafting exceptional digital experiences. We specialize in creating bespoke websites and applications that drive growth and engagement for our clients.
+            <p className="text-lg text-neutral-400 mb-12">
+              At GRIDVERSE, we believe every brand deserves a digital home that truly reflects its spirit. We're not just a web development agency—we're your creative partners, dedicated to crafting digital experiences that empower, inspire, and elevate your business.
             </p>
 
             <section className="mb-12">
               <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
               <p className="text-lg text-neutral-400">
-                Our mission is to empower businesses with innovative and effective web solutions. We believe in the power of technology to transform ideas into reality, and we are committed to delivering excellence in every project we undertake.
+                We exist to help you get your story onto the digital grid. In 2025, personal branding is more important than ever, and your online presence is key to standing out. Our mission is to empower businesses with innovative, tailor-made web solutions that spark growth and forge genuine connections. Every project we undertake is fueled by our passion for excellence and our unwavering belief in the transformative power of technology.
               </p>
             </section>
 
             <section className="mb-12">
               <h2 className="text-3xl font-semibold mb-4">Our Values</h2>
-              <ul className="list-none space-y-2">
+              <ul className="list-none space-y-4">
                 <li className="flex items-start gap-2">
                   <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-lg text-neutral-300">Innovation: We embrace creativity and constantly seek new and better ways to solve problems.</span>
+                  <span className="text-lg text-neutral-300">Innovation: We embrace challenges as opportunities to create breakthrough solutions that push boundaries.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-lg text-neutral-300">Quality: We are committed to delivering the highest standards of quality in our work.</span>
+                  <span className="text-lg text-neutral-300">Quality: We are devoted to the highest standards in every detail, ensuring every project we deliver is a work of art.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-lg text-neutral-300">Collaboration: We work closely with our clients to understand their needs and achieve their goals.</span>
+                  <span className="text-lg text-neutral-300">Collaboration: We work hand-in-hand with you to understand your vision, ensuring your digital presence is as unique as your story.</span>
                 </li>
               </ul>
             </section>
 
-            <div className="mt-16 text-center">
+            <p className="text-lg text-neutral-400 mb-16">
+              At GRIDVERSE, we're committed to building more than just websites—we create digital experiences that capture the heart and soul of your brand and showcase the essence of your personal story to the world.
+            </p>
+
+            <div className="text-center">
               <button
                 onClick={() => navigate("/consultation")}
                 className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center gap-2 group"
