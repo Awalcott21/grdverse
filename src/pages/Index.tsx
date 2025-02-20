@@ -7,6 +7,7 @@ import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import Blog from "../components/Blog";
 import Footer from "../components/Footer";
+import WebsiteComparison from "../components/WebsiteComparison";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <main>
         <Hero />
         <Showroom />
+        <WebsiteComparison />
         <Features />
         <Stats />
         <Testimonials />
