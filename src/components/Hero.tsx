@@ -46,7 +46,7 @@ const Hero = () => {
         
         <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5">
           <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475"
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
             alt="GridVerse Digital Universe"
             className="rounded-none w-full animate-float"
           />
