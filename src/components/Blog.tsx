@@ -57,4 +57,61 @@ const blogPosts = [
     readTime: "3 min read",
     content: [
       "First Impressions Matter: Your website is often the first point of contact between you and potential customers. A well-designed website communicates professionalism, credibility, and trustworthiness.",
-      "Increased Visibility: A
+      "Increased Visibility: A professional website increases your visibility online, making it easier for potential customers to find you through search engines and social media.",
+      "24/7 Availability: Your website works around the clock, providing information and services to customers even when you're not available.",
+      "Competitive Advantage: In 2025, having a professional website will be the norm. Not having one could put you at a significant disadvantage against your competitors.",
+      "Cost-Effective Marketing: A website is one of the most cost-effective marketing tools, providing long-term value and multiple opportunities to showcase your products or services."
+    ]
+  }
+];
+
+const Blog = () => {
+  const navigate = useNavigate();
+
+  return (
+    <section className="py-24 bg-neutral-900">
+      <div className="container-padding">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Latest from Our Blog</h2>
+          <p className="text-neutral-400 max-w-2xl mx-auto">Stay updated with the latest trends in web development, design, and digital marketing through our comprehensive guides and insights.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {blogPosts.map((post, index) => (
+            <article key={index} className="bg-neutral-800 rounded-xl overflow-hidden hover:transform hover:scale-[1.02] transition-all cursor-pointer">
+              <div className="aspect-[16/9] relative overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-4 text-sm text-neutral-400 mb-4">
+                  <span className="flex items-center gap-1">
+                    <Tag className="w-4 h-4" />
+                    {post.category}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-4 h-4" />
+                    {post.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <BookOpen className="w-4 h-4" />
+                    {post.readTime}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{post.title}</h3>
+                <p className="text-neutral-400 mb-4 line-clamp-2">{post.excerpt}</p>
+                <button className="text-accent hover:text-accent/80 font-medium transition-colors">
+                  Read More →
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Blog;
