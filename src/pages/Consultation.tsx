@@ -93,7 +93,7 @@ Project Details:%0D%0A${formData.get("message")}`;
                     />
                   </div>
                   <button className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Schedule Consultation
+                    Send Message
                   </button>
                 </form>
               </motion.div>
@@ -104,20 +104,21 @@ Project Details:%0D%0A${formData.get("message")}`;
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="space-y-8"
               >
-                <h2 className="text-2xl font-semibold mb-6">Other Ways to Connect</h2>
+                <h2 className="text-2xl font-semibold mb-6">Schedule a Call</h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <Calendar className="w-6 h-6 text-accent shrink-0" />
                     <div>
-                      <h3 className="font-medium mb-1">Book a Call</h3>
-                      <p className="text-neutral-400">Schedule a 30-minute call to discuss your project in detail.</p>
-                      {/* Add your Calendly embed code here */}
-                      <button 
-                        onClick={() => window.open('YOUR_CALENDLY_LINK', '_blank')}
-                        className="mt-3 text-accent hover:text-accent/90 font-medium"
-                      >
-                        Schedule Now
-                      </button>
+                      <h3 className="font-medium mb-1">Book a Meeting</h3>
+                      <p className="text-neutral-400 mb-4">Schedule a 30-minute call to discuss your project in detail.</p>
+                      <div className="aspect-video w-full">
+                        <iframe
+                          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0_vE_zWO_F3GxiVFoQCWQYKi8JA9vZytxNn7g95S5cqdDj0Yw53UDAFsmCOvGcypWOCEDI_xhD"
+                          style={{ border: 0 }}
+                          className="w-full h-[400px] rounded-lg"
+                          frameBorder="0"
+                        ></iframe>
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
