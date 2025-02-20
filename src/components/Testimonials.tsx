@@ -86,13 +86,14 @@ const Testimonials = () => {
         >
           Join hundreds of small businesses that trust us with their online presence.
         </motion.p>
-        <div className="overflow-x-auto pb-8">
-          <div className="flex gap-6 min-w-max px-4">
+        <div className="scrollbar-none">
+          <div className="flex gap-6 min-w-max px-4 pb-4">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="glass-card p-6 rounded-xl w-[400px] flex-shrink-0"
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                className="glass-card p-6 rounded-xl w-[400px] flex-shrink-0 transition-transform duration-200"
               >
                 <p className="text-neutral-600 mb-6">{testimonial.quote}</p>
                 <div className="flex items-center gap-3">

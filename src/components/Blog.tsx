@@ -1,3 +1,4 @@
+
 import { BookOpen, Clock, Tag } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -77,9 +78,9 @@ const Blog = () => {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8 overflow-hidden">
-            <div className="overflow-x-auto pb-8">
-              <div className="flex gap-6 min-w-max px-4">
+          <div className="lg:col-span-8">
+            <div className="scrollbar-none">
+              <div className="flex gap-6 min-w-max px-4 pb-4">
                 {blogPosts.map((post, index) => (
                   <article key={index} className="glass-card rounded-xl overflow-hidden group w-[400px] flex-shrink-0">
                     <div className="aspect-video overflow-hidden">
@@ -132,6 +133,16 @@ const Blog = () => {
             </div>
           </aside>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-16 text-center">
+        <button 
+          onClick={() => navigate('/consultation')}
+          className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center gap-2"
+        >
+          Start Your Project Today
+          <BookOpen className="w-4 h-4" />
+        </button>
       </div>
     </section>
   );
