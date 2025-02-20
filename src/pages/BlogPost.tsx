@@ -1,5 +1,5 @@
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useEffect } from "react-router-dom";
 import { ArrowLeft, BookOpen, Clock, Tag } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,6 +9,10 @@ const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const post = blogPosts[Number(id)];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!post) {
     return <div>Post not found</div>;
