@@ -30,7 +30,7 @@ const templates: Template[] = [
       "1 year web hosting",
       "Basic contact form"
     ],
-    price: "$500",
+    price: "$600",
     timeline: "5-7 days"
   },
   {
@@ -46,7 +46,7 @@ const templates: Template[] = [
       "3 months maintenance",
       "Domain & hosting included"
     ],
-    price: "$900",
+    price: "$1,000",
     timeline: "7-10 days"
   },
   {
@@ -62,13 +62,13 @@ const templates: Template[] = [
       "Google Analytics",
       "6 months maintenance"
     ],
-    price: "$1,400",
+    price: "$1,500",
     timeline: "10-14 days"
   },
   {
     id: 4,
     title: "Wix Website Package (Standard)",
-    description: "An affordable and user-friendly solution for those looking for a simple website with easy management",
+    description: "An affordable and user-friendly solution for those looking for a simple website with easy management (+ $23/month Wix subscription)",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
     category: "Wix One-Page Website",
     features: [
@@ -84,7 +84,7 @@ const templates: Template[] = [
   {
     id: 5,
     title: "Wix 3-Page Website Package",
-    description: "A flexible 3-page website perfect for businesses that need more content and want an easy-to-manage solution with Wix",
+    description: "A flexible 3-page website perfect for businesses that need more content and want an easy-to-manage solution with Wix (+ $23/month Wix subscription)",
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3",
     category: "Wix 3-Page Website",
     features: [
@@ -100,7 +100,7 @@ const templates: Template[] = [
   {
     id: 6,
     title: "Wix 5-Page Website Package",
-    description: "For businesses looking to expand and manage their online presence seamlessly with Wix",
+    description: "For businesses looking to expand and manage their online presence seamlessly with Wix (+ $23/month Wix subscription)",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     category: "Wix 5-Page Website",
     features: [

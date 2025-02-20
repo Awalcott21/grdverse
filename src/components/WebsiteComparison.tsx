@@ -19,7 +19,7 @@ const WebsiteComparison = () => {
             {/* Custom Website Column */}
             <div className="glass-card p-8 border border-purple-500/20 bg-purple-500/5">
               <h3 className="text-2xl font-semibold text-purple-400 mb-6">
-                Choose a Custom Website (Built with Loveable.dev) If:
+                Choose a Custom Website If:
               </h3>
               <ul className="space-y-4">
                 {[
@@ -46,7 +46,8 @@ const WebsiteComparison = () => {
                   "You need a quick, affordable solution that's easy to manage and maintain.",
                   "You prefer a drag-and-drop interface and don't want to worry about complex back-end work.",
                   "You're looking for a simple, user-friendly website with the ability to easily make updates without technical knowledge.",
-                  "You want cost-effective options with reliable hosting and a straightforward design."
+                  "You want cost-effective options with reliable hosting and a straightforward design.",
+                  "You're comfortable with a $23/month basic subscription fee for the Wix platform."
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-blue-400 shrink-0 mt-1" />
