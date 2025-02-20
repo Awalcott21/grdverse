@@ -76,7 +76,7 @@ const Blog = () => {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-12">
             <div className="relative overflow-hidden">
               <div className="flex gap-6 animate-scroll hover:pause min-w-max">
                 {[...blogPosts, ...blogPosts].map((post, index) => (
@@ -115,21 +115,6 @@ const Blog = () => {
               </div>
             </div>
           </div>
-
-          <aside className="lg:col-span-4">
-            <div className="glass-card p-6 rounded-xl text-center bg-accent/10">
-              <h3 className="text-xl font-semibold mb-3">Need Web Design Help?</h3>
-              <p className="text-neutral-400 mb-4">
-                Get a free consultation to discuss your website needs.
-              </p>
-              <button 
-                onClick={() => navigate('/consultation')}
-                className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                Book Free Consultation
-              </button>
-            </div>
-          </aside>
         </div>
       </div>
 
