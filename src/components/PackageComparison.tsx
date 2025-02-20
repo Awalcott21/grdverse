@@ -7,6 +7,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectGroup,
+  SelectLabel,
 } from "@/components/ui/select";
 
 const addOns = [
@@ -222,26 +224,30 @@ const PackageComparison = () => {
               <SelectValue placeholder="Select your package" />
             </SelectTrigger>
             <SelectContent className="bg-neutral-800 border-neutral-700">
-              <SelectItem value="" disabled className="text-white font-semibold">Packages</SelectItem>
-              {packages.map((pkg) => (
-                <SelectItem 
-                  key={pkg.id} 
-                  value={pkg.title}
-                  className="text-white hover:bg-neutral-700"
-                >
-                  {pkg.title}
-                </SelectItem>
-              ))}
-              <SelectItem value="" disabled className="text-white font-semibold">Add-ons</SelectItem>
-              {addOns.map((addon) => (
-                <SelectItem 
-                  key={addon.id} 
-                  value={addon.title}
-                  className="text-white hover:bg-neutral-700"
-                >
-                  {addon.title}
-                </SelectItem>
-              ))}
+              <SelectGroup>
+                <SelectLabel>Packages</SelectLabel>
+                {packages.map((pkg) => (
+                  <SelectItem 
+                    key={pkg.id} 
+                    value={pkg.title}
+                    className="text-white hover:bg-neutral-700"
+                  >
+                    {pkg.title}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+              <SelectGroup>
+                <SelectLabel>Add-ons</SelectLabel>
+                {addOns.map((addon) => (
+                  <SelectItem 
+                    key={addon.id} 
+                    value={addon.title}
+                    className="text-white hover:bg-neutral-700"
+                  >
+                    {addon.title}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
             </SelectContent>
           </Select>
 
