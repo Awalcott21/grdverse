@@ -1,7 +1,24 @@
+
 import { BookOpen, Clock, Tag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const blogPosts = [
+  {
+    title: "Personal Branding in 2025: Why Your Digital Presence is the Key to Success",
+    excerpt: "In 2025, the digital landscape will be more competitive than ever, and your personal brand will be your most powerful asset. Whether you're a small business owner, freelancer, or creative, the ability to stand out in the digital world will determine your success.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    category: "Personal Branding",
+    date: "Mar 21, 2024",
+    readTime: "5 min read",
+    content: [
+      "The Power of Your Digital Presence: In the age of social media, websites, and online interactions, your digital presence is the new storefront. But personal branding goes far beyond just a sleek logo or catchy tagline. It's about telling your story, sharing your values, and connecting with your audience on a deeper level.",
+      "Having a well-established digital presence on the 'digital grid' means you're not just another face in the crowd. You're part of an evolving, interactive world where potential clients, customers, and collaborators can find you at any time, anywhere.",
+      "Why 2025 is the Year to Own Your Digital Grid: As we approach 2025, the digital world will continue to grow exponentially. Virtual reality, digital twins, and the metaverse will create even more opportunities for individuals to connect, collaborate, and create in ways we haven't imagined before.",
+      "Your Verse: Telling Your Story: We live in a world where everyone has a story to tell, but how you share that story can make all the difference. Personal branding is about more than just showcasing your work; it's about sharing your journey, values, and vision with your audience.",
+      "At Gridverse, we believe in empowering individuals and businesses to take control of their digital narrative. Our custom web development services are designed to give you the tools to craft a standout personal brand that resonates with your audience.",
+      "The digital world is rapidly changing, and your personal brand is more important than ever. In 2025, having a powerful digital presence will not just be a trend—it will be essential to your success. Don't wait to build your 'verse' on the digital grid—start today and take control of your brand's future."
+    ]
+  },
   {
     title: "The Importance of Responsive Design for Small Businesses",
     excerpt: "In an era where over half of all internet traffic comes from mobile devices, responsive web design is more important than ever. Here's why responsive design should be a priority for your small business.",
@@ -40,95 +57,4 @@ const blogPosts = [
     readTime: "3 min read",
     content: [
       "First Impressions Matter: Your website is often the first point of contact between you and potential customers. A well-designed website communicates professionalism, credibility, and trustworthiness.",
-      "Increased Visibility: A website allows your business to be found by customers searching online. With SEO optimization, your site can rank high in search results, bringing in more traffic and leads.",
-      "Competitive Edge: In a crowded market, standing out is key. A custom-built website tailored to your brand will set you apart from competitors who rely on generic templates.",
-      "Having a website in 2025 is no longer just a trend—it's the foundation for growing your business. Whether you're a small local business or an entrepreneur, a website is your digital storefront, 24/7."
-    ]
-  },
-  {
-    title: "5 Tips for Optimizing Your Small Business Website for SEO",
-    excerpt: "Search Engine Optimization (SEO) is critical to ensuring your website is visible to potential clients. Learn essential tips to boost your site's SEO and increase your chances of showing up in search results.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    category: "SEO",
-    date: "Mar 16, 2024",
-    readTime: "4 min read",
-    content: [
-      "Use Relevant Keywords: Do thorough keyword research to identify terms your potential customers are searching for. Incorporate these into your website copy, blog posts, and meta descriptions.",
-      "Mobile Optimization: With the rise of mobile internet usage, ensuring your website is mobile-friendly is crucial for SEO. A responsive design will improve user experience and your search engine ranking.",
-      "Fast Load Times: Slow websites frustrate users and drive them away. Optimize images and leverage tools to speed up your website's loading time.",
-      "Quality Content: Regularly publishing high-quality content that answers common questions or solves problems will not only engage visitors but also improve your SEO ranking.",
-      "Local SEO: If you're a local business, ensure your website is optimized for local search. Claim your Google My Business listing and include location-specific keywords on your site."
-    ]
-  }
-];
-
-const Blog = () => {
-  const navigate = useNavigate();
-
-  return (
-    <section className="py-16 container-padding bg-neutral-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Blog</h2>
-          <p className="text-xl text-neutral-400 max-w-2xl mx-auto">
-            Tips, Insights, and Stories to Grow Your Online Presence
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-12">
-            <div className="relative overflow-hidden">
-              <div className="flex gap-6 animate-scroll hover:pause min-w-max">
-                {[...blogPosts, ...blogPosts].map((post, index) => (
-                  <article key={index} className="glass-card rounded-xl overflow-hidden group w-[350px] flex-shrink-0">
-                    <div className="aspect-video overflow-hidden">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <div className="flex items-center gap-4 text-xs text-neutral-500 mb-2">
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          <span>{post.readTime}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Tag className="w-3 h-3" />
-                          <span>{post.category}</span>
-                        </div>
-                      </div>
-                      <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm text-neutral-400 mb-3 line-clamp-2">
-                        {post.excerpt}
-                      </p>
-                      <button className="flex items-center gap-1 text-sm text-accent hover:gap-2 transition-all">
-                        <span>Read Article</span>
-                        <BookOpen className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto mt-16 text-center">
-        <button 
-          onClick={() => navigate('/consultation')}
-          className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center gap-2"
-        >
-          Start Your Project Today
-          <BookOpen className="w-4 h-4" />
-        </button>
-      </div>
-    </section>
-  );
-};
-
-export default Blog;
+      "Increased Visibility: A
