@@ -2,9 +2,31 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { Calendar, Mail, MessageSquare, Phone } from "lucide-react";
+import { Calendar, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Consultation = () => {
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    // Create email content
+    const mailtoLink = `mailto:hello@grdverse.com?subject=Consultation Request - ${formData.get("name")}&body=
+Name: ${formData.get("name")}%0D%0A
+Email: ${formData.get("email")}%0D%0A
+Project Details:%0D%0A${formData.get("message")}`;
+
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    toast({
+      title: "Form Submitted!",
+      description: "Opening your email client to send your consultation request.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
       <Header />
@@ -30,7 +52,7 @@ const Consultation = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-neutral-300 mb-2">
                       Your Name
@@ -38,6 +60,8 @@ const Consultation = () => {
                     <input
                       type="text"
                       id="name"
+                      name="name"
+                      required
                       className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                       placeholder="John Doe"
                     />
@@ -49,6 +73,8 @@ const Consultation = () => {
                     <input
                       type="email"
                       id="email"
+                      name="email"
+                      required
                       className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                       placeholder="john@example.com"
                     />
@@ -59,6 +85,8 @@ const Consultation = () => {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
+                      required
                       rows={4}
                       className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                       placeholder="Tell us about your project..."
@@ -83,27 +111,20 @@ const Consultation = () => {
                     <div>
                       <h3 className="font-medium mb-1">Book a Call</h3>
                       <p className="text-neutral-400">Schedule a 30-minute call to discuss your project in detail.</p>
+                      {/* Add your Calendly embed code here */}
+                      <button 
+                        onClick={() => window.open('YOUR_CALENDLY_LINK', '_blank')}
+                        className="mt-3 text-accent hover:text-accent/90 font-medium"
+                      >
+                        Schedule Now
+                      </button>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Mail className="w-6 h-6 text-accent shrink-0" />
                     <div>
                       <h3 className="font-medium mb-1">Email Us</h3>
-                      <p className="text-neutral-400">Send us an email at contact@grdverse.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Phone className="w-6 h-6 text-accent shrink-0" />
-                    <div>
-                      <h3 className="font-medium mb-1">Phone</h3>
-                      <p className="text-neutral-400">Call us at (555) 123-4567</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <MessageSquare className="w-6 h-6 text-accent shrink-0" />
-                    <div>
-                      <h3 className="font-medium mb-1">Live Chat</h3>
-                      <p className="text-neutral-400">Chat with our team during business hours</p>
+                      <p className="text-neutral-400">Send us an email at hello@grdverse.com</p>
                     </div>
                   </div>
                 </div>
