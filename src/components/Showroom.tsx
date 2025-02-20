@@ -1,5 +1,14 @@
+
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Template {
   id: number;
@@ -165,11 +174,20 @@ const addOns = [
 
 const Showroom = () => {
   const navigate = useNavigate();
+  const [selectedPackageType, setSelectedPackageType] = useState<string>("all");
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
   const handleGetStarted = (packageName: string) => {
     const packageType = packageName.toLowerCase().split(' ')[0];
     navigate(`/get-started?package=${packageType}`);
   };
+
+  const filteredPackages = mainPackages.filter(pkg => {
+    if (selectedPackageType === "all") return true;
+    if (selectedPackageType === "custom") return !pkg.title.toLowerCase().includes("wix");
+    if (selectedPackageType === "wix") return pkg.title.toLowerCase().includes("wix");
+    return false;
+  });
 
   return (
     <section id="showroom" className="py-32 container-padding bg-neutral-900 relative">
@@ -185,11 +203,33 @@ const Showroom = () => {
           </p>
         </div>
 
+        {/* Package Type Filter */}
+        <div className="mb-8">
+          <Select
+            value={selectedPackageType}
+            onValueChange={setSelectedPackageType}
+          >
+            <SelectTrigger className="w-[280px] bg-neutral-800 border-neutral-700 text-white">
+              <SelectValue placeholder="Select your package type" />
+            </SelectTrigger>
+            <SelectContent className="bg-neutral-800 border-neutral-700">
+              <SelectItem value="all" className="text-white hover:bg-neutral-700">All Packages</SelectItem>
+              <SelectItem value="custom" className="text-white hover:bg-neutral-700">Custom Packages</SelectItem>
+              <SelectItem value="wix" className="text-white hover:bg-neutral-700">Wix Packages</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {mainPackages.map((template) => (
+          {filteredPackages.map((template) => (
             <div 
               key={template.id}
-              className="glass-card p-8 flex flex-col h-full transition-transform hover:scale-[1.02] duration-300"
+              className={`glass-card p-8 flex flex-col h-full transition-all duration-300 ${
+                selectedCard === template.id 
+                  ? 'scale-[1.02] ring-2 ring-accent' 
+                  : 'hover:scale-[1.02]'
+              }`}
+              onClick={() => setSelectedCard(template.id)}
             >
               <div className="flex justify-between items-start mb-6">
                 <div>
@@ -214,8 +254,19 @@ const Showroom = () => {
                   </li>
                 ))}
               </ul>
+              {selectedCard === template.id && (
+                <div className="mb-6 animate-fade-in">
+                  <p className="text-white text-sm">
+                    This package includes everything you need to get your website up and running.
+                    Our team will work closely with you to ensure your vision comes to life.
+                  </p>
+                </div>
+              )}
               <button 
-                onClick={() => handleGetStarted(template.title)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleGetStarted(template.title);
+                }}
                 className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group mt-auto"
               >
                 Get Started
@@ -233,7 +284,7 @@ const Showroom = () => {
               {addOns.map((addon) => (
                 <div 
                   key={addon.id}
-                  className="glass-card p-6 flex-none w-[300px] flex flex-col"
+                  className="glass-card p-6 flex-none w-[300px] flex flex-col hover:scale-[1.02] transition-transform duration-300"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div>
