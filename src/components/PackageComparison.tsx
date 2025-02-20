@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -161,10 +162,45 @@ const allOptions = [...packages, ...addOns];
 const PackageComparison = () => {
   const navigate = useNavigate();
   const [selectedPackage, setSelectedPackage] = useState<string>("");
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+
+  const handlePackageSelect = (value: string) => {
+    // If selecting a package, ensure it's not an add-on
+    if (!addOns.some(addon => addon.title === value)) {
+      setSelectedPackage(value);
+    }
+  };
+
+  const handleAddOnSelect = (value: string) => {
+    // If selecting an add-on
+    if (addOns.some(addon => addon.title === value)) {
+      setSelectedAddOns(prev => {
+        if (prev.includes(value)) {
+          return prev.filter(item => item !== value);
+        }
+        return [...prev, value];
+      });
+    }
+  };
 
   const handleGetStarted = () => {
     if (!selectedPackage) return;
-    navigate(`/get-started?package=${selectedPackage}`);
+    const selections = {
+      package: selectedPackage,
+      addons: selectedAddOns
+    };
+    navigate(`/get-started?package=${encodeURIComponent(JSON.stringify(selections))}`);
+  };
+
+  // Calculate total price
+  const calculateTotal = () => {
+    const packagePrice = packages.find(pkg => pkg.title === selectedPackage)?.price || "$0";
+    const addOnsTotal = selectedAddOns.reduce((total, addon) => {
+      const addonPrice = addOns.find(a => a.title === addon)?.price || "$0";
+      return total + parseInt(addonPrice.replace(/[^0-9]/g, ''));
+    }, 0);
+    const packageBasePrice = parseInt(packagePrice.replace(/[^0-9]/g, ''));
+    return `$${packageBasePrice + addOnsTotal}`;
   };
 
   return (
@@ -246,49 +282,82 @@ const PackageComparison = () => {
         </div>
 
         <div className="max-w-md mx-auto text-center">
-          <Select
-            value={selectedPackage}
-            onValueChange={setSelectedPackage}
-          >
-            <SelectTrigger className="w-full bg-neutral-800 border-neutral-700 text-white mb-6">
-              <SelectValue placeholder="Select your package" />
-            </SelectTrigger>
-            <SelectContent className="bg-neutral-800 border-neutral-700">
-              <SelectGroup>
-                <SelectLabel>Packages</SelectLabel>
-                {packages.map((pkg) => (
-                  <SelectItem 
-                    key={pkg.id} 
-                    value={pkg.title}
-                    className="text-white hover:bg-neutral-700"
-                  >
-                    {pkg.title}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>Add-ons</SelectLabel>
-                {addOns.map((addon) => (
-                  <SelectItem 
-                    key={addon.id} 
-                    value={addon.title}
-                    className="text-white hover:bg-neutral-700"
-                  >
-                    {addon.title}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div className="space-y-6">
+            {/* Package Selection */}
+            <div>
+              <label className="block text-sm font-medium text-neutral-300 mb-2 text-left">
+                Choose Your Website Package
+              </label>
+              <Select
+                value={selectedPackage}
+                onValueChange={handlePackageSelect}
+              >
+                <SelectTrigger className="w-full bg-neutral-800 border-neutral-700 text-white">
+                  <SelectValue placeholder="Select your website package" />
+                </SelectTrigger>
+                <SelectContent className="bg-neutral-800 border-neutral-700">
+                  <SelectGroup>
+                    <SelectLabel>Website Packages</SelectLabel>
+                    {packages.map((pkg) => (
+                      <SelectItem 
+                        key={pkg.id} 
+                        value={pkg.title}
+                        className="text-white hover:bg-neutral-700"
+                      >
+                        {pkg.title} - {pkg.price}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
 
-          <button 
-            onClick={handleGetStarted}
-            disabled={!selectedPackage}
-            className={`w-full bg-accent hover:bg-accent/90 disabled:bg-neutral-700 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group ${!selectedPackage ? 'opacity-50' : ''}`}
-          >
-            Let's Get You on The Grid
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+            {/* Add-ons Selection */}
+            <div>
+              <label className="block text-sm font-medium text-neutral-300 mb-2 text-left">
+                Add Optional Services
+              </label>
+              {addOns.map((addon) => (
+                <div 
+                  key={addon.id}
+                  className="flex items-center justify-between p-3 mb-2 rounded-lg bg-neutral-800 border border-neutral-700 cursor-pointer hover:border-accent"
+                  onClick={() => handleAddOnSelect(addon.title)}
+                >
+                  <div className="flex items-center">
+                    <div 
+                      className={`w-5 h-5 border-2 rounded mr-3 flex items-center justify-center
+                        ${selectedAddOns.includes(addon.title) ? 'border-accent bg-accent' : 'border-neutral-600'}`}
+                    >
+                      {selectedAddOns.includes(addon.title) && (
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className="text-white">{addon.title}</span>
+                  </div>
+                  <span className="text-accent">{addon.price}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Total Price Display */}
+            {selectedPackage && (
+              <div className="text-right mb-6">
+                <span className="text-neutral-400">Total:</span>
+                <span className="text-white text-xl ml-2 font-mono">{calculateTotal()}</span>
+              </div>
+            )}
+
+            <button 
+              onClick={handleGetStarted}
+              disabled={!selectedPackage}
+              className={`w-full bg-accent hover:bg-accent/90 disabled:bg-neutral-700 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group ${!selectedPackage ? 'opacity-50' : ''}`}
+            >
+              Let's Get You on The Grid
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
