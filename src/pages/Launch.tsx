@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Template {
   id: number;
@@ -67,6 +68,13 @@ const templates: Template[] = [
 ];
 
 const Launch = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = (packageName: string) => {
+    const packageType = packageName.toLowerCase().split(' ')[0]; // Get "basic", "standard", or "premium"
+    navigate(`/get-started?package=${packageType}`);
+  };
+
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
       <Header />
@@ -106,7 +114,10 @@ const Launch = () => {
                     </li>
                   ))}
                 </ul>
-                <button className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group">
+                <button 
+                  onClick={() => handleGetStarted(template.title)}
+                  className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group"
+                >
                   Get Started
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
