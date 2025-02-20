@@ -38,7 +38,7 @@ const Hero = () => {
         </div>
         
         <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5 relative">
-          <a href="https://sznstudio.co" target="_blank" rel="noopener noreferrer" className="block group">
+          <a href="https://szn.dev" target="_blank" rel="noopener noreferrer" className="block group">
             <img 
               src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
               alt="SZN Studios Website Preview"
