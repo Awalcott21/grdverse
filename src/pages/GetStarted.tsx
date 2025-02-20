@@ -17,21 +17,23 @@ const GetStarted = () => {
     return pkg.charAt(0).toUpperCase() + pkg.slice(1);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
-    // Here you would typically send this data to your backend
-    console.log({
-      name: formData.get("name"),
-      email: formData.get("email"),
-      package: formData.get("package"),
-      details: formData.get("details"),
-    });
+    // Create email content
+    const mailtoLink = `mailto:hello@grdverse.com?subject=New Project Inquiry - ${formData.get("package")} Package&body=
+Name: ${formData.get("name")}%0D%0A
+Email: ${formData.get("email")}%0D%0A
+Package: ${formData.get("package")}%0D%0A
+Project Details:%0D%0A${formData.get("details")}`;
+
+    // Open default email client
+    window.location.href = mailtoLink;
 
     toast({
-      title: "Form Submitted Successfully!",
-      description: "We'll be in touch with you shortly.",
+      title: "Form Submitted!",
+      description: "Opening your email client to send the inquiry to hello@grdverse.com",
     });
   };
 
