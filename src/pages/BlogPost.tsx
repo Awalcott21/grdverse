@@ -1,5 +1,6 @@
 
-import { useParams, useNavigate, useEffect } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { ArrowLeft, BookOpen, Clock, Tag } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
