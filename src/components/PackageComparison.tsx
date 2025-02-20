@@ -154,13 +154,16 @@ const packages = [
   }
 ];
 
+const allOptions = [...packages, ...addOns];
+
 const PackageComparison = () => {
   const navigate = useNavigate();
   const [selectedPackage, setSelectedPackage] = useState<string>("");
 
   const handleGetStarted = () => {
     if (!selectedPackage) return;
-    const packageType = selectedPackage.toLowerCase().split(' ')[0];
+    const selected = allOptions.find(opt => opt.title === selectedPackage);
+    const packageType = selected ? selected.title.toLowerCase().split(' ')[0] : '';
     navigate(`/get-started?package=${packageType}`);
   };
 
@@ -175,47 +178,6 @@ const PackageComparison = () => {
           <p className="text-neutral-400 mt-4 max-w-2xl mx-auto">
             Review all our packages side by side to find the perfect solution for your needs.
           </p>
-        </div>
-
-        {/* Add-ons Section */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-white mb-8">Enhance Your Website with Add-ons</h3>
-          <div className="overflow-x-auto pb-6">
-            <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
-              {addOns.map((addon) => (
-                <div 
-                  key={addon.id}
-                  className="glass-card p-6 flex-none w-[300px] flex flex-col hover:scale-[1.02] transition-transform duration-300"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <span className="text-accent text-sm tracking-tight">{addon.category}</span>
-                      <h4 className="text-white text-xl font-medium mt-1">{addon.title}</h4>
-                    </div>
-                    <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm rounded">
-                      {addon.price}
-                    </span>
-                  </div>
-                  <p className="text-neutral-400 text-sm mb-4">{addon.description}</p>
-                  <ul className="space-y-2 mb-6 flex-grow">
-                    {addon.features.map((feature, index) => (
-                      <li key={index} className="text-neutral-300 text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <button 
-                    onClick={() => handleGetStarted(addon.title)}
-                    className="w-full bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group"
-                  >
-                    Add to Package
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -251,7 +213,7 @@ const PackageComparison = () => {
           ))}
         </div>
 
-        <div className="max-w-md mx-auto text-center">
+        <div className="max-w-md mx-auto text-center mb-16">
           <Select
             value={selectedPackage}
             onValueChange={setSelectedPackage}
@@ -260,6 +222,7 @@ const PackageComparison = () => {
               <SelectValue placeholder="Select your package" />
             </SelectTrigger>
             <SelectContent className="bg-neutral-800 border-neutral-700">
+              <SelectItem value="" disabled className="text-white font-semibold">Packages</SelectItem>
               {packages.map((pkg) => (
                 <SelectItem 
                   key={pkg.id} 
@@ -267,6 +230,16 @@ const PackageComparison = () => {
                   className="text-white hover:bg-neutral-700"
                 >
                   {pkg.title}
+                </SelectItem>
+              ))}
+              <SelectItem value="" disabled className="text-white font-semibold">Add-ons</SelectItem>
+              {addOns.map((addon) => (
+                <SelectItem 
+                  key={addon.id} 
+                  value={addon.title}
+                  className="text-white hover:bg-neutral-700"
+                >
+                  {addon.title}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -280,6 +253,39 @@ const PackageComparison = () => {
             Get Started with {selectedPackage || "Your Package"}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-white mb-8">Enhance Your Website with Add-ons</h3>
+          <div className="overflow-x-auto pb-6">
+            <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
+              {addOns.map((addon) => (
+                <div 
+                  key={addon.id}
+                  className="glass-card p-6 flex-none w-[300px] flex flex-col hover:scale-[1.02] transition-transform duration-300"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <span className="text-accent text-sm tracking-tight">{addon.category}</span>
+                      <h4 className="text-white text-xl font-medium mt-1">{addon.title}</h4>
+                    </div>
+                    <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm rounded">
+                      {addon.price}
+                    </span>
+                  </div>
+                  <p className="text-neutral-400 text-sm mb-4">{addon.description}</p>
+                  <ul className="space-y-2 mb-6 flex-grow">
+                    {addon.features.map((feature, index) => (
+                      <li key={index} className="text-neutral-300 text-sm flex items-center">
+                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
