@@ -46,13 +46,10 @@ const Hero = () => {
         
         <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5">
           <img 
-            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
-            alt="Website Preview"
-            className="rounded-none w-full"
+            src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
+            alt="GridVerse Digital Universe"
+            className="rounded-none w-full animate-float"
           />
-          <div className="absolute -bottom-4 -right-4 bg-accent text-white px-4 py-2 text-sm tracking-tight">
-            Latest Project™
-          </div>
         </div>
       </div>
     </section>
