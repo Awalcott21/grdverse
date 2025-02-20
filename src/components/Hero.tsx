@@ -37,18 +37,15 @@ const Hero = () => {
           </button>
         </div>
         
-        <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5 relative">
-          <a href="https://szn.dev" target="_blank" rel="noopener noreferrer" className="block group">
-            <img 
-              src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
-              alt="SZN Studios Website Preview"
-              className="rounded-none w-full group-hover:scale-[1.02] transition-transform duration-500"
-            />
-            <div className="absolute -bottom-4 -right-4 bg-accent text-white px-4 py-2 text-sm tracking-tight flex items-center gap-2">
-              SZN Studios™
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </a>
+        <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5">
+          <img 
+            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+            alt="Website Preview"
+            className="rounded-none w-full"
+          />
+          <div className="absolute -bottom-4 -right-4 bg-accent text-white px-4 py-2 text-sm tracking-tight">
+            Latest Project™
+          </div>
         </div>
       </div>
       
