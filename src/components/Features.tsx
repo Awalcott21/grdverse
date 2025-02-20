@@ -46,12 +46,13 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="py-16 container-padding">
+    <section id="features" className="py-16 container-padding bg-neutral-900">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <span className="text-sm text-accent tracking-tight">// Business Essentials</span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
           Everything You Need to Run Your Business
         </h2>
-        <p className="text-neutral-400 text-center mb-12 max-w-2xl mx-auto">
+        <p className="text-neutral-400 mb-12 max-w-2xl">
           At Gridverse, we believe that a successful business goes beyond just a website—it's about building a complete online presence that drives growth and customer engagement. That's why, with every website we create, we offer essential tools and services to help you thrive in the digital world.
         </p>
         <div className="grid md:grid-cols-2 gap-8">
@@ -61,7 +62,7 @@ const Features = () => {
                 <div className="bg-accent/10 p-3 rounded-lg">
                   <feature.icon className="w-6 h-6 text-accent" />
                 </div>
-                <h3 className="font-semibold text-xl">{feature.title}</h3>
+                <h3 className="font-semibold text-xl text-white">{feature.title}</h3>
               </div>
               <p className="text-neutral-400">{feature.description}</p>
             </div>

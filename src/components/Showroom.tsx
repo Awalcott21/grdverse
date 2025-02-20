@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -173,36 +172,8 @@ const Showroom = () => {
   };
 
   return (
-    <section id="showroom" className="min-h-screen py-32 container-padding bg-neutral-900 relative">
+    <section id="showroom" className="py-32 container-padding bg-neutral-900 relative">
       <div className="max-w-7xl mx-auto">
-        {/* Business Essentials Section */}
-        <div className="mb-32">
-          <span className="text-sm text-accent tracking-tight">// Business Essentials</span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mt-2 mb-16">
-            Everything You Need to Run Your Business
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-card p-6">
-              <h3 className="text-white text-lg font-medium mb-2">Professional Design</h3>
-              <p className="text-neutral-400 text-sm">
-                Clean, modern designs tailored to your brand and optimized for all devices.
-              </p>
-            </div>
-            <div className="glass-card p-6">
-              <h3 className="text-white text-lg font-medium mb-2">Quick Delivery</h3>
-              <p className="text-neutral-400 text-sm">
-                Fast turnaround times with most projects completed within 5-14 days.
-              </p>
-            </div>
-            <div className="glass-card p-6">
-              <h3 className="text-white text-lg font-medium mb-2">Complete Solution</h3>
-              <p className="text-neutral-400 text-sm">
-                Everything included: domain, hosting, maintenance, and technical support.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Packages Section */}
         <div className="mb-16">
           <span className="text-sm text-accent tracking-tight">// Our Packages</span>
@@ -292,6 +263,28 @@ const Showroom = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="glass-card p-6">
+            <h3 className="text-white text-lg font-medium mb-2">Professional Design</h3>
+            <p className="text-neutral-400 text-sm">
+              Clean, modern designs tailored to your brand and optimized for all devices.
+            </p>
+          </div>
+          <div className="glass-card p-6">
+            <h3 className="text-white text-lg font-medium mb-2">Quick Delivery</h3>
+            <p className="text-neutral-400 text-sm">
+              Fast turnaround times with most projects completed within 5-14 days.
+            </p>
+          </div>
+          <div className="glass-card p-6">
+            <h3 className="text-white text-lg font-medium mb-2">Complete Solution</h3>
+            <p className="text-neutral-400 text-sm">
+              Everything included: domain, hosting, maintenance, and technical support.
+            </p>
           </div>
         </div>
       </div>
