@@ -12,7 +12,7 @@ interface Template {
   timeline: string;
 }
 
-const templates: Template[] = [
+const mainPackages = [
   {
     id: 1,
     title: "Basic Package",
@@ -109,7 +109,10 @@ const templates: Template[] = [
     ],
     price: "$1,400",
     timeline: "10-14 days"
-  },
+  }
+];
+
+const addOns = [
   {
     id: 7,
     title: "SEO Package",
@@ -182,7 +185,7 @@ const Showroom = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {templates.map((template) => (
+          {mainPackages.map((template) => (
             <div 
               key={template.id}
               className="glass-card p-8 flex flex-col h-full transition-transform hover:scale-[1.02] duration-300"
@@ -219,6 +222,46 @@ const Showroom = () => {
               </button>
             </div>
           ))}
+        </div>
+
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-white mb-8">Enhance Your Website with Add-ons</h3>
+          <div className="overflow-x-auto pb-6">
+            <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
+              {addOns.map((addon) => (
+                <div 
+                  key={addon.id}
+                  className="glass-card p-6 flex-none w-[300px] flex flex-col"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <span className="text-accent text-sm tracking-tight">{addon.category}</span>
+                      <h4 className="text-white text-xl font-medium mt-1">{addon.title}</h4>
+                    </div>
+                    <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm rounded">
+                      {addon.price}
+                    </span>
+                  </div>
+                  <p className="text-neutral-400 text-sm mb-4">{addon.description}</p>
+                  <ul className="space-y-2 mb-6 flex-grow">
+                    {addon.features.map((feature, index) => (
+                      <li key={index} className="text-neutral-300 text-sm flex items-center">
+                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <button 
+                    onClick={() => handleGetStarted(addon.title)}
+                    className="w-full bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group"
+                  >
+                    Add to Package
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
