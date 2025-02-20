@@ -1,8 +1,7 @@
-
 import { BookOpen, Clock, Tag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const blogPosts = [
+export const blogPosts = [
   {
     title: "Personal Branding in 2025: Why Your Digital Presence is the Key to Success",
     excerpt: "In 2025, the digital landscape will be more competitive than ever, and your personal brand will be your most powerful asset. Whether you're a small business owner, freelancer, or creative, the ability to stand out in the digital world will determine your success.",
@@ -68,6 +67,10 @@ const blogPosts = [
 const Blog = () => {
   const navigate = useNavigate();
 
+  const handleReadMore = (index: number) => {
+    navigate(`/blog/${index}`);
+  };
+
   return (
     <section className="py-24 bg-neutral-900">
       <div className="container-padding">
@@ -102,7 +105,10 @@ const Blog = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">{post.title}</h3>
                 <p className="text-neutral-400 mb-4 line-clamp-2">{post.excerpt}</p>
-                <button className="text-accent hover:text-accent/80 font-medium transition-colors">
+                <button 
+                  onClick={() => handleReadMore(index)}
+                  className="text-accent hover:text-accent/80 font-medium transition-colors"
+                >
                   Read More →
                 </button>
               </div>
