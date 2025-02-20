@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -288,7 +289,7 @@ const PackageComparison = () => {
             disabled={!selectedPackage}
             className={`w-full bg-accent hover:bg-accent/90 disabled:bg-neutral-700 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group ${!selectedPackage ? 'opacity-50' : ''}`}
           >
-            Get Started with {selectedPackage || "Your Package"}
+            Let's Get You on The Grid
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
