@@ -17,14 +17,14 @@ const Hero = () => {
           Where Vision Meets the Digital Grid
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight leading-[1.1]">
-          <span className="block text-lg md:text-xl text-accent mb-4 font-normal">
+        <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tight leading-[1.1]">
+          <span className="block text-xl md:text-2xl text-accent mb-6 font-normal">
             {"// Your Brand, Your Universe"}
           </span>
           Designed to Stand Out
         </h1>
         
-        <p className="text-lg md:text-xl text-neutral-400 mb-12 max-w-2xl leading-relaxed tracking-tight">
+        <p className="text-xl md:text-2xl text-neutral-400 mb-16 max-w-3xl leading-relaxed tracking-tight">
           We Build the Grid, You Own the Verse. Transform your digital presence with our cutting-edge web development solutions.
         </p>
         
@@ -42,14 +42,6 @@ const Hero = () => {
           >
             Free Consultation
           </Link>
-        </div>
-        
-        <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5">
-          <img 
-            src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5"
-            alt="GridVerse Digital Universe"
-            className="rounded-none w-full animate-float"
-          />
         </div>
       </div>
     </section>
