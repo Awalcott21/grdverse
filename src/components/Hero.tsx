@@ -19,13 +19,13 @@ const Hero = () => {
         
         <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tight leading-[1.1]">
           <span className="block text-xl md:text-2xl text-accent mb-6 font-normal">
-            {"// Your Brand, Your Universe"}
+            {"// Your Story, Your Verse"}
           </span>
-          Designed to Stand Out
+          You're Designed to Stand Out
         </h1>
         
         <p className="text-xl md:text-2xl text-neutral-400 mb-16 max-w-3xl leading-relaxed tracking-tight">
-          We Build the Grid, You Own the Verse. Transform your digital presence with our cutting-edge web development solutions.
+          Together, We'll Build Your Digital Universe. Transform your digital presence with our cutting-edge web development solutions.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4">
