@@ -46,7 +46,7 @@ const Hero = () => {
         
         <div className="mt-24 glass-card rounded-none border border-white/10 p-8 bg-white/5">
           <img 
-            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
             alt="Website Preview"
             className="rounded-none w-full"
           />
@@ -54,10 +54,6 @@ const Hero = () => {
             Latest Project™
           </div>
         </div>
-      </div>
-      
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm text-neutral-500 tracking-tight">
-        Made with AI & Hustle
       </div>
     </section>
   );
