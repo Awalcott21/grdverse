@@ -16,8 +16,9 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b border-neutral-800">
       <nav className="container-padding mx-auto flex h-20 items-center justify-between">
-        <Link to="/" className="text-2xl font-bold tracking-tighter text-white">
-          GRIDVERSE
+        <Link to="/" className="text-2xl font-bold tracking-tighter">
+          <span className="text-white">GRID</span>
+          <span className="text-accent">VERSE</span>
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
