@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -215,7 +216,41 @@ const PackageComparison = () => {
           ))}
         </div>
 
-        <div className="max-w-md mx-auto text-center mb-16">
+        {/* Add-ons Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-white mb-8">Enhance Your Website with Add-ons</h3>
+          <div className="overflow-x-auto pb-6">
+            <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
+              {addOns.map((addon) => (
+                <div 
+                  key={addon.id}
+                  className="glass-card p-6 flex-none w-[300px] flex flex-col hover:scale-[1.02] transition-transform duration-300"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <span className="text-accent text-sm tracking-tight">{addon.category}</span>
+                      <h4 className="text-white text-xl font-medium mt-1">{addon.title}</h4>
+                    </div>
+                    <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm rounded">
+                      {addon.price}
+                    </span>
+                  </div>
+                  <p className="text-neutral-400 text-sm mb-4">{addon.description}</p>
+                  <ul className="space-y-2 mb-6 flex-grow">
+                    {addon.features.map((feature, index) => (
+                      <li key={index} className="text-neutral-300 text-sm flex items-center">
+                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-md mx-auto text-center">
           <Select
             value={selectedPackage}
             onValueChange={setSelectedPackage}
@@ -259,39 +294,6 @@ const PackageComparison = () => {
             Get Started with {selectedPackage || "Your Package"}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
-        </div>
-
-        <div>
-          <h3 className="text-2xl font-bold text-white mb-8">Enhance Your Website with Add-ons</h3>
-          <div className="overflow-x-auto pb-6">
-            <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
-              {addOns.map((addon) => (
-                <div 
-                  key={addon.id}
-                  className="glass-card p-6 flex-none w-[300px] flex flex-col hover:scale-[1.02] transition-transform duration-300"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <span className="text-accent text-sm tracking-tight">{addon.category}</span>
-                      <h4 className="text-white text-xl font-medium mt-1">{addon.title}</h4>
-                    </div>
-                    <span className="text-white font-mono bg-accent px-3 py-1.5 text-sm rounded">
-                      {addon.price}
-                    </span>
-                  </div>
-                  <p className="text-neutral-400 text-sm mb-4">{addon.description}</p>
-                  <ul className="space-y-2 mb-6 flex-grow">
-                    {addon.features.map((feature, index) => (
-                      <li key={index} className="text-neutral-300 text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-accent mr-2 rounded-full"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
