@@ -64,6 +64,55 @@ const templates: Template[] = [
     ],
     price: "$1,400",
     timeline: "10-14 days"
+  },
+  {
+    id: 4,
+    title: "Wix Website Package (Standard)",
+    description: "An affordable and user-friendly solution for those looking for a simple website with easy management",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+    category: "Wix One-Page Website",
+    features: [
+      "Custom 1-page website built on Wix",
+      "Mobile-responsive layout",
+      "Basic SEO optimization",
+      "Domain & hosting included",
+      "Wix platform makes it easy to maintain and update"
+    ],
+    price: "$500",
+    timeline: "5-7 days"
+  },
+  {
+    id: 5,
+    title: "Wix 3-Page Website Package",
+    description: "A flexible 3-page website perfect for businesses that need more content and want an easy-to-manage solution with Wix",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3",
+    category: "Wix 3-Page Website",
+    features: [
+      "3 custom pages",
+      "Mobile-responsive design",
+      "Basic SEO optimization",
+      "Wix platform integration for easy management",
+      "Domain & hosting included"
+    ],
+    price: "$900",
+    timeline: "7-10 days"
+  },
+  {
+    id: 6,
+    title: "Wix 5-Page Website Package",
+    description: "For businesses looking to expand and manage their online presence seamlessly with Wix",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    category: "Wix 5-Page Website",
+    features: [
+      "5 custom pages",
+      "Custom branding",
+      "Advanced SEO",
+      "Google Analytics integration",
+      "Wix platform allows for easy ongoing updates",
+      "Domain & hosting included"
+    ],
+    price: "$1,400",
+    timeline: "10-14 days"
   }
 ];
 
