@@ -1,5 +1,5 @@
 
-import { Menu, X, Grid } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -22,13 +22,15 @@ const Header = () => {
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
+          <Link to="/" onClick={() => {
+            const element = document.getElementById('showroom');
+            element?.scrollIntoView({ behavior: 'smooth' });
+          }} className="text-neutral-400 hover:text-white transition-colors tracking-tight">
+            Showroom
+          </Link>
           <button onClick={handleFeatureClick} className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             What We Build
           </button>
-          <Link to="/templates" className="text-neutral-400 hover:text-white transition-colors tracking-tight flex items-center gap-2">
-            <Grid className="w-4 h-4" />
-            Browse Templates
-          </Link>
           <Link to="/about" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             About
           </Link>
@@ -53,6 +55,17 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-20 left-0 right-0 bg-neutral-900 border-b border-neutral-800">
           <div className="container-padding py-6 flex flex-col gap-6">
+            <Link 
+              to="/"
+              onClick={() => {
+                const element = document.getElementById('showroom');
+                element?.scrollIntoView({ behavior: 'smooth' });
+                setIsMenuOpen(false);
+              }}
+              className="text-neutral-400 hover:text-white transition-colors tracking-tight"
+            >
+              Showroom
+            </Link>
             <button 
               onClick={() => {
                 handleFeatureClick();
@@ -62,14 +75,6 @@ const Header = () => {
             >
               What We Build
             </button>
-            <Link 
-              to="/templates"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-neutral-400 hover:text-white transition-colors tracking-tight flex items-center gap-2"
-            >
-              <Grid className="w-4 h-4" />
-              Browse Templates
-            </Link>
             <Link 
               to="/about" 
               onClick={() => setIsMenuOpen(false)}

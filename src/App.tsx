@@ -10,7 +10,6 @@ import Launch from "./pages/Launch";
 import Consultation from "./pages/Consultation";
 import GetStarted from "./pages/GetStarted";
 import BlogPost from "./pages/BlogPost";
-import Templates from "./pages/Templates";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +27,6 @@ function App() {
             <Route path="/consultation" element={<Consultation />} />
             <Route path="/get-started" element={<GetStarted />} />
             <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/templates" element={<Templates />} />
           </Routes>
         </Router>
       </TooltipProvider>
