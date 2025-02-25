@@ -12,6 +12,11 @@ interface Template {
   description: string;
   image: string;
   features: string[];
+  demoUrl: string;
+  screenshots: {
+    desktop: string;
+    mobile: string;
+  }[];
 }
 
 const templates: Template[] = [
@@ -21,15 +26,47 @@ const templates: Template[] = [
     category: "business",
     description: "Modern and professional template perfect for corporate websites with a clean, minimalist design.",
     image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
-    features: ["Responsive design", "Contact forms", "Service showcase", "Team section"]
+    features: [
+      "Responsive hero section with call-to-action",
+      "Team members showcase",
+      "Services grid layout",
+      "Testimonials carousel",
+      "Contact form with validation",
+      "Interactive pricing tables",
+      "Blog section with featured posts",
+      "Newsletter subscription"
+    ],
+    demoUrl: "/preview/business-1",
+    screenshots: [
+      {
+        desktop: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
+        mobile: "https://images.unsplash.com/photo-1433832597046-4f10e10ac764"
+      }
+    ]
   },
   {
     id: "portfolio-1",
     title: "Creative Portfolio",
     category: "portfolio",
-    description: "Showcase your work with this elegant portfolio template designed for creatives.",
+    description: "Showcase your work with this elegant portfolio template designed for creatives and professionals.",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-    features: ["Project gallery", "About section", "Skills showcase", "Contact form"]
+    features: [
+      "Masonry grid project gallery",
+      "Project detail pages with carousel",
+      "Filterable portfolio categories",
+      "Skills progress bars",
+      "Resume/CV section",
+      "Client testimonials",
+      "Contact form with file upload",
+      "Social media integration"
+    ],
+    demoUrl: "/preview/portfolio-1",
+    screenshots: [
+      {
+        desktop: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+        mobile: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+      }
+    ]
   },
   {
     id: "ecommerce-1",
@@ -37,7 +74,23 @@ const templates: Template[] = [
     category: "ecommerce",
     description: "A modern e-commerce template with everything you need to start selling online.",
     image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-    features: ["Product catalog", "Shopping cart", "Secure checkout", "Order tracking"]
+    features: [
+      "Product grid with quick view",
+      "Advanced product filtering",
+      "Shopping cart with animations",
+      "Secure checkout process",
+      "User accounts & wishlist",
+      "Order tracking system",
+      "Related products carousel",
+      "Search with autocomplete"
+    ],
+    demoUrl: "/preview/ecommerce-1",
+    screenshots: [
+      {
+        desktop: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+        mobile: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
+      }
+    ]
   },
   {
     id: "blog-1",
@@ -45,8 +98,24 @@ const templates: Template[] = [
     category: "blog",
     description: "Clean and focused blog template that puts your content first.",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    features: ["Category filtering", "Search functionality", "Related posts", "Newsletter signup"]
-  },
+    features: [
+      "Featured posts slider",
+      "Category-based navigation",
+      "Author profiles",
+      "Comments system",
+      "Related posts",
+      "Search functionality",
+      "Newsletter integration",
+      "Social sharing buttons"
+    ],
+    demoUrl: "/preview/blog-1",
+    screenshots: [
+      {
+        desktop: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+        mobile: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
+      }
+    ]
+  }
 ];
 
 const categories = [
@@ -99,17 +168,28 @@ const Templates = () => {
                 className="glass-card group"
               >
                 <div className="aspect-video w-full overflow-hidden">
-                  <img 
-                    src={template.image} 
-                    alt={template.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+                  <div className="relative h-full">
+                    {/* Desktop preview */}
+                    <img 
+                      src={template.screenshots[0].desktop} 
+                      alt={`${template.title} desktop preview`}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Mobile preview overlay */}
+                    <div className="absolute bottom-4 right-4 w-24 h-48 overflow-hidden rounded-lg border-4 border-white/10">
+                      <img 
+                        src={template.screenshots[0].mobile} 
+                        alt={`${template.title} mobile preview`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="p-8">
                   <span className="text-accent text-sm tracking-tight capitalize">{template.category}</span>
                   <h3 className="text-2xl font-semibold text-white mt-2 mb-3">{template.title}</h3>
                   <p className="text-neutral-400 mb-6">{template.description}</p>
-                  <ul className="space-y-2 mb-8">
+                  <ul className="space-y-2 mb-8 grid grid-cols-1 md:grid-cols-2 gap-2">
                     {template.features.map((feature, i) => (
                       <li key={i} className="text-neutral-300 flex items-center gap-2">
                         <div className="w-1.5 h-1.5 bg-accent rounded-full" />
@@ -117,13 +197,22 @@ const Templates = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link 
-                    to={`/launch?template=${template.id}`}
-                    className="inline-flex items-center gap-2 text-white font-medium hover:text-accent transition-colors group/link"
-                  >
-                    Use This Template
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
-                  </Link>
+                  <div className="flex items-center gap-4">
+                    <Link 
+                      to={`/launch?template=${template.id}`}
+                      className="inline-flex items-center gap-2 text-white font-medium hover:text-accent transition-colors group/link"
+                    >
+                      Use This Template
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                    </Link>
+                    <Link 
+                      to={template.demoUrl}
+                      className="text-neutral-400 hover:text-white transition-colors"
+                      target="_blank"
+                    >
+                      View Demo
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             ))}

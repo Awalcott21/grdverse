@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import WebsiteComparison from "../components/WebsiteComparison";
 
 interface Template {
@@ -118,6 +118,19 @@ const templates: Template[] = [
 
 const Launch = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const selectedTemplate = searchParams.get('template');
+
+  const getTemplatePackages = (templateId: string | null) => {
+    if (templateId?.startsWith('business')) {
+      return templates.slice(0, 3); // Show business-focused packages
+    } else if (templateId?.startsWith('ecommerce')) {
+      return templates.slice(2, 5); // Show e-commerce focused packages
+    }
+    return templates; // Show all packages by default
+  };
+
+  const displayedTemplates = getTemplatePackages(selectedTemplate);
 
   const handleGetStarted = (packageName: string) => {
     const packageType = packageName.toLowerCase().split(' ')[0]; // Get "basic", "standard", or "premium"
@@ -142,7 +155,7 @@ const Launch = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {templates.map((template, index) => (
+            {displayedTemplates.map((template, index) => (
               <motion.div
                 key={template.id}
                 initial={{ opacity: 0, y: 20 }}
