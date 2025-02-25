@@ -13,7 +13,7 @@ const stats = [
     label: "Support",
   },
   {
-    value: "5+",
+    value: "20+",
     label: "Years Experience",
   },
 ];
