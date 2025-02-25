@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -36,7 +35,7 @@ const templates: Template[] = [
       "Blog section with featured posts",
       "Newsletter subscription"
     ],
-    demoUrl: "/preview/business-1",
+    demoUrl: "/launch?template=business-1",
     screenshots: [
       {
         desktop: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
@@ -60,35 +59,11 @@ const templates: Template[] = [
       "Contact form with file upload",
       "Social media integration"
     ],
-    demoUrl: "/preview/portfolio-1",
+    demoUrl: "/launch?template=portfolio-1",
     screenshots: [
       {
         desktop: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
         mobile: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
-      }
-    ]
-  },
-  {
-    id: "ecommerce-1",
-    title: "Shop Modern",
-    category: "ecommerce",
-    description: "A modern e-commerce template with everything you need to start selling online.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-    features: [
-      "Product grid with quick view",
-      "Advanced product filtering",
-      "Shopping cart with animations",
-      "Secure checkout process",
-      "User accounts & wishlist",
-      "Order tracking system",
-      "Related products carousel",
-      "Search with autocomplete"
-    ],
-    demoUrl: "/preview/ecommerce-1",
-    screenshots: [
-      {
-        desktop: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-        mobile: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
       }
     ]
   },
@@ -108,7 +83,7 @@ const templates: Template[] = [
       "Newsletter integration",
       "Social sharing buttons"
     ],
-    demoUrl: "/preview/blog-1",
+    demoUrl: "/launch?template=blog-1",
     screenshots: [
       {
         desktop: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
@@ -121,7 +96,6 @@ const templates: Template[] = [
 const categories = [
   { name: "Business", icon: Briefcase },
   { name: "Portfolio", icon: Image },
-  { name: "E-commerce", icon: ShoppingCart },
   { name: "Blog", icon: BookOpen },
 ];
 
