@@ -1,5 +1,5 @@
 
-import { Menu, X } from "lucide-react";
+import { Menu, X, Grid } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -31,6 +31,10 @@ const Header = () => {
           <button onClick={handleFeatureClick} className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             What We Build
           </button>
+          <Link to="/templates" className="text-neutral-400 hover:text-white transition-colors tracking-tight flex items-center gap-2">
+            <Grid className="w-4 h-4" />
+            Browse Templates
+          </Link>
           <Link to="/about" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             About
           </Link>
@@ -75,6 +79,14 @@ const Header = () => {
             >
               What We Build
             </button>
+            <Link 
+              to="/templates"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-neutral-400 hover:text-white transition-colors tracking-tight flex items-center gap-2"
+            >
+              <Grid className="w-4 h-4" />
+              Browse Templates
+            </Link>
             <Link 
               to="/about" 
               onClick={() => setIsMenuOpen(false)}
