@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
 
+  const handleFeatureClick = () => {
+    navigate('/#features');
+  };
+
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
       <Header />
@@ -55,10 +59,10 @@ const About = () => {
 
             <div className="text-center">
               <button
-                onClick={() => navigate("/consultation")}
+                onClick={handleFeatureClick}
                 className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center gap-2 group"
               >
-                Let's Get You on The Grid
+                What We Build
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
