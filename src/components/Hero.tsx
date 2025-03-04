@@ -14,26 +14,49 @@ const Hero = () => {
       
       <div className="max-w-5xl mx-auto relative">
         <div className="absolute -top-8 left-0 text-sm text-neutral-500 tracking-tight">
-          AI-Powered Business Solutions
+          AI-Powered Web Development
         </div>
         
         <h1 className="text-6xl md:text-8xl font-bold mb-12 tracking-tight leading-[1.1]">
           <span className="block text-xl md:text-2xl text-accent mb-6 font-normal">
-            {"// The Future of Business is Here"}
+            {"// Transform Your Website with Cutting-Edge AI Solutions"}
           </span>
-          Unlock the Future of Your Business with AI-Powered Solutions
+          AI-Powered Web Development Services Tailored to Your Business Needs
         </h1>
         
         <p className="text-xl md:text-2xl text-neutral-400 mb-16 max-w-3xl leading-relaxed tracking-tight">
-          Automate. Scale. Succeed. Harness the power of AI to create optimized content, automate workflows, and future-proof your business.
+          Future-proof your business with AI technologies that transform websites, enhance user engagement, automate processes, and increase conversions.
         </p>
+        
+        <ul className="grid md:grid-cols-2 gap-x-8 gap-y-3 mb-12 text-neutral-300">
+          <li className="flex items-center gap-2">
+            <span className="text-accent">•</span>
+            <span>Fully automated, AI-driven websites</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-accent">•</span>
+            <span>Smart lead generation through AI chatbots</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-accent">•</span>
+            <span>Personalized user experiences using AI</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-accent">•</span>
+            <span>AI-enhanced SEO and analytics</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-accent">•</span>
+            <span>Future-proof your business with AI solutions</span>
+          </li>
+        </ul>
         
         <div className="flex flex-col sm:flex-row gap-4">
           <Link 
             to="/consultation"
             className="bg-white text-neutral-900 px-8 py-4 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium flex items-center justify-center gap-2 group"
           >
-            Book Your Free AI Consultation
+            Unlock the Power of AI For Your Website
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link 
