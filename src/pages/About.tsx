@@ -1,8 +1,7 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Robot, Laptop } from "lucide-react";
+import { ArrowRight, Brain, Bot, Laptop } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -47,7 +46,7 @@ const About = () => {
                 </div>
                 <div className="glass-card p-6 rounded-xl">
                   <div className="bg-accent/10 p-3 rounded-lg w-fit mb-4">
-                    <Robot className="w-6 h-6 text-accent" />
+                    <Bot className="w-6 h-6 text-accent" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Automation Focus</h3>
                   <p className="text-neutral-400">We identify and automate repetitive tasks in your business, freeing you and your team to focus on strategic growth.</p>

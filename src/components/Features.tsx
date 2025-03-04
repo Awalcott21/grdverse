@@ -1,5 +1,5 @@
 
-import { Globe, Brain, RefreshCw, BarChart, Robot, Laptop } from "lucide-react";
+import { Globe, Brain, RefreshCw, BarChart, Bot, Laptop } from "lucide-react";
 
 const features = [
   {
@@ -15,7 +15,7 @@ const features = [
   {
     title: "AI Automation & Workflow",
     description: "Streamline your operations with AI-powered workflows. From automated email responses to customer inquiries to marketing automations, focus on scaling, not tasks.",
-    icon: Robot,
+    icon: Bot,
   },
   {
     title: "AI-Enhanced SEO",

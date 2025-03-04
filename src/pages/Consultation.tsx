@@ -1,8 +1,7 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { Calendar, Mail, Brain, Robot, Laptop } from "lucide-react";
+import { Calendar, Mail, Brain, Bot, Laptop } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Consultation = () => {
@@ -119,7 +118,7 @@ Business Details:%0D%0A${formData.get("message")}`;
                   
                   <div className="flex items-start gap-4">
                     <div className="bg-accent/10 p-3 rounded-lg shrink-0">
-                      <Robot className="w-6 h-6 text-accent" />
+                      <Bot className="w-6 h-6 text-accent" />
                     </div>
                     <div>
                       <h3 className="font-medium mb-1">Business Automation</h3>
