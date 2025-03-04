@@ -1,6 +1,16 @@
 
 import { Globe, Brain, Bot, BarChart, ShoppingCart, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel,
+} from "@/components/ui/select";
 
 const packages = [
   {
@@ -93,6 +103,35 @@ const addOns = [
 ];
 
 const Features = () => {
+  const [selectedPackage, setSelectedPackage] = useState<string>("");
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+
+  const handlePackageSelect = (value: string) => {
+    setSelectedPackage(value);
+  };
+
+  const handleAddOnSelect = (value: string) => {
+    setSelectedAddOns(prev => {
+      if (prev.includes(value)) {
+        return prev.filter(item => item !== value);
+      }
+      return [...prev, value];
+    });
+  };
+
+  // Calculate total price
+  const calculateTotal = () => {
+    const packagePrice = packages.find(pkg => pkg.title === selectedPackage)?.price || "$0";
+    const addOnsTotal = selectedAddOns.reduce((total, addon) => {
+      const addonPrice = addOns.find(a => a.title === addon)?.price || "$0";
+      // Extract numbers from the price string (assuming format like "$500/month" or "$600 setup + $150/month")
+      const priceMatch = addonPrice.match(/\$(\d+)/);
+      return total + (priceMatch ? parseInt(priceMatch[1]) : 0);
+    }, 0);
+    const packageBasePrice = parseInt(packagePrice.replace(/[^\d]/g, ''));
+    return `$${packageBasePrice + addOnsTotal}`;
+  };
+
   return (
     <section id="features" className="py-16 container-padding bg-neutral-900">
       <div className="max-w-7xl mx-auto">
@@ -146,7 +185,7 @@ const Features = () => {
         {/* Add-ons Section */}
         <div>
           <h3 className="text-2xl font-bold mb-6 text-white">AI-Powered Add-Ons</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {addOns.map((addon, index) => (
               <div key={index} className="glass-card p-6 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
@@ -162,8 +201,102 @@ const Features = () => {
               </div>
             ))}
           </div>
+
+          {/* Enhanced Package Builder */}
+          <div className="glass-card p-8 rounded-xl max-w-2xl mx-auto mt-12 mb-16">
+            <h3 className="text-2xl font-bold mb-6 text-white text-center">Build Your Custom AI Website Package</h3>
+            
+            {/* Package Selection */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-neutral-300 mb-2">
+                Choose Your Website Package
+              </label>
+              <Select value={selectedPackage} onValueChange={handlePackageSelect}>
+                <SelectTrigger className="w-full bg-neutral-800 border-neutral-700 text-white">
+                  <SelectValue placeholder="Select a website package" />
+                </SelectTrigger>
+                <SelectContent className="bg-neutral-800 border-neutral-700 text-white">
+                  <SelectGroup>
+                    <SelectLabel className="text-accent">Website Packages</SelectLabel>
+                    {packages.map((pkg, index) => (
+                      <SelectItem 
+                        key={index} 
+                        value={pkg.title}
+                        className="text-white hover:bg-neutral-700 focus:bg-neutral-700"
+                      >
+                        {pkg.title} - {pkg.price}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            {/* Add-ons Selection */}
+            {selectedPackage && (
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-neutral-300 mb-2">
+                  Enhance Your Website with Add-ons
+                </label>
+                {addOns.map((addon, index) => (
+                  <div 
+                    key={index}
+                    onClick={() => handleAddOnSelect(addon.title)}
+                    className={`flex items-center justify-between p-3 mb-2 rounded-lg cursor-pointer transition-colors ${
+                      selectedAddOns.includes(addon.title) 
+                        ? 'bg-accent/20 border border-accent/30' 
+                        : 'bg-neutral-800 border border-neutral-700 hover:border-accent/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div 
+                        className={`w-5 h-5 rounded-md flex items-center justify-center border ${
+                          selectedAddOns.includes(addon.title) 
+                            ? 'bg-accent border-accent' 
+                            : 'border-neutral-600'
+                        }`}
+                      >
+                        {selectedAddOns.includes(addon.title) && (
+                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </div>
+                      <span className="text-white">{addon.title}</span>
+                    </div>
+                    <span className="text-accent text-sm">{addon.price}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {/* Total Price and CTA */}
+            {selectedPackage && (
+              <>
+                <div className="flex justify-between items-center mb-6 p-4 bg-neutral-800 rounded-lg">
+                  <span className="text-neutral-300 font-medium">Estimated Total:</span>
+                  <span className="text-white text-xl font-mono">{calculateTotal()}</span>
+                </div>
+                
+                <Link
+                  to="/consultation"
+                  className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded flex items-center justify-center gap-2 group font-medium"
+                >
+                  Schedule Your AI Consultation
+                  <svg 
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
+              </>
+            )}
+          </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center">
             <Link 
               to="/launch" 
               className="bg-white text-neutral-900 px-8 py-3 rounded hover:bg-neutral-200 transition-colors tracking-tight font-medium inline-block"
