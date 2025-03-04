@@ -1,46 +1,36 @@
 
-import { Globe, Shield, Search, Mail, RefreshCw, BarChart, Share2, Laptop } from "lucide-react";
+import { Globe, Brain, RefreshCw, BarChart, Robot, Laptop } from "lucide-react";
 
 const features = [
   {
-    title: "A Website That Works for You",
-    description: "Your website will not only look great but also function seamlessly across all devices. Optimized for speed, mobile-friendly, and user-centric—everything is built to help you attract and retain customers.",
+    title: "AI-Powered Web Development",
+    description: "Get a beautiful, responsive website powered by AI—faster development, better performance, and easier maintenance. Our AI-driven approach creates websites that adapt to your users' needs.",
     icon: Laptop,
   },
   {
-    title: "Custom Domain Name",
-    description: "Your business deserves its own unique identity. We'll help you choose and secure a domain name that reflects your brand and gives your business credibility.",
+    title: "AI Content Creation",
+    description: "Don't let content creation bog you down. Our AI tools automatically generate high-quality blog posts, landing pages, and more—tailored to your audience and optimized for conversion.",
+    icon: Brain,
+  },
+  {
+    title: "AI Automation & Workflow",
+    description: "Streamline your operations with AI-powered workflows. From automated email responses to customer inquiries to marketing automations, focus on scaling, not tasks.",
+    icon: Robot,
+  },
+  {
+    title: "AI-Enhanced SEO",
+    description: "Our AI analyzes search patterns and content performance to optimize your website's visibility. Get discovered by the right audience at the right time with AI-driven SEO strategies.",
     icon: Globe,
   },
   {
-    title: "Hosting and Security",
-    description: "We provide reliable hosting with top-notch security to ensure that your website stays online and safe from any potential threats. You can rest easy knowing your site is protected and always accessible.",
-    icon: Shield,
-  },
-  {
-    title: "SEO Optimization",
-    description: "A beautiful website is useless if no one can find it. We ensure your site is SEO-friendly so you can rank higher in search engines and get noticed by the people who need you most.",
-    icon: Search,
-  },
-  {
-    title: "Business Email Setup",
-    description: "Professionalism starts with a professional email. We'll set up an email account for your business using your new domain, allowing you to communicate seamlessly with clients.",
-    icon: Mail,
-  },
-  {
-    title: "Ongoing Maintenance & Updates",
-    description: "Your business is always evolving, and so should your website. We offer ongoing support and updates to ensure that your site remains fresh, functional, and up-to-date with the latest features.",
-    icon: RefreshCw,
-  },
-  {
-    title: "Analytics & Performance Tracking",
-    description: "We provide tools to track your site's performance, so you can make informed decisions about how to grow and improve your online presence.",
+    title: "Automated Data Analysis",
+    description: "Transform your business data into actionable insights. Our AI tools analyze customer behavior, sales patterns, and market trends to help you make informed decisions faster.",
     icon: BarChart,
   },
   {
-    title: "Social Media Integration",
-    description: "We make it easy for your customers to connect with you on social media by integrating links to your accounts directly on your website, so you can extend your digital reach and build a strong online community.",
-    icon: Share2,
+    title: "Business Process Optimization",
+    description: "Identify and eliminate bottlenecks in your business with AI-powered process analysis. Streamline operations, reduce costs, and scale more efficiently with intelligent automation.",
+    icon: RefreshCw,
   },
 ];
 
@@ -48,12 +38,12 @@ const Features = () => {
   return (
     <section id="features" className="py-16 container-padding bg-neutral-900">
       <div className="max-w-4xl mx-auto">
-        <span className="text-sm text-accent tracking-tight">// Business Essentials</span>
+        <span className="text-sm text-accent tracking-tight">// AI Business Solutions</span>
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-          Everything You Need to Run Your Business
+          Transform Your Business with AI
         </h2>
         <p className="text-neutral-400 mb-12 max-w-2xl">
-          At Gridverse, we believe that a successful business goes beyond just a website—it's about building a complete online presence that drives growth and customer engagement. That's why, with every website we create, we offer essential tools and services to help you thrive in the digital world.
+          At Gridverse, we leverage cutting-edge AI technologies to automate tasks, generate optimized content, and help your business scale faster. Our AI solutions are designed to give you a competitive edge while saving you time and resources.
         </p>
         <div className="grid md:grid-cols-2 gap-8">
           {features.map((feature, index) => (

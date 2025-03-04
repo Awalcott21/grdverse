@@ -2,7 +2,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Brain, Robot, Laptop } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -25,36 +25,70 @@ const About = () => {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-8">About GRIDVERSE</h1>
             <p className="text-lg text-neutral-400 mb-12">
-              At GRIDVERSE, we believe every brand deserves a digital home that truly reflects its spirit. We're not just a web development agency—we're your creative partners, dedicated to crafting digital experiences that empower, inspire, and elevate your business.
+              At GRIDVERSE, we're not just another digital agency. We're an AI-powered business accelerator dedicated to helping small and medium businesses harness the power of artificial intelligence to automate processes, create optimized content, and scale faster than ever before.
             </p>
 
             <section className="mb-12">
               <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
               <p className="text-lg text-neutral-400">
-                We exist to help you get your story onto the digital grid. In 2025, personal branding is more important than ever, and your online presence is key to standing out. Our mission is to empower businesses with innovative, tailor-made web solutions that spark growth and forge genuine connections. Every project we undertake is fueled by our passion for excellence and our unwavering belief in the transformative power of technology.
+                In a world where digital landscapes are evolving rapidly, GRIDVERSE empowers you to stay ahead. Most businesses are still wasting time on manual processes—whether it's creating content, handling customer inquiries, or managing marketing efforts. With AI, you can unlock new levels of efficiency and growth. Our mission is to provide AI solutions that simplify tasks, enhance customer experiences, and accelerate your business trajectory—without the need for a large development team.
               </p>
             </section>
 
             <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4">Our Values</h2>
+              <h2 className="text-3xl font-semibold mb-4">What Sets Us Apart</h2>
+              <div className="grid md:grid-cols-3 gap-6 mt-8">
+                <div className="glass-card p-6 rounded-xl">
+                  <div className="bg-accent/10 p-3 rounded-lg w-fit mb-4">
+                    <Brain className="w-6 h-6 text-accent" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">AI Expertise</h3>
+                  <p className="text-neutral-400">We combine deep technical knowledge with strategic business acumen to deliver AI solutions that drive real results.</p>
+                </div>
+                <div className="glass-card p-6 rounded-xl">
+                  <div className="bg-accent/10 p-3 rounded-lg w-fit mb-4">
+                    <Robot className="w-6 h-6 text-accent" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Automation Focus</h3>
+                  <p className="text-neutral-400">We identify and automate repetitive tasks in your business, freeing you and your team to focus on strategic growth.</p>
+                </div>
+                <div className="glass-card p-6 rounded-xl">
+                  <div className="bg-accent/10 p-3 rounded-lg w-fit mb-4">
+                    <Laptop className="w-6 h-6 text-accent" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Results-Driven</h3>
+                  <p className="text-neutral-400">Our success is measured by your business outcomes—increased efficiency, reduced costs, and accelerated growth.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-3xl font-semibold mb-4">Our Approach</h2>
+              <p className="text-lg text-neutral-400 mb-6">
+                We believe that AI should be accessible to businesses of all sizes. Our approach combines cutting-edge technology with practical business solutions:
+              </p>
               <ul className="list-none space-y-4">
                 <li className="flex items-start gap-2">
                   <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-lg text-neutral-300">Innovation: We embrace challenges as opportunities to create breakthrough solutions that push boundaries.</span>
+                  <span className="text-lg text-neutral-300">We audit your current processes to identify opportunities for AI-powered automation.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-lg text-neutral-300">Quality: We are devoted to the highest standards in every detail, ensuring every project we deliver is a work of art.</span>
+                  <span className="text-lg text-neutral-300">We develop custom AI solutions tailored to your specific business needs and goals.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-lg text-neutral-300">Collaboration: We work hand-in-hand with you to understand your vision, ensuring your digital presence is as unique as your story.</span>
+                  <span className="text-lg text-neutral-300">We implement, train, and optimize your AI systems to ensure they deliver maximum value.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ArrowRight className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                  <span className="text-lg text-neutral-300">We provide ongoing support and refinement as your business and AI technology evolve.</span>
                 </li>
               </ul>
             </section>
 
             <p className="text-lg text-neutral-400 mb-16">
-              At GRIDVERSE, we're committed to building more than just websites—we create digital experiences that capture the heart and soul of your brand and showcase the essence of your personal story to the world.
+              At GRIDVERSE, we're committed to making AI accessible, practical, and transformative for your business. We believe that with the right AI solutions, even small businesses can compete at the highest levels and achieve extraordinary growth.
             </p>
 
             <div className="text-center">
@@ -62,7 +96,7 @@ const About = () => {
                 onClick={handleFeatureClick}
                 className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center gap-2 group"
               >
-                What We Build
+                Explore Our AI Solutions
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

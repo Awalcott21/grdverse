@@ -47,24 +47,24 @@ const Footer = () => {
                     }}
                     className="text-neutral-300 hover:text-white transition-colors"
                   >
-                    Showroom
+                    AI Showroom
                   </a>
                 </li>
-                <li><button onClick={handleFeatureClick} className="text-neutral-300 hover:text-white transition-colors">What We Build</button></li>
+                <li><button onClick={handleFeatureClick} className="text-neutral-300 hover:text-white transition-colors">AI Solutions</button></li>
                 <li><a href="/about" className="text-neutral-300 hover:text-white transition-colors">About</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Get Started</h3>
               <ul className="space-y-2">
-                <li><a href="/launch" className="text-neutral-300 hover:text-white transition-colors">Launch</a></li>
-                <li><a href="/consultation" className="text-neutral-300 hover:text-white transition-colors">Free Consultation</a></li>
+                <li><a href="/launch" className="text-neutral-300 hover:text-white transition-colors">AI Solutions</a></li>
+                <li><a href="/consultation" className="text-neutral-300 hover:text-white transition-colors">Free AI Consultation</a></li>
               </ul>
             </div>
           </div>
           <div className="max-w-4xl mx-auto mt-12 pt-8 border-t border-neutral-800">
             <p className="text-neutral-400 text-center">
-              © 2024 GRIDVERSE. All rights reserved.
+              © 2024 GRIDVERSE - AI-Powered Business Solutions. All rights reserved.
             </p>
           </div>
         </div>
