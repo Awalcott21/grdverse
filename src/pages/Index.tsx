@@ -7,6 +7,7 @@ import Testimonials from "../components/Testimonials";
 import Blog from "../components/Blog";
 import Footer from "../components/Footer";
 import WhyAI from "../components/WhyAI";
+import VoiceChat from "../components/VoiceChat";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <Blog />
       </main>
       <Footer />
+      <VoiceChat position="right" />
     </div>
   );
 };
