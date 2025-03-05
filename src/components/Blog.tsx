@@ -1,3 +1,4 @@
+
 import { BookOpen, Clock, Tag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -72,15 +73,15 @@ const Blog = () => {
   };
 
   return (
-    <section className="py-24 bg-neutral-900">
+    <section className="py-16 bg-neutral-900">
       <div className="container-padding">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Latest from Our Blog</h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">Stay updated with the latest trends in web development, design, and digital marketing through our comprehensive guides and insights.</p>
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Latest from Our Blog</h2>
+          <p className="text-neutral-400 max-w-2xl mx-auto text-sm">Stay updated with the latest trends in web development, design, and digital marketing through our comprehensive guides and insights.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post, index) => (
-            <article key={index} className="bg-neutral-800 rounded-xl overflow-hidden hover:transform hover:scale-[1.02] transition-all cursor-pointer">
+            <article key={index} className="bg-neutral-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition-all cursor-pointer">
               <div className="aspect-[16/9] relative overflow-hidden">
                 <img 
                   src={post.image} 
@@ -88,26 +89,26 @@ const Blog = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-neutral-400 mb-4">
+              <div className="p-4">
+                <div className="flex items-center gap-3 text-xs text-neutral-400 mb-3">
                   <span className="flex items-center gap-1">
-                    <Tag className="w-4 h-4" />
+                    <Tag className="w-3 h-3" />
                     {post.category}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
+                    <Clock className="w-3 h-3" />
                     {post.date}
                   </span>
                   <span className="flex items-center gap-1">
-                    <BookOpen className="w-4 h-4" />
+                    <BookOpen className="w-3 h-3" />
                     {post.readTime}
                   </span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{post.title}</h3>
-                <p className="text-neutral-400 mb-4 line-clamp-2">{post.excerpt}</p>
+                <h3 className="text-base font-semibold text-white mb-2 line-clamp-2">{post.title}</h3>
+                <p className="text-neutral-400 mb-3 text-sm line-clamp-2">{post.excerpt}</p>
                 <button 
                   onClick={() => handleReadMore(index)}
-                  className="text-accent hover:text-accent/80 font-medium transition-colors"
+                  className="text-accent hover:text-accent/80 font-medium transition-colors text-sm"
                 >
                   Read More →
                 </button>
