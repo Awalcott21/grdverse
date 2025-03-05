@@ -28,7 +28,15 @@ const GetStarted = () => {
       'wix': 'Wix Website Package (Standard)',
       'seo': 'SEO Package',
       'ecommerce': 'E-commerce Add-on',
-      'maintenance': 'Maintenance Plan'
+      'maintenance': 'Maintenance Plan',
+      'ai-one-page': 'AI-Powered One-Page Website',
+      'ai-three-page': 'AI-Enhanced 3-Page Website',
+      'ai-five-page': 'AI-Optimized 5-Page Website',
+      'ai-ecommerce': 'AI-Powered E-Commerce Website',
+      'ai-chatbot': 'AI Chatbot Integration Package',
+      'ai-content': 'AI Content Creation Package',
+      'ai-marketing': 'AI Marketing Automation Package',
+      'ai-all-in-one': 'All-in-One AI Automation Package'
     };
     
     return packageMap[pkg.toLowerCase()] || pkg.charAt(0).toUpperCase() + pkg.slice(1);
