@@ -2,7 +2,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import WhyAI from "../components/WhyAI";
 
@@ -162,15 +162,28 @@ const Launch = () => {
                     </li>
                   ))}
                 </ul>
-                <Link 
-                  to="/consultation"
-                  className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group"
-                >
-                  Schedule Consultation
-                </Link>
               </motion.div>
             ))}
           </div>
+          
+          {/* Consolidated CTA button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="text-center mt-12"
+          >
+            <Link 
+              to="/consultation"
+              className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2 text-lg"
+            >
+              Schedule Your AI Consultation
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <p className="text-neutral-400 mt-4">
+              Get a free personalized assessment for your business needs
+            </p>
+          </motion.div>
         </div>
         
         <WhyAI />
