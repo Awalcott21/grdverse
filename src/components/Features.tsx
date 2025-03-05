@@ -249,6 +249,18 @@ const Features = () => {
                       </SelectItem>
                     ))}
                   </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel className="text-accent">AI Add-On Packages</SelectLabel>
+                    {addOns.map((addon, index) => (
+                      <SelectItem 
+                        key={`addon-${index}`} 
+                        value={addon.title}
+                        className="text-white hover:bg-neutral-700 focus:bg-neutral-700"
+                      >
+                        {addon.title} - {addon.price}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
                 </SelectContent>
               </Select>
             </div>
