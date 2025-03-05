@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -100,7 +99,7 @@ const templates: Template[] = [
       "Automate customer service, reducing manual oversight",
       "Improve customer satisfaction and conversion rates"
     ],
-    price: "$350 setup + $120/month",
+    price: "$300/month",
     timeline: "Ongoing"
   },
   {
@@ -200,7 +199,6 @@ const Launch = () => {
             ))}
           </div>
           
-          {/* Consolidated CTA button */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

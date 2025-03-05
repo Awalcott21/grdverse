@@ -78,7 +78,7 @@ const addOns = [
   {
     title: "AI Chatbot Integration Package",
     description: "Custom AI-powered chatbot tailored to your business. 24/7 customer support to handle inquiries and assist customers in real-time. Lead qualification and automated responses based on predefined rules.",
-    price: "$350 setup + $120/month",
+    price: "$300/month",
     icon: MessageSquare,
     benefits: [
       "Automate customer service, reducing the need for constant human oversight",
