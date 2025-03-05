@@ -7,7 +7,7 @@ import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import Blog from "../components/Blog";
 import Footer from "../components/Footer";
-import WebsiteComparison from "../components/WebsiteComparison";
+import WhyAI from "../components/WhyAI";
 
 const Index = () => {
   return (
@@ -17,7 +17,7 @@ const Index = () => {
         <Hero />
         <Features />
         <Showroom />
-        <WebsiteComparison />
+        <WhyAI />
         <Stats />
         <Testimonials />
         <Blog />

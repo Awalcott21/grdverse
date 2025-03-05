@@ -1,9 +1,10 @@
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import WebsiteComparison from "../components/WebsiteComparison";
+import { CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import WhyAI from "../components/WhyAI";
 
 interface Template {
   id: number;
@@ -19,111 +20,109 @@ interface Template {
 const templates: Template[] = [
   {
     id: 1,
-    title: "Basic Package",
-    description: "Perfect for small businesses looking to establish their online presence with a professional one-page website",
+    title: "AI-Powered One-Page Website",
+    description: "Perfect for small businesses looking to make a professional online debut with AI tools to enhance engagement and performance.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    category: "One-Page Website",
+    category: "AI One-Page Website",
     features: [
-      "Clean, modern design",
-      "Mobile-responsive layout",
-      "Domain name included",
-      "1 year web hosting",
-      "Basic contact form"
+      "Clean, modern design with AI-powered layout suggestions",
+      "Mobile-responsive, with AI-optimized UX for conversions",
+      "AI Chatbot integrated for lead generation and customer support",
+      "AI-Powered SEO to boost search engine rankings from the start",
+      "Domain name included + 1-year web hosting",
+      "AI Content Generation for homepage copy"
     ],
-    price: "$600",
+    price: "$800",
     timeline: "5-7 days"
   },
   {
     id: 2,
-    title: "Standard Package",
-    description: "Comprehensive 3-page website with essential features for growing businesses",
+    title: "AI-Enhanced 3-Page Website",
+    description: "A more comprehensive solution for growing businesses who need AI to streamline and automate processes.",
     image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
-    category: "3-Page Website",
+    category: "AI 3-Page Website",
     features: [
-      "3 custom pages",
-      "Mobile-responsive design",
-      "Basic SEO optimization",
-      "3 months maintenance",
-      "Domain & hosting included"
+      "3 custom pages with AI-driven design and UX suggestions",
+      "AI-Powered SEO for increased organic traffic",
+      "AI Chatbot for seamless customer support and sales conversion",
+      "AI-Generated Content for additional pages",
+      "3 months of AI-driven website performance tracking",
+      "Mobile-responsive design with AI optimizations"
     ],
-    price: "$1,000",
+    price: "$1,200",
     timeline: "7-10 days"
   },
   {
     id: 3,
-    title: "Premium Package",
-    description: "Full-featured 5-page website with advanced features and extended support",
+    title: "AI-Optimized 5-Page Website",
+    description: "For businesses needing advanced features, enhanced AI capabilities, and extensive support for long-term growth.",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    category: "5-Page Website",
+    category: "AI 5-Page Website",
     features: [
-      "5 custom pages",
-      "Custom branding",
-      "Advanced SEO",
-      "Google Analytics",
-      "6 months maintenance"
+      "5 custom pages with AI-powered UX/UI design for higher conversion rates",
+      "Advanced AI SEO to drive sustainable search rankings",
+      "Integration of AI-powered product/service recommendations",
+      "AI Chatbot for automatic customer interaction and lead capture",
+      "AI Content Creation for engaging and on-brand copy across pages",
+      "6 months of ongoing AI-based maintenance and support"
     ],
-    price: "$1,500",
+    price: "$1,800",
     timeline: "10-14 days"
   },
   {
     id: 4,
-    title: "Wix Website Package (Standard)",
-    description: "An affordable and user-friendly solution for those looking for a simple website with easy management (+ $23/month Wix subscription)",
+    title: "AI-Powered E-Commerce Website",
+    description: "For businesses looking to build a full-fledged e-commerce site with AI tools that drive conversions and enhance user experience.",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
-    category: "Wix One-Page Website",
+    category: "AI E-Commerce Website",
     features: [
-      "Custom 1-page website built on Wix",
-      "Mobile-responsive layout",
-      "Basic SEO optimization",
-      "Domain & hosting included",
-      "Wix platform makes it easy to maintain and update"
+      "Full-featured online store with AI-driven product recommendations",
+      "AI-powered secure checkout process with fraud detection",
+      "AI Chatbot to guide users through their shopping journey",
+      "Integration with AI inventory management tools",
+      "Mobile-responsive design with AI-based user behavior tracking",
+      "AI SEO for optimized product descriptions and keywords"
     ],
-    price: "$500",
-    timeline: "5-7 days"
+    price: "$2,000",
+    timeline: "14-20 days"
   },
   {
     id: 5,
-    title: "Wix 3-Page Website Package",
-    description: "A flexible 3-page website perfect for businesses that need more content and want an easy-to-manage solution with Wix (+ $23/month Wix subscription)",
+    title: "AI Content Creation Add-On",
+    description: "Monthly blog posts, product descriptions, or landing page copy generated by AI with SEO optimization for content and audience engagement strategies.",
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3",
-    category: "Wix 3-Page Website",
+    category: "AI Add-On Service",
     features: [
-      "3 custom pages",
-      "Mobile-responsive design",
-      "Basic SEO optimization",
-      "Wix platform integration for easy management",
-      "Domain & hosting included"
+      "AI-generated blog posts optimized for SEO",
+      "Product descriptions that convert",
+      "Landing page copy that drives action",
+      "SEO-optimized content strategy",
+      "Audience engagement analysis",
+      "Content performance tracking"
     ],
-    price: "$900",
-    timeline: "7-10 days"
+    price: "$500/month",
+    timeline: "Ongoing"
   },
   {
     id: 6,
-    title: "Wix 5-Page Website Package",
-    description: "For businesses looking to expand and manage their online presence seamlessly with Wix (+ $23/month Wix subscription)",
+    title: "AI Marketing Automation Add-On",
+    description: "AI-driven email marketing automation and segmentation for personalized messaging with lead nurturing through AI to move leads through the funnel.",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    category: "Wix 5-Page Website",
+    category: "AI Add-On Service",
     features: [
-      "5 custom pages",
-      "Custom branding",
-      "Advanced SEO",
-      "Google Analytics integration",
-      "Wix platform allows for easy ongoing updates",
-      "Domain & hosting included"
+      "Automated email marketing sequences",
+      "AI-powered audience segmentation",
+      "Personalized messaging based on behavior",
+      "Lead nurturing workflows",
+      "Performance analytics and optimization",
+      "A/B testing for continuous improvement"
     ],
-    price: "$1,400",
-    timeline: "10-14 days"
+    price: "$600 setup + $150/month",
+    timeline: "Ongoing"
   }
 ];
 
 const Launch = () => {
-  const navigate = useNavigate();
-
-  const handleGetStarted = (packageName: string) => {
-    const packageType = packageName.toLowerCase().split(' ')[0]; // Get "basic", "standard", or "premium"
-    navigate(`/get-started?package=${packageType}`);
-  };
-
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
       <Header />
@@ -135,9 +134,9 @@ const Launch = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Launch Your Digital Project</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">AI-Powered Website Solutions</h1>
             <p className="text-xl text-neutral-400">
-              Choose the package that best fits your needs and let's build something amazing together.
+              Choose the AI package that best fits your needs and transform your online presence with cutting-edge technology.
             </p>
           </motion.div>
 
@@ -163,19 +162,18 @@ const Launch = () => {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  onClick={() => handleGetStarted(template.title)}
+                <Link 
+                  to="/consultation"
                   className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group"
                 >
-                  Get Started
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                  Schedule Consultation
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
         
-        <WebsiteComparison />
+        <WhyAI />
       </main>
       <Footer />
     </div>
