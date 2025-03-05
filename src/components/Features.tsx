@@ -1,4 +1,3 @@
-
 import { Globe, Brain, Bot, BarChart, ShoppingCart, MessageSquare, FileText, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -143,12 +142,10 @@ const Features = () => {
     });
   };
 
-  // Calculate total price
   const calculateTotal = () => {
     const packagePrice = packages.find(pkg => pkg.title === selectedPackage)?.price || "$0";
     const addOnsTotal = selectedAddOns.reduce((total, addon) => {
       const addonPrice = addOns.find(a => a.title === addon)?.price || "$0";
-      // Extract numbers from the price string (assuming format like "$500/month" or "$600 setup + $150/month")
       const priceMatch = addonPrice.match(/\$(\d+)/);
       return total + (priceMatch ? parseInt(priceMatch[1]) : 0);
     }, 0);
@@ -196,12 +193,6 @@ const Features = () => {
                   </li>
                 ))}
               </ul>
-              <Link 
-                to="/consultation" 
-                className="inline-block bg-accent hover:bg-accent/90 text-white px-4 py-2 rounded transition-colors text-sm font-medium"
-              >
-                Schedule Consultation
-              </Link>
             </div>
           ))}
         </div>
