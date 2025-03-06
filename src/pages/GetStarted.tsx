@@ -5,10 +5,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { Rocket } from "lucide-react";
+import { useState } from "react";
 
 const GetStarted = () => {
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const selectedPackage = searchParams.get("package");
 
   // Capitalize the package name for display and handle full package names
@@ -44,22 +46,50 @@ const GetStarted = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    setIsSubmitting(true);
     
-    // Create email content
-    const mailtoLink = `mailto:hello@grdverse.com?subject=New Project Inquiry - ${formData.get("package")}&body=
-Name: ${formData.get("name")}%0D%0A
-Email: ${formData.get("email")}%0D%0A
-Package: ${formData.get("package")}%0D%0A
-Project Details:%0D%0A${formData.get("details")}`;
-
-    // Open default email client
-    window.location.href = mailtoLink;
-
-    toast({
-      title: "Form Submitted!",
-      description: "Opening your email client to send the inquiry to hello@grdverse.com",
-    });
+    try {
+      const formData = new FormData(e.currentTarget);
+      const formValues = {
+        formType: "getStarted",
+        name: formData.get("name"),
+        email: formData.get("email"),
+        package: formData.get("package"),
+        details: formData.get("details")
+      };
+      
+      // Call the submit-form edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({
+          title: "Project Request Submitted!",
+          description: "We've received your project details and will contact you soon.",
+        });
+        
+        // Reset the form
+        e.currentTarget.reset();
+      } else {
+        throw new Error(result.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Submission Failed",
+        description: "There was a problem submitting your form. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -159,10 +189,11 @@ Project Details:%0D%0A${formData.get("details")}`;
 
                 <button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group"
+                  disabled={isSubmitting}
+                  className={`w-full bg-accent hover:bg-accent/90 text-white px-6 py-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  Let's Get Started
-                  <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? 'Submitting...' : 'Let\'s Get Started'}
+                  <Rocket className={`w-5 h-5 ${isSubmitting ? '' : 'group-hover:translate-x-1 transition-transform'}`} />
                 </button>
               </form>
             </motion.div>

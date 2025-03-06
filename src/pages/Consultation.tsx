@@ -4,27 +4,57 @@ import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { Calendar, Mail, Brain, Bot, Laptop } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const Consultation = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    setIsSubmitting(true);
     
-    // Create email content
-    const mailtoLink = `mailto:hello@grdverse.com?subject=AI Consultation Request - ${formData.get("name")}&body=
-Name: ${formData.get("name")}%0D%0A
-Email: ${formData.get("email")}%0D%0A
-Business Details:%0D%0A${formData.get("message")}`;
-
-    // Open default email client
-    window.location.href = mailtoLink;
-
-    toast({
-      title: "Form Submitted!",
-      description: "Opening your email client to send your AI consultation request.",
-    });
+    try {
+      const formData = new FormData(e.currentTarget);
+      const formValues = {
+        formType: "consultation",
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message")
+      };
+      
+      // Call the submit-form edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        toast({
+          title: "Form Submitted!",
+          description: "We've received your consultation request and will contact you soon.",
+        });
+        
+        // Reset the form
+        e.currentTarget.reset();
+      } else {
+        throw new Error(result.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Submission Failed",
+        description: "There was a problem submitting your form. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,8 +122,12 @@ Business Details:%0D%0A${formData.get("message")}`;
                       placeholder="What processes would you like to automate? What content do you need? How can AI help your business grow?"
                     />
                   </div>
-                  <button className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Request Your Free AI Audit
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Request Your Free AI Audit'}
                   </button>
                 </form>
               </motion.div>
