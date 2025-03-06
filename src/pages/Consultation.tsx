@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -145,10 +146,11 @@ Business Details:%0D%0A${formData.get("message")}`;
                       <p className="text-neutral-400 mb-4">Book a 30-minute call to discuss how AI can transform your business.</p>
                       <div className="aspect-video w-full">
                         <iframe
-                          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0_vE_zWO_F3GxiVFoQCWQYKi8JA9vZytxNn7g95S5cqdDj0Yw53UDAFsmCOvGcypWOCEDI_xhD"
+                          src="https://calendar.google.com/calendar/embed?src=hello%40grdverse.com&ctz=America%2FNew_York"
                           style={{ border: 0 }}
                           className="w-full h-[400px] rounded-lg"
                           frameBorder="0"
+                          scrolling="no"
                         ></iframe>
                       </div>
                     </div>
