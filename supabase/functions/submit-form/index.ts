@@ -20,6 +20,8 @@ serve(async (req) => {
     // Construct email content based on form type
     let subject = "New Form Submission";
     let body = "";
+    let success = true;
+    let message = "Form submitted successfully! We'll contact you soon.";
 
     if (formData.formType === "consultation") {
       subject = `AI Consultation Request - ${formData.name}`;
@@ -36,6 +38,17 @@ Email: ${formData.email}
 Package: ${formData.package}
 Project Details: ${formData.details}
       `;
+    } else if (formData.formType === "launchPromo") {
+      subject = `Free Chatbot Installation Request - ${formData.name}`;
+      body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Business Name: ${formData.businessName || 'N/A'}
+Website: ${formData.website || 'N/A'}
+Facebook Page: ${formData.facebookPage || 'N/A'}
+Additional Details: ${formData.details || 'N/A'}
+      `;
+      message = "Thanks for your interest in our free chatbot installation! We'll contact you shortly to get started.";
     }
 
     // In a production environment, you would use a service like Resend or SendGrid here
@@ -45,8 +58,8 @@ Project Details: ${formData.details}
     // Return success response
     return new Response(
       JSON.stringify({ 
-        success: true, 
-        message: "Form submitted successfully! We'll contact you soon." 
+        success, 
+        message 
       }),
       { 
         headers: { 
