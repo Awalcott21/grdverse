@@ -1,4 +1,3 @@
-
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Logo from "./Logo";
 
@@ -12,8 +11,8 @@ const Footer = () => {
     <footer className="bg-primary text-white">
       <div className="container-padding py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col items-center mb-8">
-            <Logo variant="short" className="mb-6" />
+          <div className="flex flex-col items-center mb-10">
+            <Logo variant="short" className="mb-8" />
             <div className="flex gap-4">
               <a href="https://twitter.com/gridverse" target="_blank" rel="noopener noreferrer" className="p-2 bg-neutral-800 rounded-full hover:bg-accent transition-colors">
                 <Twitter size={18} />

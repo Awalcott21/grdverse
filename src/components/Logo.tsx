@@ -14,13 +14,13 @@ const Logo = ({ className = "", variant = "full" }: LogoProps) => {
         <img 
           src="/lovable-uploads/a4e887fc-7754-40c5-8e75-5bbfd7c23e51.png" 
           alt="GRIDVERSE Logo" 
-          className="h-10 w-auto" 
+          className="h-16 w-auto" // Increased from h-10 to h-16
         />
       ) : (
         <img 
           src="/lovable-uploads/7531169a-4b59-4379-bcab-b5da36b7872f.png" 
           alt="GRIDVERSE Logo" 
-          className="h-10 w-auto" 
+          className="h-16 w-auto" // Increased from h-10 to h-16
         />
       )}
     </Link>
