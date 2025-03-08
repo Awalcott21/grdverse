@@ -3,17 +3,26 @@ import { Link } from "react-router-dom";
 
 interface LogoProps {
   className?: string;
+  variant?: "full" | "short";
 }
 
-const Logo = ({ className = "" }: LogoProps) => {
+const Logo = ({ className = "", variant = "full" }: LogoProps) => {
   return (
     <Link to="/" className={`flex items-center ${className}`}>
       <span className="sr-only">GRIDVERSE</span>
-      <img 
-        src="/lovable-uploads/71a61040-ce62-455c-9327-323b879a70d4.png" 
-        alt="GRIDVERSE Logo" 
-        className="h-10 w-auto" // Increased from h-8 to h-10
-      />
+      {variant === "full" ? (
+        <img 
+          src="/lovable-uploads/28188f67-d2d6-45e7-9385-e099504e215d.png" 
+          alt="GRIDVERSE Logo" 
+          className="h-10 w-auto" 
+        />
+      ) : (
+        <img 
+          src="/lovable-uploads/1598348a-fda7-4849-8fc7-3c5c1c29be5d.png" 
+          alt="GRIDVERSE Logo" 
+          className="h-10 w-auto" 
+        />
+      )}
     </Link>
   );
 };
