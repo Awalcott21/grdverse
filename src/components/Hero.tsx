@@ -21,7 +21,7 @@ const Hero = () => {
           <span className="block text-lg md:text-xl text-accent mb-4 font-normal">
             {"// Most Websites Collect Dust. Ours Build Businesses."}
           </span>
-          Your website should be your best salesperson. With AI-powered automation, SEO, and lead capture, we turn static websites into 24/7 business engines.
+          Your Website Should Work as Hard as You Do. Ours Actually Do.
         </h1>
         
         <p className="text-lg md:text-xl text-neutral-400 mb-12 max-w-3xl leading-relaxed tracking-tight">
