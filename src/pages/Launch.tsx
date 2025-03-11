@@ -2,16 +2,18 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight, Rocket, TrendingUp, Flame } from "lucide-react";
 import { Link } from "react-router-dom";
 import WhyAI from "../components/WhyAI";
 
 interface Package {
   id: number;
   title: string;
-  description: string;
+  icon: React.ElementType;
   price: string;
   timeline: string;
+  cta: string;
+  ctaLink: string;
   features: string[];
 }
 
@@ -19,46 +21,46 @@ const packages: Package[] = [
   {
     id: 1,
     title: "AI Starter Website",
-    description: "Perfect for small businesses looking to make a professional online debut with essential AI tools.",
+    icon: Rocket,
     price: "$800",
     timeline: "5-7 days",
+    cta: "Launch My Website",
+    ctaLink: "/consultation",
     features: [
-      "Clean, modern design with AI-powered UX",
-      "Mobile-responsive for all devices",
-      "AI Chatbot for lead generation",
-      "AI-Powered SEO optimization",
-      "Domain name + 1-year hosting",
-      "AI Content Generation"
+      "AI-optimized design & SEO",
+      "AI chatbot for lead capture",
+      "Mobile-friendly & fast",
+      "Free domain + 1-year hosting"
     ]
   },
   {
     id: 2,
-    title: "AI Professional Website",
-    description: "A comprehensive solution for growing businesses who need AI to streamline and automate processes.",
+    title: "AI Growth Website",
+    icon: TrendingUp,
     price: "$1,200",
     timeline: "7-10 days",
+    cta: "Scale My Business",
+    ctaLink: "/consultation",
     features: [
-      "3 custom pages with AI-driven design",
-      "Advanced AI chatbot with sales automation",
-      "AI-powered content creation & SEO",
-      "3 months of AI performance tracking",
-      "Email marketing automation",
-      "Unlimited revisions"
+      "AI-enhanced UX & lead capture",
+      "AI chatbot for 24/7 support",
+      "AI-generated content",
+      "3 months of AI performance tracking"
     ]
   },
   {
     id: 3,
-    title: "AI Enterprise Solution",
-    description: "For established businesses needing advanced features and extensive AI capabilities for growth.",
+    title: "AI Sales Machine",
+    icon: Flame,
     price: "$1,800",
     timeline: "10-14 days",
+    cta: "Automate My Sales",
+    ctaLink: "/consultation",
     features: [
-      "5+ custom pages with advanced AI design",
-      "Complete AI marketing suite integration",
-      "AI-driven analytics and optimization",
-      "6 months of maintenance & support",
-      "Custom AI automation workflows",
-      "Priority 24/7 support"
+      "AI-powered UI & automation",
+      "AI SEO for high traffic",
+      "AI chatbot + email marketing automation",
+      "6 months of AI maintenance"
     ]
   }
 ];
@@ -75,9 +77,9 @@ const Launch = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Done-for-You AI Websites – Just Pick & Go</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">AI Websites That Work for You—Not Against You.</h1>
             <p className="text-xl text-neutral-400">
-              Choose from our three simple packages and get your AI-powered website up and running fast.
+              No more guessing. No more complex setups. Pick a package and launch your AI-powered website in days.
             </p>
           </motion.div>
 
@@ -90,10 +92,18 @@ const Launch = () => {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="glass-card p-8 rounded-xl relative flex flex-col"
               >
-                <h3 className="text-2xl font-semibold mb-2">{pkg.title}</h3>
-                <div className="text-3xl font-mono text-white mb-2">{pkg.price}</div>
-                <div className="text-sm text-neutral-500 mb-4">Timeline: {pkg.timeline}</div>
-                <p className="text-neutral-400 mb-6">{pkg.description}</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-accent/10 p-3 rounded-lg">
+                    <pkg.icon className="w-5 h-5 text-accent" />
+                  </div>
+                  <h3 className="text-2xl font-semibold">{pkg.title}</h3>
+                </div>
+                
+                <div className="flex items-baseline gap-2 mb-2">
+                  <div className="text-3xl font-mono text-white">{pkg.price}</div>
+                  <div className="text-sm text-neutral-500">| {pkg.timeline}</div>
+                </div>
+                
                 <ul className="space-y-3 mb-8 flex-grow">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
@@ -102,11 +112,12 @@ const Launch = () => {
                     </li>
                   ))}
                 </ul>
+                
                 <Link 
-                  to="/consultation"
+                  to={pkg.ctaLink}
                   className="bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 mt-auto"
                 >
-                  Launch My Website
+                  {pkg.cta}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
@@ -120,7 +131,7 @@ const Launch = () => {
             className="text-center mt-12"
           >
             <p className="text-neutral-400 mb-4">
-              Not sure which package is right for you?
+              Every package includes a free AI strategy session.
             </p>
             <Link 
               to="/quiz"
