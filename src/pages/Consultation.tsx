@@ -69,9 +69,9 @@ const Consultation = () => {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Let's Talk. No Pressure, Just Solutions.</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Need Answers? Let's Talk. No Pressure.</h1>
               <p className="text-xl text-neutral-400">
-                Discover how AI can transform your business operations, content creation, and growth strategies.
+                Get clear insights on how AI can transform your business operations in a 30-minute chat.
               </p>
             </div>
 

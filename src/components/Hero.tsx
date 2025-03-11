@@ -14,40 +14,40 @@ const Hero = () => {
       
       <div className="max-w-5xl mx-auto relative">
         <div className="absolute -top-8 left-0 text-sm text-neutral-500 tracking-tight">
-          AI-Powered Web Development
+          Your AI Website is 5 Days Away
         </div>
         
         <h1 className="text-5xl md:text-6xl font-bold mb-10 tracking-tight leading-[1.1]">
           <span className="block text-lg md:text-xl text-accent mb-4 font-normal">
-            {"// Most Websites Collect Dust. Ours Build Businesses."}
+            {"// AI Handles Customer Questions While You Sleep"}
           </span>
           Your Website Should Work as Hard as You Do. Ours Actually Do.
         </h1>
         
         <p className="text-lg md:text-xl text-neutral-400 mb-12 max-w-3xl leading-relaxed tracking-tight">
-          Future-proof your business with AI technologies that transform websites, enhance user engagement, automate processes, and increase conversions.
+          Launch a website that works 24/7, automatically engages customers, and grows your business while you focus on what matters.
         </p>
         
         <ul className="grid md:grid-cols-2 gap-x-8 gap-y-3 mb-10 text-neutral-300 text-sm md:text-base">
           <li className="flex items-center gap-2">
             <span className="text-accent">•</span>
-            <span>Fully automated, AI-driven websites</span>
+            <span>AI answers customer questions instantly</span>
           </li>
           <li className="flex items-center gap-2">
             <span className="text-accent">•</span>
-            <span>Smart lead generation through AI chatbots</span>
+            <span>24/7 lead generation on autopilot</span>
           </li>
           <li className="flex items-center gap-2">
             <span className="text-accent">•</span>
-            <span>Personalized user experiences using AI</span>
+            <span>Smart content that sells for you</span>
           </li>
           <li className="flex items-center gap-2">
             <span className="text-accent">•</span>
-            <span>AI-enhanced SEO and analytics</span>
+            <span>Automated personalization for visitors</span>
           </li>
           <li className="flex items-center gap-2">
             <span className="text-accent">•</span>
-            <span>Future-proof your business with AI solutions</span>
+            <span>Your business growth on autopilot</span>
           </li>
         </ul>
         
