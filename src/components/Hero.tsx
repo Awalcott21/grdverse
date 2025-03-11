@@ -53,7 +53,7 @@ const Hero = () => {
         
         <div className="flex flex-col sm:flex-row gap-4">
           <Link 
-            to="/consultation"
+            to="/quiz"
             className="bg-white text-neutral-900 px-6 py-3 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium flex items-center justify-center gap-2 group text-base"
           >
             Find Your Perfect AI Website in 30 Seconds

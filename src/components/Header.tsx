@@ -20,11 +20,8 @@ const Header = () => {
         <Logo variant="full" />
         
         <div className="hidden md:flex items-center gap-8">
-          <Link to="/" onClick={() => {
-            const element = document.getElementById('showroom');
-            element?.scrollIntoView({ behavior: 'smooth' });
-          }} className="text-neutral-400 hover:text-white transition-colors tracking-tight">
-            Showroom
+          <Link to="/quiz" className="text-neutral-400 hover:text-white transition-colors tracking-tight">
+            30-Second Quiz
           </Link>
           <button onClick={handleFeatureClick} className="text-neutral-400 hover:text-white transition-colors tracking-tight">
             What We Build
@@ -54,15 +51,11 @@ const Header = () => {
         <div className="md:hidden absolute top-20 left-0 right-0 bg-neutral-900 border-b border-neutral-800">
           <div className="container-padding py-6 flex flex-col gap-6">
             <Link 
-              to="/"
-              onClick={() => {
-                const element = document.getElementById('showroom');
-                element?.scrollIntoView({ behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
+              to="/quiz"
+              onClick={() => setIsMenuOpen(false)}
               className="text-neutral-400 hover:text-white transition-colors tracking-tight"
             >
-              Showroom
+              30-Second Quiz
             </Link>
             <button 
               onClick={() => {

@@ -10,6 +10,7 @@ import Launch from "./pages/Launch";
 import Consultation from "./pages/Consultation";
 import GetStarted from "./pages/GetStarted";
 import BlogPost from "./pages/BlogPost";
+import Quiz from "./pages/Quiz";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/consultation" element={<Consultation />} />
             <Route path="/get-started" element={<GetStarted />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/quiz" element={<Quiz />} />
           </Routes>
         </Router>
       </TooltipProvider>
