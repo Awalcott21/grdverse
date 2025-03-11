@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -23,62 +22,38 @@ const ConsultationForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Try server submission first
-      if (import.meta.env.VITE_SUPABASE_URL) {
-        try {
-          const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              formType: "consultation",
-              name: formData.name,
-              email: formData.email,
-              message: formData.message
-            })
-          });
-          
-          const result = await response.json();
-          
-          if (result.success) {
-            toast({
-              title: "Form Submitted!",
-              description: "We've received your consultation request and will contact you soon.",
-            });
-            
-            setFormData({ name: "", email: "", message: "" });
-            
-            // Fallback to email as well
-            window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ABusiness Details: ${formData.message}`;
-            return;
-          }
-        } catch (error) {
-          console.error("Server submission failed, falling back to email:", error);
-          // Continue to fallback
-        }
-      }
-      
-      // Fallback to direct email
-      window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ABusiness Details: ${formData.message}`;
-      
-      toast({
-        title: "Form Submitted!",
-        description: "We've opened your email client to complete your consultation request.",
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: "consultation",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
       });
       
-      setFormData({ name: "", email: "", message: "" });
+      const result = await response.json();
       
+      if (result.success) {
+        toast({
+          title: "Form Submitted!",
+          description: "We've received your consultation request and will contact you soon.",
+        });
+        
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(result.message || 'Failed to submit form');
+      }
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your form. We've opened your email client instead.",
+        description: "There was a problem submitting your form. Please try again later.",
         variant: "destructive"
       });
-      
-      // Always fall back to email
-      window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ABusiness Details: ${formData.message}`;
     } finally {
       setIsSubmitting(false);
     }
