@@ -123,7 +123,8 @@ const Quiz = () => {
           "AI-optimized design & SEO",
           "AI chatbot for lead capture",
           "Mobile-friendly & fast",
-          "Free domain + 1-year hosting"
+          "Free domain + 1-year hosting",
+          "Free AI strategy session"
         ];
         break;
       case "growth":
@@ -134,7 +135,8 @@ const Quiz = () => {
           "AI-enhanced UX & lead capture",
           "AI chatbot for 24/7 support",
           "AI-generated content",
-          "3 months of AI performance tracking"
+          "3 months of AI performance tracking",
+          "Free AI strategy session"
         ];
         break;
       case "sales":
@@ -144,8 +146,9 @@ const Quiz = () => {
         features = [
           "AI-powered UI & automation",
           "AI SEO for high traffic",
-          "AI chatbot integration",
-          "6 months of AI maintenance"
+          "AI chatbot + email marketing automation",
+          "6 months of AI maintenance",
+          "Free AI strategy session"
         ];
         break;
       default:

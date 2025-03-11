@@ -12,25 +12,17 @@ const GetStarted = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const selectedPackage = searchParams.get("package");
 
-  // Capitalize the package name for display and handle full package names
   const formatPackageName = (pkg: string | null) => {
     if (!pkg) return "Not Selected";
     
-    // Handle full package names that might come from the dropdown
     if (pkg.includes("Package")) {
       return pkg;
     }
     
-    // Map short package names to their full names - removed the content creation and automation packages
     const packageMap: { [key: string]: string } = {
       'basic': 'AI Starter Website',
       'standard': 'AI Growth Website',
-      'premium': 'AI Sales Machine',
-      'ai-one-page': 'AI-Powered One-Page Website',
-      'ai-three-page': 'AI-Enhanced 3-Page Website',
-      'ai-five-page': 'AI-Optimized 5-Page Website',
-      'ai-ecommerce': 'AI-Powered E-Commerce Website',
-      'ai-chatbot': 'AI Chatbot Integration Package'
+      'premium': 'AI Sales Machine'
     };
     
     return packageMap[pkg.toLowerCase()] || pkg.charAt(0).toUpperCase() + pkg.slice(1);
@@ -50,7 +42,6 @@ const GetStarted = () => {
         details: formData.get("details")
       };
       
-      // Call the submit-form edge function
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
         method: 'POST',
         headers: {
@@ -67,7 +58,6 @@ const GetStarted = () => {
           description: "We've received your project details and will contact you soon.",
         });
         
-        // Reset the form
         e.currentTarget.reset();
       } else {
         throw new Error(result.message || "Something went wrong");

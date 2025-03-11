@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Rocket, Bot, Laptop, ArrowRight } from "lucide-react";
@@ -17,12 +16,13 @@ const packages: Package[] = [
     price: "$800",
     timeline: "5-7 days",
     cta: "Launch My Website",
-    ctaLink: "/consultation",
+    ctaLink: "/get-started?package=basic",
     features: [
-      "24/7 AI Chat Support",
-      "Mobile-friendly Design",
-      "Lead Capture Forms",
-      "Free Domain & 1-Year Hosting"
+      "AI-optimized design & SEO",
+      "AI chatbot for lead capture",
+      "Mobile-friendly & fast",
+      "Free domain + 1-year hosting",
+      "Free AI strategy session"
     ]
   },
   {
@@ -32,12 +32,13 @@ const packages: Package[] = [
     price: "$1,200",
     timeline: "7-10 days",
     cta: "Scale My Business",
-    ctaLink: "/consultation",
+    ctaLink: "/get-started?package=standard",
     features: [
-      "Advanced AI Chat Support",
-      "Lead Generation System",
-      "Smart Content Recommendations",
-      "3 Months Performance Tracking"
+      "AI-enhanced UX & lead capture",
+      "AI chatbot for 24/7 support",
+      "AI-generated content",
+      "3 months of AI performance tracking",
+      "Free AI strategy session"
     ]
   },
   {
@@ -47,12 +48,13 @@ const packages: Package[] = [
     price: "$1,800",
     timeline: "10-14 days",
     cta: "Automate My Sales",
-    ctaLink: "/consultation",
+    ctaLink: "/get-started?package=premium",
     features: [
-      "Enterprise AI Chat Support",
-      "Automated Sales Pipeline",
-      "Customer Journey Optimization",
-      "6 Months AI Maintenance"
+      "AI-powered UI & automation",
+      "AI SEO for high traffic",
+      "AI chatbot + email marketing automation",
+      "6 months of AI maintenance",
+      "Free AI strategy session"
     ]
   }
 ];
