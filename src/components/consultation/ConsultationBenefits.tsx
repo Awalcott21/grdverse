@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Brain, Bot, Laptop, Calendar, Mail, ArrowRight } from "lucide-react";
+import { Laptop, Calendar, Mail, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ConsultationBenefits = () => {
@@ -14,26 +14,6 @@ const ConsultationBenefits = () => {
       <h2 className="text-2xl font-semibold mb-6">How We Can Help</h2>
       
       <div className="space-y-6">
-        <div className="flex items-start gap-4">
-          <div className="bg-accent/10 p-3 rounded-lg shrink-0">
-            <Brain className="w-6 h-6 text-accent" />
-          </div>
-          <div>
-            <h3 className="font-medium mb-1">AI Content Creation</h3>
-            <p className="text-neutral-400">Generate SEO-optimized blogs, social media content, and marketing materials with AI.</p>
-          </div>
-        </div>
-        
-        <div className="flex items-start gap-4">
-          <div className="bg-accent/10 p-3 rounded-lg shrink-0">
-            <Bot className="w-6 h-6 text-accent" />
-          </div>
-          <div>
-            <h3 className="font-medium mb-1">Business Automation</h3>
-            <p className="text-neutral-400">Automate customer service, email marketing, lead generation, and more with AI tools.</p>
-          </div>
-        </div>
-        
         <div className="flex items-start gap-4">
           <div className="bg-accent/10 p-3 rounded-lg shrink-0">
             <Laptop className="w-6 h-6 text-accent" />
