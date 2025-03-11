@@ -1,8 +1,10 @@
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, Brain, Bot, Laptop } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const About = () => {
   const navigate = useNavigate();
@@ -22,6 +24,10 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
+            <div className="absolute -top-8 left-0 text-sm text-neutral-500 tracking-tight">
+              Your AI Website is 5 Days Away
+            </div>
+            
             <h1 className="text-4xl md:text-5xl font-bold mb-8">About GRIDVERSE</h1>
             <p className="text-lg text-neutral-400 mb-12">
               At GRIDVERSE, we're not just another digital agency. We're an AI-powered business accelerator dedicated to helping small and medium businesses harness the power of artificial intelligence to automate processes, create optimized content, and scale faster than ever before.
@@ -86,18 +92,24 @@ const About = () => {
               </ul>
             </section>
 
-            <p className="text-lg text-neutral-400 mb-16">
+            <p className="text-lg text-neutral-400 mb-12">
               At GRIDVERSE, we're committed to making AI accessible, practical, and transformative for your business. We believe that with the right AI solutions, even small businesses can compete at the highest levels and achieve extraordinary growth.
             </p>
 
-            <div className="text-center">
-              <button
-                onClick={handleFeatureClick}
-                className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center gap-2 group"
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link 
+                to="/quiz"
+                className="bg-white text-neutral-900 px-6 py-3 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium flex items-center justify-center gap-2 group text-base"
               >
-                Explore Our AI Solutions
+                Find Your Perfect AI Website in 30 Seconds
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
+              <Link 
+                to="/launch"
+                className="border border-white/20 text-white px-6 py-3 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium text-base text-center"
+              >
+                Pick a Package & Launch Today
+              </Link>
             </div>
           </motion.div>
         </div>

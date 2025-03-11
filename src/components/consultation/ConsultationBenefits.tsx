@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
-import { Brain, Bot, Laptop, Calendar, Mail } from "lucide-react";
+import { Brain, Bot, Laptop, Calendar, Mail, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ConsultationBenefits = () => {
   return (
@@ -44,21 +45,24 @@ const ConsultationBenefits = () => {
         </div>
       </div>
       
-      <div className="glass-card p-6 rounded-xl mt-8">
+      <div className="glass-card p-6 rounded-none mt-8 border-white/10">
+        <h3 className="font-medium mb-4">Not ready for a call yet?</h3>
+        <p className="text-neutral-400 mb-6">Try our 30-second quiz to find the perfect AI solution for your business.</p>
+        <Link 
+          to="/quiz"
+          className="bg-white text-neutral-900 px-6 py-3 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium flex items-center justify-center gap-2 group text-base w-full"
+        >
+          Take the 30-Second Quiz
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </div>
+      
+      <div className="glass-card p-6 rounded-none border-white/10">
         <div className="flex items-start gap-4">
           <Calendar className="w-6 h-6 text-accent shrink-0" />
           <div>
             <h3 className="font-medium mb-1">Schedule a Call</h3>
             <p className="text-neutral-400 mb-4">Book a 30-minute call to discuss how AI can transform your business.</p>
-            <div className="aspect-video w-full">
-              <iframe
-                src="https://calendar.google.com/calendar/embed?src=hello%40grdverse.com&ctz=America%2FNew_York"
-                style={{ border: 0 }}
-                className="w-full h-[400px] rounded-lg"
-                frameBorder="0"
-                scrolling="no"
-              ></iframe>
-            </div>
           </div>
         </div>
       </div>

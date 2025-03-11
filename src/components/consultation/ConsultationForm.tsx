@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const ConsultationForm = () => {
   const { toast } = useToast();
@@ -69,7 +70,7 @@ const ConsultationForm = () => {
             id="name"
             name="name"
             required
-            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="John Doe"
           />
         </div>
@@ -82,7 +83,7 @@ const ConsultationForm = () => {
             id="email"
             name="email"
             required
-            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="john@example.com"
           />
         </div>
@@ -95,16 +96,17 @@ const ConsultationForm = () => {
             name="message"
             required
             rows={4}
-            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="What processes would you like to automate? What content do you need? How can AI help your business grow?"
           />
         </div>
         <button 
           type="submit"
           disabled={isSubmitting}
-          className={`w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+          className={`w-full bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-none font-medium transition-colors flex items-center justify-center gap-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
         >
           {isSubmitting ? 'Submitting...' : 'Book a Free Consultation'}
+          {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
         </button>
       </form>
     </motion.div>

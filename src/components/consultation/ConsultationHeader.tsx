@@ -9,9 +9,14 @@ const ConsultationHeader = () => {
       transition={{ duration: 0.6 }}
       className="text-center mb-16"
     >
-      <h1 className="text-4xl md:text-5xl font-bold mb-6">Curious? Let's Explore AI Together.</h1>
+      <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-[1.1] tracking-tight">
+        <span className="block text-lg md:text-xl text-accent mb-4 font-normal">
+          {"// AI Handles Customer Questions While You Sleep"}
+        </span>
+        Your Website Should Work as Hard as You Do.
+      </h1>
       <p className="text-xl text-neutral-400">
-        Your website should work as hard as you do. Let's make that happen.
+        Book a free consultation to explore how AI can transform your business and automate your growth.
       </p>
     </motion.div>
   );
