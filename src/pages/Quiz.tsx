@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 const Quiz = () => {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({
-    businessType: "",
-    features: "",
-    timeline: ""
+    hasWebsite: "",
+    biggestStruggle: "",
+    launchTimeline: ""
   });
   const [recommendation, setRecommendation] = useState<string | null>(null);
 
@@ -26,15 +26,15 @@ const Quiz = () => {
   };
 
   const determineRecommendation = () => {
-    const { businessType, features, timeline } = answers;
+    const { hasWebsite, biggestStruggle, launchTimeline } = answers;
     
     // Simple logic for package recommendation
-    if (businessType === "small" && features === "basic") {
+    if (launchTimeline === "ASAP" || (!hasWebsite && biggestStruggle === "Website is outdated")) {
       setRecommendation("starter");
-    } else if (businessType === "growing" || features === "advanced" || timeline === "1-2 weeks") {
-      setRecommendation("professional");
+    } else if (biggestStruggle === "No traffic" || biggestStruggle === "No leads") {
+      setRecommendation("growth");
     } else {
-      setRecommendation("enterprise");
+      setRecommendation("sales");
     }
   };
 
@@ -43,22 +43,17 @@ const Quiz = () => {
       case 1:
         return (
           <div className="quiz-question">
-            <h2 className="text-2xl font-semibold mb-6">What best describes your business?</h2>
+            <h2 className="text-2xl font-semibold mb-6">Do you have a website?</h2>
             <div className="grid gap-4">
               <QuizOption 
-                label="Small Business / Startup" 
-                description="Just getting started or have a small established presence"
-                onClick={() => handleStepComplete("businessType", "small")}
+                label="Yes" 
+                description="I already have a website but want to improve it"
+                onClick={() => handleStepComplete("hasWebsite", "Yes")}
               />
               <QuizOption 
-                label="Growing Business" 
-                description="Expanding operations and looking to scale online"
-                onClick={() => handleStepComplete("businessType", "growing")}
-              />
-              <QuizOption 
-                label="Established Business" 
-                description="Well-established with complex online needs"
-                onClick={() => handleStepComplete("businessType", "established")}
+                label="No" 
+                description="I need a new website from scratch"
+                onClick={() => handleStepComplete("hasWebsite", "No")}
               />
             </div>
           </div>
@@ -66,22 +61,27 @@ const Quiz = () => {
       case 2:
         return (
           <div className="quiz-question">
-            <h2 className="text-2xl font-semibold mb-6">What features do you need?</h2>
+            <h2 className="text-2xl font-semibold mb-6">What's your biggest struggle?</h2>
             <div className="grid gap-4">
               <QuizOption 
-                label="Basic AI Website" 
-                description="Simple design, AI chatbot, basic SEO"
-                onClick={() => handleStepComplete("features", "basic")}
+                label="No traffic" 
+                description="My website doesn't get enough visitors"
+                onClick={() => handleStepComplete("biggestStruggle", "No traffic")}
               />
               <QuizOption 
-                label="Advanced AI Features" 
-                description="Content creation, lead generation, marketing automation"
-                onClick={() => handleStepComplete("features", "advanced")}
+                label="No leads" 
+                description="I get traffic but not enough leads or inquiries"
+                onClick={() => handleStepComplete("biggestStruggle", "No leads")}
               />
               <QuizOption 
-                label="Full AI Business Suite" 
-                description="Complete website with all AI features and integrations"
-                onClick={() => handleStepComplete("features", "complete")}
+                label="No conversions" 
+                description="I get leads but they don't convert to sales"
+                onClick={() => handleStepComplete("biggestStruggle", "No conversions")}
+              />
+              <QuizOption 
+                label="Website is outdated" 
+                description="My website looks old or doesn't perform well"
+                onClick={() => handleStepComplete("biggestStruggle", "Website is outdated")}
               />
             </div>
           </div>
@@ -89,22 +89,22 @@ const Quiz = () => {
       case 3:
         return (
           <div className="quiz-question">
-            <h2 className="text-2xl font-semibold mb-6">When do you need your website?</h2>
+            <h2 className="text-2xl font-semibold mb-6">How soon do you want to launch?</h2>
             <div className="grid gap-4">
               <QuizOption 
                 label="ASAP (5-7 days)" 
                 description="I need my website up and running quickly"
-                onClick={() => handleStepComplete("timeline", "ASAP")}
+                onClick={() => handleStepComplete("launchTimeline", "ASAP")}
               />
               <QuizOption 
-                label="1-2 weeks" 
-                description="I have a little flexibility on timing"
-                onClick={() => handleStepComplete("timeline", "1-2 weeks")}
+                label="30 Days" 
+                description="I have some flexibility on timing"
+                onClick={() => handleStepComplete("launchTimeline", "30 Days")}
               />
               <QuizOption 
-                label="2+ weeks" 
-                description="I'm planning ahead and can wait"
-                onClick={() => handleStepComplete("timeline", "2+ weeks")}
+                label="Not Sure" 
+                description="I'm still in the planning phase"
+                onClick={() => handleStepComplete("launchTimeline", "Not Sure")}
               />
             </div>
           </div>
@@ -129,26 +129,26 @@ const Quiz = () => {
           "Free domain + 1-year hosting"
         ];
         break;
-      case "professional":
-        title = "AI Professional Website";
+      case "growth":
+        title = "AI Growth Website";
         price = "$1,200";
         timeline = "7-10 days";
         features = [
-          "3 custom pages with AI-driven design",
-          "Advanced AI chatbot with sales automation",
-          "AI-generated content for all pages",
-          "3 months of AI support & maintenance"
+          "AI-enhanced UX & lead capture",
+          "AI chatbot for 24/7 support",
+          "AI-generated content",
+          "3 months of AI performance tracking"
         ];
         break;
-      case "enterprise":
-        title = "AI Enterprise Solution";
+      case "sales":
+        title = "AI Sales Machine";
         price = "$1,800";
         timeline = "10-14 days";
         features = [
-          "5+ custom pages with advanced AI integrations",
-          "Complete AI marketing automation suite",
-          "AI-driven analytics and optimization",
-          "6 months of AI support & maintenance"
+          "AI-powered UI & automation",
+          "AI SEO for high traffic",
+          "AI chatbot + email marketing automation",
+          "6 months of AI maintenance"
         ];
         break;
       default:
@@ -170,7 +170,7 @@ const Quiz = () => {
         transition={{ duration: 0.5 }}
         className="recommendation-result text-center"
       >
-        <h2 className="text-3xl font-bold mb-4">Your Perfect AI Website</h2>
+        <h2 className="text-3xl font-bold mb-4">Your Perfect AI Website Package</h2>
         <div className="glass-card p-8 rounded-xl mb-8 max-w-lg mx-auto">
           <div className="text-accent text-lg font-medium mb-2">Recommended Package</div>
           <h3 className="text-2xl font-bold mb-2">{title}</h3>
@@ -190,10 +190,10 @@ const Quiz = () => {
           </ul>
           
           <Link 
-            to="/launch"
+            to="/get-started?package=ai-website"
             className="bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 w-full"
           >
-            Launch My Website
+            Get Started Now
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -235,9 +235,9 @@ const Quiz = () => {
             ) : (
               <>
                 <div className="text-center mb-12">
-                  <h1 className="text-4xl font-bold mb-4">Find Your Perfect AI Website in 30 Seconds</h1>
+                  <h1 className="text-4xl font-bold mb-4">Not Sure What You Need? Find Out in 30 Seconds</h1>
                   <p className="text-xl text-neutral-400">
-                    Answer 3 quick questions to get a tailored recommendation
+                    Skip the guesswork. Answer 3 quick questions and get matched with the perfect website solution.
                   </p>
                 </div>
                 
