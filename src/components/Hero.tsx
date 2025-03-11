@@ -19,9 +19,9 @@ const Hero = () => {
         
         <h1 className="text-5xl md:text-6xl font-bold mb-10 tracking-tight leading-[1.1]">
           <span className="block text-lg md:text-xl text-accent mb-4 font-normal">
-            {"// Transform Your Website with Cutting-Edge AI Solutions"}
+            {"// Most Websites Collect Dust. Ours Build Businesses."}
           </span>
-          AI-Powered Web Development Services Tailored to Your Business Needs
+          Your website should be your best salesperson. With AI-powered automation, SEO, and lead capture, we turn static websites into 24/7 business engines.
         </h1>
         
         <p className="text-lg md:text-xl text-neutral-400 mb-12 max-w-3xl leading-relaxed tracking-tight">
@@ -56,14 +56,14 @@ const Hero = () => {
             to="/consultation"
             className="bg-white text-neutral-900 px-6 py-3 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium flex items-center justify-center gap-2 group text-base"
           >
-            Unlock the Power of AI For Your Website
+            Take the 30-Second Quiz
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link 
             to="/launch"
             className="border border-white/20 text-white px-6 py-3 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium text-base"
           >
-            Explore AI Solutions
+            Pick a Package
           </Link>
         </div>
       </div>
