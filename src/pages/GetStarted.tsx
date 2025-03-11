@@ -1,4 +1,3 @@
-
 import { useSearchParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import Header from "../components/Header";
@@ -61,6 +60,8 @@ const GetStarted = () => {
         });
         
         e.currentTarget.reset();
+        
+        window.location.href = `mailto:hello@grdverse.com?subject=New Project Inquiry - ${formValues.package}&body=Name: ${formValues.name}%0D%0AEmail: ${formValues.email}%0D%0APackage: ${formValues.package}%0D%0AProject Details: ${formValues.details}`;
       } else {
         throw new Error(result.message || "Something went wrong");
       }
@@ -68,9 +69,16 @@ const GetStarted = () => {
       console.error("Form submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your form. Please try again.",
+        description: "There was a problem submitting your form. Please try again or email us directly at hello@grdverse.com",
         variant: "destructive"
       });
+      
+      const name = e.currentTarget.querySelector<HTMLInputElement>('input[name="name"]')?.value || '';
+      const email = e.currentTarget.querySelector<HTMLInputElement>('input[name="email"]')?.value || '';
+      const packageName = e.currentTarget.querySelector<HTMLInputElement>('input[name="package"]')?.value || '';
+      const details = e.currentTarget.querySelector<HTMLTextAreaElement>('textarea[name="details"]')?.value || '';
+      
+      window.location.href = `mailto:hello@grdverse.com?subject=New Project Inquiry - ${packageName}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0APackage: ${packageName}%0D%0AProject Details: ${details}`;
     } finally {
       setIsSubmitting(false);
     }
@@ -180,6 +188,15 @@ const GetStarted = () => {
                   {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </form>
+              
+              <div className="mt-4 text-center">
+                <a 
+                  href="mailto:hello@grdverse.com" 
+                  className="text-accent hover:underline"
+                >
+                  Or email us directly: hello@grdverse.com
+                </a>
+              </div>
             </motion.div>
           </motion.div>
         </div>

@@ -1,5 +1,5 @@
 
-import { Rocket, Bot, Laptop, ArrowRight } from "lucide-react";
+import { Rocket, Bot, Laptop, ArrowRight, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -69,6 +69,15 @@ const Features = () => {
     const packageBasePrice = parseInt(packagePrice.replace(/[^\d]/g, ''));
     return `$${packageBasePrice}`;
   };
+  
+  const handleDirectEmailClick = () => {
+    const selectedPkg = packages.find(pkg => pkg.title === selectedPackage);
+    if (selectedPkg) {
+      window.location.href = `mailto:hello@grdverse.com?subject=AI Website Package Inquiry - ${selectedPkg.title}&body=I'm interested in the ${selectedPkg.title} package priced at ${selectedPkg.price}.%0D%0A%0D%0APlease contact me to get started.`;
+    } else {
+      window.location.href = `mailto:hello@grdverse.com?subject=AI Website Package Inquiry&body=I'm interested in learning more about your AI website packages.%0D%0A%0D%0APlease contact me to discuss options.`;
+    }
+  };
 
   return (
     <section id="features" className="py-16 container-padding bg-neutral-900">
@@ -110,6 +119,13 @@ const Features = () => {
                   </li>
                 ))}
               </ul>
+              <a 
+                href={`mailto:hello@grdverse.com?subject=AI Website Package Inquiry - ${pkg.title}&body=I'm interested in the ${pkg.title} package priced at ${pkg.price}.%0D%0A%0D%0APlease contact me to get started.`}
+                className="text-accent hover:underline text-sm flex items-center justify-end gap-1"
+              >
+                <Mail className="w-3 h-3" />
+                Contact us about this package
+              </a>
             </div>
           ))}
         </div>
@@ -152,24 +168,34 @@ const Features = () => {
                 <span className="text-white text-xl font-mono">{calculateTotal()}</span>
               </div>
               
-              <Link
-                to="/get-started?package=custom"
-                className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded flex items-center justify-center gap-2 group font-medium"
-              >
-                Schedule Your AI Consultation
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <div className="space-y-3">
+                <button
+                  onClick={handleDirectEmailClick}
+                  className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded flex items-center justify-center gap-2 group font-medium"
+                >
+                  Contact Us About This Package
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+                
+                <Link
+                  to="/consultation"
+                  className="w-full border border-white/20 text-white px-6 py-3 rounded flex items-center justify-center gap-2 group font-medium hover:bg-white/10"
+                >
+                  Schedule Your AI Consultation
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </>
           )}
         </div>
         
         <div className="text-center">
-          <Link 
-            to="/launch" 
+          <a
+            href="mailto:hello@grdverse.com?subject=AI Website Inquiry&body=I'd like to learn more about your AI-powered websites. Please contact me to discuss options."
             className="bg-white text-neutral-900 px-8 py-3 rounded hover:bg-neutral-200 transition-colors tracking-tight font-medium inline-block"
           >
-            View All AI Website Packages
-          </Link>
+            Contact Us About AI Websites
+          </a>
         </div>
       </div>
     </section>

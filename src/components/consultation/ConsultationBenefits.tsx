@@ -51,7 +51,11 @@ const ConsultationBenefits = () => {
         <Mail className="w-6 h-6 text-accent shrink-0" />
         <div>
           <h3 className="font-medium mb-1">Email Us</h3>
-          <p className="text-neutral-400">Send us an email at hello@grdverse.com</p>
+          <p className="text-neutral-400">
+            <a href="mailto:hello@grdverse.com" className="text-accent hover:underline">
+              hello@grdverse.com
+            </a>
+          </p>
         </div>
       </div>
     </motion.div>

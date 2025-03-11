@@ -38,6 +38,9 @@ const ConsultationForm = () => {
         });
         
         e.currentTarget.reset();
+        
+        // Directly email as backup
+        window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formValues.name}%0D%0AEmail: ${formValues.email}%0D%0ABusiness Details: ${formValues.message}`;
       } else {
         throw new Error(result.message || "Something went wrong");
       }
@@ -45,9 +48,16 @@ const ConsultationForm = () => {
       console.error("Form submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your form. Please try again.",
+        description: "There was a problem submitting your form. Please try again or email us directly at hello@grdverse.com",
         variant: "destructive"
       });
+      
+      // Fallback to direct email
+      const name = e.currentTarget.querySelector<HTMLInputElement>('input[name="name"]')?.value || '';
+      const email = e.currentTarget.querySelector<HTMLInputElement>('input[name="email"]')?.value || '';
+      const message = e.currentTarget.querySelector<HTMLTextAreaElement>('textarea[name="message"]')?.value || '';
+      
+      window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${name}%0D%0AEmail: ${email}%0D%0ABusiness Details: ${message}`;
     } finally {
       setIsSubmitting(false);
     }
@@ -109,6 +119,15 @@ const ConsultationForm = () => {
           {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
         </button>
       </form>
+      
+      <div className="mt-4 text-center">
+        <a 
+          href="mailto:hello@grdverse.com" 
+          className="text-accent hover:underline"
+        >
+          Or email us directly: hello@grdverse.com
+        </a>
+      </div>
     </motion.div>
   );
 };

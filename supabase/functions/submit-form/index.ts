@@ -49,11 +49,19 @@ Facebook Page: ${formData.facebookPage || 'N/A'}
 Additional Details: ${formData.details || 'N/A'}
       `;
       message = "Thanks for your interest in our free chatbot installation! We'll contact you shortly to get started.";
+    } else if (formData.formType === "quiz") {
+      subject = `Quiz Results - ${formData.recommendedPackage}`;
+      body = `
+Name: ${formData.name || 'N/A'}
+Email: ${formData.email || 'N/A'}
+Quiz Answers: ${JSON.stringify(formData.answers || {}, null, 2)}
+Recommended Package: ${formData.recommendedPackage || 'N/A'}
+      `;
     }
 
-    // In a production environment, you would use a service like Resend or SendGrid here
+    // In a production environment, the email would be sent to hello@grdverse.com
     // For now, we'll just log the data and return a success message
-    console.log("Would send email with:", { to: "hello@grdverse.com", subject, body });
+    console.log("Would send email to hello@grdverse.com with:", { subject, body });
 
     // Return success response
     return new Response(
