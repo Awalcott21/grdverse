@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -18,7 +17,6 @@ const Quiz = () => {
   const handleStepComplete = (key: string, value: string) => {
     setAnswers({ ...answers, [key]: value });
     if (step === 3) {
-      // Determine recommendation based on answers
       determineRecommendation();
     } else {
       setStep(step + 1);
@@ -28,7 +26,6 @@ const Quiz = () => {
   const determineRecommendation = () => {
     const { hasWebsite, biggestStruggle, launchTimeline } = answers;
     
-    // Simple logic for package recommendation
     if (launchTimeline === "ASAP" || (!hasWebsite && biggestStruggle === "Website is outdated")) {
       setRecommendation("starter");
     } else if (biggestStruggle === "No traffic" || biggestStruggle === "No leads") {
@@ -147,7 +144,7 @@ const Quiz = () => {
         features = [
           "AI-powered UI & automation",
           "AI SEO for high traffic",
-          "AI chatbot + email marketing automation",
+          "AI chatbot integration",
           "6 months of AI maintenance"
         ];
         break;

@@ -3,7 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { Rocket, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const GetStarted = () => {
@@ -21,7 +21,7 @@ const GetStarted = () => {
       return pkg;
     }
     
-    // Map short package names to their full names
+    // Map short package names to their full names - removed the content creation and automation packages
     const packageMap: { [key: string]: string } = {
       'basic': 'AI Starter Website',
       'standard': 'AI Growth Website',
@@ -30,10 +30,7 @@ const GetStarted = () => {
       'ai-three-page': 'AI-Enhanced 3-Page Website',
       'ai-five-page': 'AI-Optimized 5-Page Website',
       'ai-ecommerce': 'AI-Powered E-Commerce Website',
-      'ai-chatbot': 'AI Chatbot Integration Package',
-      'ai-content': 'AI Content Creation Package',
-      'ai-marketing': 'AI Marketing Automation Package',
-      'ai-all-in-one': 'All-in-One AI Automation Package'
+      'ai-chatbot': 'AI Chatbot Integration Package'
     };
     
     return packageMap[pkg.toLowerCase()] || pkg.charAt(0).toUpperCase() + pkg.slice(1);
