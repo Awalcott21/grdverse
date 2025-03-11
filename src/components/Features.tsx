@@ -78,7 +78,7 @@ const Features = () => {
           Transform Your Business with AI-Powered Websites
         </h2>
         <p className="text-neutral-400 mb-12 max-w-3xl">
-          At Gridverse, we build cutting-edge websites enhanced with AI capabilities that drive engagement, automate tasks, and optimize performance. Our AI-powered websites help your business stand out, connect with customers, and scale efficiently.
+          At Gridverse, we build cutting-edge websites enhanced with AI capabilities that drive engagement, answer customer questions, and optimize performance. Our AI-powered websites help your business stand out, connect with customers, and scale efficiently.
         </p>
         
         {/* Website Packages */}
@@ -168,7 +168,7 @@ const Features = () => {
             to="/launch" 
             className="bg-white text-neutral-900 px-8 py-3 rounded hover:bg-neutral-200 transition-colors tracking-tight font-medium inline-block"
           >
-            View All AI Solutions
+            View All AI Website Packages
           </Link>
         </div>
       </div>

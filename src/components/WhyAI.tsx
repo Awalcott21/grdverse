@@ -1,5 +1,5 @@
 
-import { Brain, Zap, PieChart, Bot, FileText } from "lucide-react";
+import { Brain, Zap, PieChart, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WhyAI = () => {
@@ -74,58 +74,29 @@ const WhyAI = () => {
               </ul>
             </div>
 
-            {/* Automation */}
+            {/* Advanced UI/UX */}
             <div className="glass-card p-8 border border-green-500/20 bg-green-500/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-green-500/20 p-3 rounded-lg">
                   <Zap className="w-6 h-6 text-green-400" />
                 </div>
                 <h3 className="text-xl font-semibold text-green-400">
-                  Business Automation
+                  Advanced UI/UX
                 </h3>
               </div>
               <p className="text-neutral-300 mb-6">
-                Automate repetitive tasks, lead nurturing, and customer follow-ups, allowing you to 
-                focus on growing your business.
+                Create websites with intuitive interfaces that adapt to user behavior and provide 
+                personalized experiences that drive conversions.
               </p>
               <ul className="space-y-3">
                 {[
-                  "Automated email marketing sequences",
-                  "Smart follow-up with potential leads",
-                  "Appointment scheduling without human intervention",
-                  "Workflow automation for common business processes"
+                  "Personalized user journeys based on behavior",
+                  "Intelligent navigation that guides visitors",
+                  "Dynamic content that adapts to user interests",
+                  "Conversion-optimized design elements"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">•</span>
-                    <span className="text-neutral-400">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Content Creation */}
-            <div className="glass-card p-8 border border-amber-500/20 bg-amber-500/5">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-amber-500/20 p-3 rounded-lg">
-                  <FileText className="w-6 h-6 text-amber-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-amber-400">
-                  AI Content Creation
-                </h3>
-              </div>
-              <p className="text-neutral-300 mb-6">
-                Generate engaging, SEO-optimized content for your website, blog posts, and product descriptions 
-                with AI that understands your brand voice.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Blog posts that engage your target audience",
-                  "Product descriptions that convert",
-                  "SEO-optimized landing page copy",
-                  "Content that matches your brand voice"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="text-amber-400 mt-1">•</span>
                     <span className="text-neutral-400">{item}</span>
                   </li>
                 ))}
@@ -155,6 +126,35 @@ const WhyAI = () => {
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <span className="text-rose-400 mt-1">•</span>
+                    <span className="text-neutral-400">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Mobile Optimization */}
+            <div className="glass-card p-8 border border-amber-500/20 bg-amber-500/5">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="bg-amber-500/20 p-3 rounded-lg">
+                  <Brain className="w-6 h-6 text-amber-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-amber-400">
+                  Mobile Optimization
+                </h3>
+              </div>
+              <p className="text-neutral-300 mb-6">
+                Create responsive websites that deliver exceptional experiences across all devices, 
+                with AI-powered performance optimization.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Responsive designs that adapt to any screen",
+                  "Fast loading speeds on mobile networks",
+                  "Touch-optimized interfaces for mobile users",
+                  "Simplified mobile checkout processes"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-amber-400 mt-1">•</span>
                     <span className="text-neutral-400">{item}</span>
                   </li>
                 ))}
@@ -193,15 +193,15 @@ const WhyAI = () => {
 
           {/* CTA Section */}
           <div className="text-center glass-card p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold text-white mb-4">Ready to Upgrade Your Website with AI?</h3>
+            <h3 className="text-2xl font-semibold text-white mb-4">Ready to Transform Your Website with AI?</h3>
             <p className="text-neutral-400 mb-6">
-              Let us help you transform your website into an intelligent, automated platform that drives growth.
+              Choose a package that fits your business needs and launch your AI-powered website in as little as 5 days.
             </p>
             <Link
-              to="/consultation"
+              to="/launch"
               className="inline-flex items-center justify-center px-8 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors"
             >
-              Schedule Free AI Consultation
+              View Pricing & Packages
             </Link>
           </div>
         </div>
