@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -167,7 +168,7 @@ const Launch = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">AI-Powered Website Solutions</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Done-for-You AI Websites – Just Pick & Go</h1>
             <p className="text-xl text-neutral-400">
               Choose the AI package that best fits your needs and transform your online presence with cutting-edge technology.
             </p>
@@ -209,7 +210,7 @@ const Launch = () => {
               to="/consultation"
               className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2 text-lg"
             >
-              Schedule Your AI Consultation
+              Find Your Perfect AI Website in 30 Seconds
               <ArrowRight className="w-5 h-5" />
             </Link>
             <p className="text-neutral-400 mt-4">

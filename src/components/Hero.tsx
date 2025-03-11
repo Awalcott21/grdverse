@@ -56,14 +56,14 @@ const Hero = () => {
             to="/consultation"
             className="bg-white text-neutral-900 px-6 py-3 rounded-none hover:bg-neutral-200 transition-colors tracking-tight font-medium flex items-center justify-center gap-2 group text-base"
           >
-            Take the 30-Second Quiz
+            Find Your Perfect AI Website in 30 Seconds
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link 
             to="/launch"
             className="border border-white/20 text-white px-6 py-3 rounded-none hover:bg-white/10 transition-colors tracking-tight font-medium text-base"
           >
-            Pick a Package
+            Pick a Package & Launch Today
           </Link>
         </div>
       </div>

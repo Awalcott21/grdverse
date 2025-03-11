@@ -69,7 +69,7 @@ const Consultation = () => {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Free AI Consultation</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Let's Talk. No Pressure, Just Solutions.</h1>
               <p className="text-xl text-neutral-400">
                 Discover how AI can transform your business operations, content creation, and growth strategies.
               </p>
@@ -127,7 +127,7 @@ const Consultation = () => {
                     disabled={isSubmitting}
                     className={`w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   >
-                    {isSubmitting ? 'Submitting...' : 'Request Your Free AI Audit'}
+                    {isSubmitting ? 'Submitting...' : 'Find Your Perfect AI Website in 30 Seconds'}
                   </button>
                 </form>
               </motion.div>
