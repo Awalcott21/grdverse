@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -22,6 +23,8 @@ const ConsultationForm = () => {
     setIsSubmitting(true);
     
     try {
+      console.log("Submitting form to:", `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`);
+      
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
         method: 'POST',
         headers: {
@@ -35,7 +38,9 @@ const ConsultationForm = () => {
         })
       });
       
+      console.log("Response status:", response.status);
       const result = await response.json();
+      console.log("Response data:", result);
       
       if (result.success) {
         toast({
@@ -43,6 +48,7 @@ const ConsultationForm = () => {
           description: "We've received your consultation request and will contact you soon.",
         });
         
+        // Reset form data
         setFormData({ name: "", email: "", message: "" });
       } else {
         throw new Error(result.message || 'Failed to submit form');
@@ -51,7 +57,7 @@ const ConsultationForm = () => {
       console.error("Form submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your form. Please try again later.",
+        description: "There was a problem submitting your form. Please try again or email us directly at hello@grdverse.com",
         variant: "destructive"
       });
     } finally {

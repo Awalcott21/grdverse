@@ -15,13 +15,18 @@ serve(async (req) => {
   try {
     const formData = await req.json();
     console.log("Received form submission:", formData);
-
-    // Log successful submission
-    console.log("Form submitted successfully:", {
+    
+    // Log successful submission to hello@grdverse.com
+    const recipientEmail = "hello@grdverse.com";
+    console.log(`Form would be sent to: ${recipientEmail}`, {
       type: formData.formType,
       name: formData.name,
-      email: formData.email
+      email: formData.email,
+      message: formData.message
     });
+
+    // In a production environment, you would send an actual email here
+    // using a service like Resend, SendGrid, etc.
 
     return new Response(
       JSON.stringify({ 
