@@ -1,12 +1,13 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Rocket, Bot, Laptop } from "lucide-react";
+import { Rocket, Bot, Laptop, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import WhyAI from "../components/WhyAI";
 import PricingHeader from "../components/pricing/PricingHeader";
 import PricingCard from "../components/pricing/PricingCard";
 import { Package } from "../components/pricing/types";
+import { motion } from "framer-motion";
 
 const packages: Package[] = [
   {
