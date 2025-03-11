@@ -59,11 +59,10 @@ Recommended Package: ${formData.recommendedPackage || 'N/A'}
       `;
     }
 
-    // In a production environment, the email would be sent to hello@grdverse.com
-    // For now, we'll just log the data and return a success message
+    // Log the data that would be sent in a production environment
     console.log("Would send email to hello@grdverse.com with:", { subject, body });
 
-    // Return success response
+    // Return success response with CORS headers
     return new Response(
       JSON.stringify({ 
         success, 
@@ -79,6 +78,7 @@ Recommended Package: ${formData.recommendedPackage || 'N/A'}
   } catch (error) {
     console.error("Error processing form submission:", error);
     
+    // Return error response with CORS headers
     return new Response(
       JSON.stringify({ 
         success: false, 

@@ -43,6 +43,12 @@ const ConsultationBenefits = () => {
           <div>
             <h3 className="font-medium mb-1">Schedule a Call</h3>
             <p className="text-neutral-400 mb-4">Book a 30-minute call to discuss how AI can transform your business.</p>
+            <a 
+              href="mailto:hello@grdverse.com?subject=Schedule a Call Request&body=Hi,%0D%0A%0D%0AI'd like to schedule a 30-minute call to discuss AI solutions for my business.%0D%0A%0D%0AThank you!" 
+              className="text-accent hover:underline inline-block"
+            >
+              Email us to schedule
+            </a>
           </div>
         </div>
       </div>

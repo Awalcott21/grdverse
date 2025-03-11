@@ -7,57 +7,78 @@ import { ArrowRight } from "lucide-react";
 const ConsultationForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      const formData = new FormData(e.currentTarget);
-      const formValues = {
-        formType: "consultation",
-        name: formData.get("name"),
-        email: formData.get("email"),
-        message: formData.get("message")
-      };
+      // Try server submission first
+      if (import.meta.env.VITE_SUPABASE_URL) {
+        try {
+          const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              formType: "consultation",
+              name: formData.name,
+              email: formData.email,
+              message: formData.message
+            })
+          });
+          
+          const result = await response.json();
+          
+          if (result.success) {
+            toast({
+              title: "Form Submitted!",
+              description: "We've received your consultation request and will contact you soon.",
+            });
+            
+            setFormData({ name: "", email: "", message: "" });
+            
+            // Fallback to email as well
+            window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ABusiness Details: ${formData.message}`;
+            return;
+          }
+        } catch (error) {
+          console.error("Server submission failed, falling back to email:", error);
+          // Continue to fallback
+        }
+      }
       
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues)
+      // Fallback to direct email
+      window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ABusiness Details: ${formData.message}`;
+      
+      toast({
+        title: "Form Submitted!",
+        description: "We've opened your email client to complete your consultation request.",
       });
       
-      const result = await response.json();
+      setFormData({ name: "", email: "", message: "" });
       
-      if (result.success) {
-        toast({
-          title: "Form Submitted!",
-          description: "We've received your consultation request and will contact you soon.",
-        });
-        
-        e.currentTarget.reset();
-        
-        // Directly email as backup
-        window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formValues.name}%0D%0AEmail: ${formValues.email}%0D%0ABusiness Details: ${formValues.message}`;
-      } else {
-        throw new Error(result.message || "Something went wrong");
-      }
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your form. Please try again or email us directly at hello@grdverse.com",
+        description: "There was a problem submitting your form. We've opened your email client instead.",
         variant: "destructive"
       });
       
-      // Fallback to direct email
-      const name = e.currentTarget.querySelector<HTMLInputElement>('input[name="name"]')?.value || '';
-      const email = e.currentTarget.querySelector<HTMLInputElement>('input[name="email"]')?.value || '';
-      const message = e.currentTarget.querySelector<HTMLTextAreaElement>('textarea[name="message"]')?.value || '';
-      
-      window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${name}%0D%0AEmail: ${email}%0D%0ABusiness Details: ${message}`;
+      // Always fall back to email
+      window.location.href = `mailto:hello@grdverse.com?subject=AI Consultation Request&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ABusiness Details: ${formData.message}`;
     } finally {
       setIsSubmitting(false);
     }
@@ -79,6 +100,8 @@ const ConsultationForm = () => {
             type="text"
             id="name"
             name="name"
+            value={formData.name}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="John Doe"
@@ -92,6 +115,8 @@ const ConsultationForm = () => {
             type="email"
             id="email"
             name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="john@example.com"
@@ -104,6 +129,8 @@ const ConsultationForm = () => {
           <textarea
             id="message"
             name="message"
+            value={formData.message}
+            onChange={handleChange}
             required
             rows={4}
             className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-none focus:outline-none focus:ring-2 focus:ring-accent"
