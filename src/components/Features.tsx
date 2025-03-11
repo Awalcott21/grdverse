@@ -1,3 +1,4 @@
+
 import { Rocket, Bot, Laptop, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -58,30 +59,15 @@ const packages = [
 
 const Features = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>("");
-  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
 
   const handlePackageSelect = (value: string) => {
     setSelectedPackage(value);
   };
 
-  const handleAddOnSelect = (value: string) => {
-    setSelectedAddOns(prev => {
-      if (prev.includes(value)) {
-        return prev.filter(item => item !== value);
-      }
-      return [...prev, value];
-    });
-  };
-
   const calculateTotal = () => {
     const packagePrice = packages.find(pkg => pkg.title === selectedPackage)?.price || "$0";
-    const addOnsTotal = selectedAddOns.reduce((total, addon) => {
-      const addonPrice = "$0";
-      const priceMatch = addonPrice.match(/\$(\d+)/);
-      return total + (priceMatch ? parseInt(priceMatch[1]) : 0);
-    }, 0);
     const packageBasePrice = parseInt(packagePrice.replace(/[^\d]/g, ''));
-    return `$${packageBasePrice + addOnsTotal}`;
+    return `$${packageBasePrice}`;
   };
 
   return (
@@ -128,7 +114,7 @@ const Features = () => {
           ))}
         </div>
         
-        {/* Enhanced Package Builder */}
+        {/* Package Builder */}
         <div className="glass-card p-8 rounded-xl max-w-2xl mx-auto mt-12 mb-16">
           <h3 className="text-2xl font-bold mb-6 text-white text-center">Build Your Custom AI Website Package</h3>
           
@@ -167,18 +153,11 @@ const Features = () => {
               </div>
               
               <Link
-                to="/consultation"
+                to="/get-started?package=custom"
                 className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded flex items-center justify-center gap-2 group font-medium"
               >
                 Schedule Your AI Consultation
-                <svg 
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </>
           )}

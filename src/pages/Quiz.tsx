@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -112,13 +113,14 @@ const Quiz = () => {
   };
 
   const renderRecommendation = () => {
-    let title, price, timeline, features;
+    let title, price, timeline, features, packageParam;
 
     switch (recommendation) {
       case "starter":
         title = "AI Starter Website";
         price = "$800";
         timeline = "5-7 days";
+        packageParam = "basic";
         features = [
           "AI-optimized design & SEO",
           "AI chatbot for lead capture",
@@ -131,6 +133,7 @@ const Quiz = () => {
         title = "AI Growth Website";
         price = "$1,200";
         timeline = "7-10 days";
+        packageParam = "standard";
         features = [
           "AI-enhanced UX & lead capture",
           "AI chatbot for 24/7 support",
@@ -143,6 +146,7 @@ const Quiz = () => {
         title = "AI Sales Machine";
         price = "$1,800";
         timeline = "10-14 days";
+        packageParam = "premium";
         features = [
           "AI-powered UI & automation",
           "AI SEO for high traffic",
@@ -155,11 +159,13 @@ const Quiz = () => {
         title = "AI Starter Website";
         price = "$800";
         timeline = "5-7 days";
+        packageParam = "basic";
         features = [
           "AI-optimized design & SEO",
           "AI chatbot for lead capture",
           "Mobile-friendly & fast",
-          "Free domain + 1-year hosting"
+          "Free domain + 1-year hosting",
+          "Free AI strategy session"
         ];
     }
 
@@ -190,7 +196,7 @@ const Quiz = () => {
           </ul>
           
           <Link 
-            to="/get-started?package=ai-website"
+            to={`/get-started?package=${packageParam}`}
             className="bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 w-full"
           >
             Get Started Now

@@ -1,3 +1,4 @@
+
 import { useSearchParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import Header from "../components/Header";
@@ -22,7 +23,8 @@ const GetStarted = () => {
     const packageMap: { [key: string]: string } = {
       'basic': 'AI Starter Website',
       'standard': 'AI Growth Website',
-      'premium': 'AI Sales Machine'
+      'premium': 'AI Sales Machine',
+      'custom': 'Custom AI Website'
     };
     
     return packageMap[pkg.toLowerCase()] || pkg.charAt(0).toUpperCase() + pkg.slice(1);
