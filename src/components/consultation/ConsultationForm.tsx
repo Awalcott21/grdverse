@@ -2,12 +2,10 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { ArrowRight, Mail } from "lucide-react";
 
 const ConsultationForm = () => {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,48 +17,42 @@ const ConsultationForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
-    try {
-      console.log("Submitting form data:", formData);
-      
-      // Use the Supabase client to invoke the function - this will automatically include the authorization
-      const { data, error } = await supabase.functions.invoke('submit-form', {
-        body: {
-          formType: "consultation",
-          ...formData
-        }
-      });
-      
-      console.log("Response data:", data);
-      
-      if (error) {
-        console.error("Supabase function error:", error);
-        throw error;
-      }
-      
-      if (data && data.success) {
-        toast({
-          title: "Form Submitted!",
-          description: "We've received your consultation request and will contact you soon.",
-        });
-        
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error((data && data.message) || 'Failed to submit form');
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
+    if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "Submission Failed",
-        description: "There was a problem submitting your form. Please try again.",
+        title: "Missing Information",
+        description: "Please fill out all fields before submitting.",
         variant: "destructive"
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+    
+    // Construct mailto link with form data
+    const subject = `New Consultation Request from ${formData.name}`;
+    const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+
+Message:
+${formData.message}
+    `;
+    
+    // Encode the mailto link parameters
+    const mailtoLink = `mailto:hello@grdverse.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open the user's email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    toast({
+      title: "Email Client Opened!",
+      description: "Please send the email to complete your consultation request.",
+    });
+    
+    // Reset form
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -118,19 +110,19 @@ const ConsultationForm = () => {
         </div>
         <button 
           type="submit"
-          disabled={isSubmitting}
-          className={`w-full bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-none font-medium transition-colors flex items-center justify-center gap-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+          className="w-full bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-none font-medium transition-colors flex items-center justify-center gap-2 group"
         >
-          {isSubmitting ? 'Submitting...' : 'Book a Free Consultation'}
-          {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
+          Book a Free Consultation
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </form>
       
       <div className="mt-4 text-center">
         <a 
           href="mailto:hello@grdverse.com" 
-          className="text-accent hover:underline"
+          className="text-accent hover:underline flex items-center justify-center gap-1"
         >
+          <Mail className="w-4 h-4" />
           Or email us directly: hello@grdverse.com
         </a>
       </div>
