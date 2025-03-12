@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -25,6 +26,7 @@ const ConsultationForm = () => {
     try {
       console.log("Submitting form data:", formData);
       
+      // Use the Supabase client to invoke the function - this will automatically include the authorization
       const { data, error } = await supabase.functions.invoke('submit-form', {
         body: {
           formType: "consultation",
@@ -35,10 +37,11 @@ const ConsultationForm = () => {
       console.log("Response data:", data);
       
       if (error) {
+        console.error("Supabase function error:", error);
         throw error;
       }
       
-      if (data.success) {
+      if (data && data.success) {
         toast({
           title: "Form Submitted!",
           description: "We've received your consultation request and will contact you soon.",
@@ -46,7 +49,7 @@ const ConsultationForm = () => {
         
         setFormData({ name: "", email: "", message: "" });
       } else {
-        throw new Error(data.message || 'Failed to submit form');
+        throw new Error((data && data.message) || 'Failed to submit form');
       }
     } catch (error) {
       console.error("Form submission error:", error);
