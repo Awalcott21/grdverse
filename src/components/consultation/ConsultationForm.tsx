@@ -30,12 +30,18 @@ const ConsultationForm = () => {
       console.log("Submitting form to:", functionUrl);
       console.log("Form data:", formData);
       
+      // Get the anon key from environment variables
+      const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      if (!anonKey) {
+        throw new Error('Missing Supabase anon key');
+      }
+
       const response = await fetch(functionUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+          'Authorization': `Bearer ${anonKey}`
         },
         body: JSON.stringify({
           formType: "consultation",
