@@ -1,8 +1,8 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, Copy, CheckCircle } from "lucide-react";
 
 const ConsultationForm = () => {
   const { toast } = useToast();
@@ -11,6 +11,8 @@ const ConsultationForm = () => {
     email: "",
     message: ""
   });
+  const [copied, setCopied] = useState(false);
+  const emailBodyRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,17 +44,55 @@ ${formData.message}
     // Encode the mailto link parameters
     const mailtoLink = `mailto:hello@grdverse.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Open the user's email client
-    window.location.href = mailtoLink;
+    // Try to open the user's email client
+    try {
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      toast({
+        title: "Email Client Opening",
+        description: "If your email client doesn't open automatically, you can copy the message and send it manually.",
+      });
+    } catch (error) {
+      console.error("Failed to open email client:", error);
+      toast({
+        title: "Email Client Issue",
+        description: "There was a problem opening your email client. You can copy the message below and send it manually.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (!emailBodyRef.current) return;
     
-    // Show success message
-    toast({
-      title: "Email Client Opened!",
-      description: "Please send the email to complete your consultation request.",
+    const content = `
+To: hello@grdverse.com
+Subject: New Consultation Request from ${formData.name}
+
+Name: ${formData.name}
+Email: ${formData.email}
+
+Message:
+${formData.message}
+    `;
+
+    navigator.clipboard.writeText(content).then(() => {
+      setCopied(true);
+      toast({
+        title: "Copied to clipboard!",
+        description: "You can now paste this into your email client.",
+      });
+      
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(err => {
+      console.error("Failed to copy text: ", err);
+      toast({
+        title: "Copy failed",
+        description: "Please select and copy the text manually.",
+        variant: "destructive"
+      });
     });
-    
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -116,15 +156,37 @@ ${formData.message}
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </form>
+
+      {/* Hidden preview for copying */}
+      <div className="sr-only" ref={emailBodyRef}>
+        To: hello@grdverse.com
+        Subject: New Consultation Request from {formData.name}
+
+        Name: {formData.name}
+        Email: {formData.email}
+
+        Message:
+        {formData.message}
+      </div>
       
-      <div className="mt-4 text-center">
-        <a 
-          href="mailto:hello@grdverse.com" 
-          className="text-accent hover:underline flex items-center justify-center gap-1"
-        >
-          <Mail className="w-4 h-4" />
-          Or email us directly: hello@grdverse.com
-        </a>
+      <div className="mt-6">
+        <div className="text-sm text-neutral-400 mb-2">Alternative options:</div>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button 
+            onClick={copyToClipboard}
+            className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded-none transition-colors"
+          >
+            {copied ? <CheckCircle className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+            {copied ? "Copied!" : "Copy Email Content"}
+          </button>
+          <a 
+            href="mailto:hello@grdverse.com" 
+            className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded-none transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+            Email Directly
+          </a>
+        </div>
       </div>
     </motion.div>
   );

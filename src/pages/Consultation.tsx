@@ -11,12 +11,12 @@ const Consultation = () => {
       <Header />
       <main className="pt-20">
         <div className="container-padding py-16">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="absolute -top-8 left-0 text-sm text-neutral-500 tracking-tight">
               Your AI Website is 5 Days Away
             </div>
             <ConsultationHeader />
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-2 gap-12 mt-12">
               <ConsultationForm />
               <ConsultationBenefits />
             </div>
