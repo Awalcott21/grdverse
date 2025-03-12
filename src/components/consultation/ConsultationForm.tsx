@@ -23,7 +23,6 @@ const ConsultationForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Make sure we're using the correct URL format for Supabase edge functions
       const functionUrl = import.meta.env.VITE_SUPABASE_URL 
         ? `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`
         : 'https://gnjnruqdjizdsdkwoumn.supabase.co/functions/v1/submit-form';
@@ -35,7 +34,8 @@ const ConsultationForm = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
         },
         body: JSON.stringify({
           formType: "consultation",
