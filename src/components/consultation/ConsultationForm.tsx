@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ConsultationForm = () => {
   const { toast } = useToast();
@@ -23,58 +23,22 @@ const ConsultationForm = () => {
     setIsSubmitting(true);
     
     try {
-      const functionUrl = import.meta.env.VITE_SUPABASE_URL 
-        ? `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`
-        : 'https://gnjnruqdjizdsdkwoumn.supabase.co/functions/v1/submit-form';
+      console.log("Submitting form data:", formData);
       
-      console.log("Submitting form to:", functionUrl);
-      console.log("Form data:", formData);
-      
-      // Get the anon key from environment variables
-      const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-      
-      if (!anonKey) {
-        console.error("Missing Supabase anon key in environment variables");
-        toast({
-          title: "Configuration Error",
-          description: "Missing API key. Please contact the administrator.",
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
-      }
-      
-      console.log("Authorization header will be set with key length:", anonKey.length);
-
-      const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${anonKey}`
-      };
-      
-      console.log("Request headers:", Object.keys(headers));
-      
-      const response = await fetch(functionUrl, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
+      const { data, error } = await supabase.functions.invoke('submit-form', {
+        body: {
           formType: "consultation",
           ...formData
-        })
+        }
       });
       
-      console.log("Response status:", response.status);
+      console.log("Response data:", data);
       
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Error response:", errorText);
-        throw new Error(`Server error: ${response.status}`);
+      if (error) {
+        throw error;
       }
       
-      const result = await response.json();
-      console.log("Response data:", result);
-      
-      if (result.success) {
+      if (data.success) {
         toast({
           title: "Form Submitted!",
           description: "We've received your consultation request and will contact you soon.",
@@ -82,7 +46,7 @@ const ConsultationForm = () => {
         
         setFormData({ name: "", email: "", message: "" });
       } else {
-        throw new Error(result.message || 'Failed to submit form');
+        throw new Error(data.message || 'Failed to submit form');
       }
     } catch (error) {
       console.error("Form submission error:", error);
