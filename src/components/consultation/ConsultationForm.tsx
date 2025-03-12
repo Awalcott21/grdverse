@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ConsultationForm = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +19,7 @@ const ConsultationForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Form validation
@@ -30,26 +32,54 @@ const ConsultationForm = () => {
       return;
     }
     
-    // Construct mailto link with form data
-    const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
-    const body = encodeURIComponent(`
+    setIsSubmitting(true);
+    
+    try {
+      // First try to use the Supabase function approach
+      const { error } = await supabase.functions.invoke("submit-form", {
+        body: {
+          formType: "consultation",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        }
+      });
+      
+      if (error) {
+        throw error;
+      }
+      
+      // Show success message
+      toast({
+        title: "Consultation Request Submitted!",
+        description: "We've received your request and will contact you soon.",
+      });
+      
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      
+      // Fallback to mailto approach if the Supabase function fails
+      const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
+      const body = encodeURIComponent(`
 Name: ${formData.name}
 Email: ${formData.email}
 
 Message:
 ${formData.message}
-    `);
-    
-    const mailtoLink = `mailto:hello@grdverse.com?subject=${subject}&body=${body}`;
-    
-    // Open the user's email client
-    window.location.href = mailtoLink;
-    
-    // Show success message
-    toast({
-      title: "Email Client Opening",
-      description: "Your email client should open with your message. Please press send to complete your consultation request.",
-    });
+      `);
+      
+      const mailtoLink = `mailto:hello@grdverse.com?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+      
+      toast({
+        title: "Opening Email Client",
+        description: "Your email client should open with your message. Please press send to complete your request.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -107,10 +137,11 @@ ${formData.message}
         </div>
         <button 
           type="submit"
-          className="w-full bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-none font-medium transition-colors flex items-center justify-center gap-2 group"
+          disabled={isSubmitting}
+          className={`w-full bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-none font-medium transition-colors flex items-center justify-center gap-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
         >
-          Book a Free Consultation
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          {isSubmitting ? 'Submitting...' : 'Book a Free Consultation'}
+          {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
         </button>
       </form>
     </motion.div>
