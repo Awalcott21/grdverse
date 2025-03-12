@@ -32,17 +32,31 @@ const ConsultationForm = () => {
       
       // Get the anon key from environment variables
       const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      
       if (!anonKey) {
-        throw new Error('Missing Supabase anon key');
+        console.error("Missing Supabase anon key in environment variables");
+        toast({
+          title: "Configuration Error",
+          description: "Missing API key. Please contact the administrator.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
       }
+      
+      console.log("Authorization header will be set with key length:", anonKey.length);
 
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${anonKey}`
+      };
+      
+      console.log("Request headers:", Object.keys(headers));
+      
       const response = await fetch(functionUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${anonKey}`
-        },
+        headers,
         body: JSON.stringify({
           formType: "consultation",
           ...formData

@@ -10,9 +10,39 @@ serve(async (req) => {
   console.log("Function called with method:", req.method);
   console.log("Request URL:", req.url);
   
+  // Log headers (without sensitive data)
+  const headers = {};
+  req.headers.forEach((value, key) => {
+    if (key.toLowerCase() === 'authorization') {
+      headers[key] = 'Bearer [redacted]';
+    } else {
+      headers[key] = value;
+    }
+  });
+  console.log("Request headers:", headers);
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+  
+  // Check for authorization header
+  const authHeader = req.headers.get('authorization');
+  if (!authHeader) {
+    console.error("Missing authorization header");
+    return new Response(
+      JSON.stringify({ 
+        success: false, 
+        message: "Missing authorization header" 
+      }),
+      { 
+        status: 401,
+        headers: { 
+          "Content-Type": "application/json",
+          ...corsHeaders
+        } 
+      }
+    );
   }
 
   try {
