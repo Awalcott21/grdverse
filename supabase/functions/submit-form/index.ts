@@ -7,6 +7,8 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
+  console.log("Function called with method:", req.method);
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -16,6 +18,11 @@ serve(async (req) => {
     const formData = await req.json();
     console.log("Received form submission:", formData);
     
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.message) {
+      throw new Error("Missing required fields");
+    }
+    
     // Log successful submission to hello@grdverse.com
     const recipientEmail = "hello@grdverse.com";
     console.log(`Form would be sent to: ${recipientEmail}`, {
@@ -24,9 +31,6 @@ serve(async (req) => {
       email: formData.email,
       message: formData.message
     });
-
-    // In a production environment, you would send an actual email here
-    // using a service like Resend, SendGrid, etc.
 
     return new Response(
       JSON.stringify({ 
@@ -46,10 +50,10 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: false,
-        message: "There was an error submitting your form. Please try again." 
+        message: error.message || "There was an error submitting your form. Please try again."
       }),
       { 
-        status: 500,
+        status: 400,
         headers: { 
           "Content-Type": "application/json",
           ...corsHeaders

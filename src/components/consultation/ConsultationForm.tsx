@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -23,18 +22,18 @@ const ConsultationForm = () => {
     setIsSubmitting(true);
     
     try {
-      console.log("Submitting form to:", `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`);
+      const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`;
+      console.log("Submitting form to:", functionUrl);
+      console.log("Form data:", formData);
       
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
+      const response = await fetch(functionUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           formType: "consultation",
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
+          ...formData
         })
       });
       
@@ -42,13 +41,12 @@ const ConsultationForm = () => {
       const result = await response.json();
       console.log("Response data:", result);
       
-      if (result.success) {
+      if (response.ok && result.success) {
         toast({
           title: "Form Submitted!",
           description: "We've received your consultation request and will contact you soon.",
         });
         
-        // Reset form data
         setFormData({ name: "", email: "", message: "" });
       } else {
         throw new Error(result.message || 'Failed to submit form');
@@ -57,7 +55,7 @@ const ConsultationForm = () => {
       console.error("Form submission error:", error);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your form. Please try again or email us directly at hello@grdverse.com",
+        description: "There was a problem submitting your form. Please try again.",
         variant: "destructive"
       });
     } finally {
