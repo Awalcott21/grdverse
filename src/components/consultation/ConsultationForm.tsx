@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -22,7 +23,11 @@ const ConsultationForm = () => {
     setIsSubmitting(true);
     
     try {
-      const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`;
+      // Make sure we're using the correct URL format for Supabase edge functions
+      const functionUrl = import.meta.env.VITE_SUPABASE_URL 
+        ? `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`
+        : 'https://gnjnruqdjizdsdkwoumn.supabase.co/functions/v1/submit-form';
+      
       console.log("Submitting form to:", functionUrl);
       console.log("Form data:", formData);
       
@@ -30,6 +35,7 @@ const ConsultationForm = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           formType: "consultation",
@@ -38,10 +44,17 @@ const ConsultationForm = () => {
       });
       
       console.log("Response status:", response.status);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
+        throw new Error(`Server error: ${response.status}`);
+      }
+      
       const result = await response.json();
       console.log("Response data:", result);
       
-      if (response.ok && result.success) {
+      if (result.success) {
         toast({
           title: "Form Submitted!",
           description: "We've received your consultation request and will contact you soon.",
