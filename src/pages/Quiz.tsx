@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { QuizSubmission } from "@/types/supabase-custom";
 
 const Quiz = () => {
   const { toast } = useToast();
@@ -73,24 +74,22 @@ const Quiz = () => {
     }
     
     try {
-      // Save to Supabase directly
+      const submission: QuizSubmission = {
+        name, 
+        email, 
+        answers, 
+        recommended_package: packageTitle 
+      };
+      
       const { error } = await supabase
         .from('quiz_submissions')
-        .insert([
-          { 
-            name, 
-            email, 
-            answers, 
-            recommended_package: packageTitle 
-          }
-        ]);
+        .insert([submission]);
       
       if (error) {
         console.error("Error saving to Supabase:", error);
         throw error;
       }
       
-      // Also try to send to edge function as fallback
       try {
         await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
           method: 'POST',

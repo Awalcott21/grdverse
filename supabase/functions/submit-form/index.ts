@@ -60,7 +60,7 @@ serve(async (req) => {
         throw new Error("Failed to store quiz submission: " + error.message);
       }
       
-      // Send notification email (placeholder for now)
+      // Log notification instead of sending email
       console.log(`Quiz submission would be sent to: hello@grdverse.com`, {
         type: "quiz",
         name: formData.name,
@@ -91,7 +91,7 @@ serve(async (req) => {
         throw new Error("Failed to store contact submission: " + error.message);
       }
       
-      // Log successful submission to hello@grdverse.com
+      // Log successful submission
       console.log(`Form would be sent to: hello@grdverse.com`, {
         type: formData.formType || "contact",
         name: formData.name,
