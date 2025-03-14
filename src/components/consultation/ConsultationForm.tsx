@@ -33,26 +33,35 @@ const ConsultationForm = () => {
     
     setIsSubmitting(true);
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
-    const body = encodeURIComponent(`
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
+      const body = encodeURIComponent(`
 Name: ${formData.name}
 Email: ${formData.email}
 
 Message:
 ${formData.message}
-    `);
-    
-    const mailtoLink = `mailto:hello@grdverse.com?subject=${subject}&body=${body}`;
-    
-    // Open the user's email client
-    window.location.href = mailtoLink;
-    
-    // Show success message
-    toast({
-      title: "Email Prepared",
-      description: "Your message has been prepared. Please send the email that has opened to complete your request.",
-    });
+      `);
+      
+      const mailtoLink = `mailto:hello@grdverse.com?subject=${subject}&body=${body}`;
+      
+      // Open email client in a way that doesn't interfere with the current page
+      window.open(mailtoLink, "_blank");
+      
+      // Show success message
+      toast({
+        title: "Email Prepared",
+        description: "Your email client has been opened with your message. Please send the email to complete your request.",
+      });
+    } catch (error) {
+      console.error("Error preparing email:", error);
+      toast({
+        title: "Error",
+        description: "There was a problem preparing your email. Please try again.",
+        variant: "destructive"
+      });
+    }
     
     // Reset form after a delay to give user time to see the toast
     setTimeout(() => {
