@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -14,29 +14,35 @@ const ConsultationForm = () => {
     subject: "New Consultation Request",
     message: ""
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Show success toast after successful submission
-  if (formspreeState.succeeded) {
-    toast({
-      title: "Message Sent",
-      description: "We've received your message and will get back to you soon.",
-    });
-    
-    // Reset form data after successful submission
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        subject: "New Consultation Request",
-        message: ""
+  // Use useEffect to handle the success state
+  useEffect(() => {
+    if (formspreeState.succeeded) {
+      setShowSuccess(true);
+      
+      // Show success toast after successful submission
+      toast({
+        title: "Message Sent",
+        description: "We've received your message and will get back to you soon.",
       });
-    }, 1000);
-  }
+      
+      // Reset form data after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          subject: "New Consultation Request",
+          message: ""
+        });
+      }, 2000);
+    }
+  }, [formspreeState.succeeded, toast]);
 
   return (
     <motion.div
@@ -46,7 +52,7 @@ const ConsultationForm = () => {
     >
       <h2 className="text-2xl font-semibold mb-6">Book a Free Consultation</h2>
       
-      {formspreeState.succeeded ? (
+      {showSuccess ? (
         <div className="bg-green-400/10 border border-green-400/20 p-6 text-center rounded-none">
           <p className="text-green-400 font-medium">✅ Your message has been sent successfully!</p>
           <p className="mt-2 text-neutral-300 text-sm">We'll be in touch with you shortly.</p>
