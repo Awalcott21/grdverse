@@ -34,52 +34,32 @@ const ConsultationForm = () => {
     
     setIsSubmitting(true);
     
-    try {
-      // First try to use the Supabase function approach
-      const { error } = await supabase.functions.invoke("submit-form", {
-        body: {
-          formType: "consultation",
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
-        }
-      });
-      
-      if (error) {
-        throw error;
-      }
-      
-      // Show success message
-      toast({
-        title: "Consultation Request Submitted!",
-        description: "We've received your request and will contact you soon.",
-      });
-      
-      // Reset form
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      
-      // Fallback to mailto approach if the Supabase function fails
-      const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
-      const body = encodeURIComponent(`
+    // Simple approach: Always use mailto as a reliable method
+    const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
+    const body = encodeURIComponent(`
 Name: ${formData.name}
 Email: ${formData.email}
 
 Message:
 ${formData.message}
-      `);
-      
-      const mailtoLink = `mailto:hello@grdverse.com?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
-      
-      toast({
-        title: "Opening Email Client",
-        description: "Your email client should open with your message. Please press send to complete your request.",
-      });
-    } finally {
+    `);
+    
+    const mailtoLink = `mailto:hello@grdverse.com?subject=${subject}&body=${body}`;
+    
+    // Open the user's email client
+    window.location.href = mailtoLink;
+    
+    // Show success message and reset form
+    toast({
+      title: "Email Prepared",
+      description: "Your message has been prepared. Please send the email that has opened to complete your request.",
+    });
+    
+    // Reset form after a short delay to allow the user to see their info
+    setTimeout(() => {
+      setFormData({ name: "", email: "", message: "" });
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   return (
@@ -140,7 +120,7 @@ ${formData.message}
           disabled={isSubmitting}
           className={`w-full bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-none font-medium transition-colors flex items-center justify-center gap-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
         >
-          {isSubmitting ? 'Submitting...' : 'Book a Free Consultation'}
+          {isSubmitting ? 'Preparing Email...' : 'Book a Free Consultation'}
           {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
         </button>
       </form>
