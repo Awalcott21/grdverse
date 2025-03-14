@@ -42,20 +42,7 @@ const GetStarted = () => {
         description: "We've received your project details and will contact you soon.",
       });
       
-      // Optionally open email client after successful submission
-      const formValues = {
-        name: document.getElementById("name") ? (document.getElementById("name") as HTMLInputElement).value : '',
-        email: document.getElementById("email") ? (document.getElementById("email") as HTMLInputElement).value : '',
-        package: document.getElementById("package") ? (document.getElementById("package") as HTMLInputElement).value : '',
-        details: document.getElementById("details") ? (document.getElementById("details") as HTMLTextAreaElement).value : ''
-      };
-      
-      setTimeout(() => {
-        window.open(
-          `mailto:hello@grdverse.com?subject=New Project Inquiry - ${formValues.package}&body=Name: ${formValues.name}%0D%0AEmail: ${formValues.email}%0D%0APackage: ${formValues.package}%0D%0AProject Details: ${formValues.details}`,
-          '_blank'
-        );
-      }, 1000);
+      // Removed the email client auto-open functionality
     }
   }, [formspreeState.succeeded, toast]);
 
