@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 const ConsultationForm = () => {
   const { toast } = useToast();
@@ -19,7 +18,7 @@ const ConsultationForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Form validation
@@ -34,7 +33,7 @@ const ConsultationForm = () => {
     
     setIsSubmitting(true);
     
-    // Simple approach: Always use mailto as a reliable method
+    // Create mailto link with form data
     const subject = encodeURIComponent(`New Consultation Request from ${formData.name}`);
     const body = encodeURIComponent(`
 Name: ${formData.name}
@@ -49,17 +48,17 @@ ${formData.message}
     // Open the user's email client
     window.location.href = mailtoLink;
     
-    // Show success message and reset form
+    // Show success message
     toast({
       title: "Email Prepared",
       description: "Your message has been prepared. Please send the email that has opened to complete your request.",
     });
     
-    // Reset form after a short delay to allow the user to see their info
+    // Reset form after a delay to give user time to see the toast
     setTimeout(() => {
       setFormData({ name: "", email: "", message: "" });
       setIsSubmitting(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (
