@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -6,6 +5,7 @@ import { useState } from "react";
 import { ArrowRight, CheckCircle, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Quiz = () => {
   const { toast } = useToast();
@@ -19,6 +19,7 @@ const Quiz = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleStepComplete = (key: string, value: string) => {
     setAnswers({ ...answers, [key]: value });
@@ -72,32 +73,57 @@ const Quiz = () => {
     }
     
     try {
-      // Send to edge function
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          formType: "quiz",
-          name: name,
-          email: email,
-          answers: answers,
-          recommendedPackage: packageTitle
-        })
-      });
+      // Save to Supabase directly
+      const { error } = await supabase
+        .from('quiz_submissions')
+        .insert([
+          { 
+            name, 
+            email, 
+            answers, 
+            recommended_package: packageTitle 
+          }
+        ]);
       
-      // Also send direct email
-      window.location.href = `mailto:hello@grdverse.com?subject=Quiz Results - ${packageTitle}&body=Name: ${name || 'Not provided'}%0D%0AEmail: ${email}%0D%0A%0D%0AQuiz Answers:%0D%0A- Has Website: ${answers.hasWebsite}%0D%0A- Biggest Struggle: ${answers.biggestStruggle}%0D%0A- Launch Timeline: ${answers.launchTimeline}%0D%0A%0D%0ARecommended Package: ${packageInfo}`;
+      if (error) {
+        console.error("Error saving to Supabase:", error);
+        throw error;
+      }
+      
+      // Also try to send to edge function as fallback
+      try {
+        await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            formType: "quiz",
+            name,
+            email,
+            answers,
+            recommendedPackage: packageTitle
+          })
+        });
+      } catch (functionError) {
+        console.error("Edge function error (non-critical):", functionError);
+        // Continue with success flow even if edge function fails
+      }
+      
+      setIsSubmitted(true);
       
       toast({
-        title: "Results Sent!",
-        description: "We've sent your quiz results to hello@grdverse.com. We'll be in touch soon!",
+        title: "Quiz Results Submitted!",
+        description: "We've received your quiz results and will contact you soon.",
       });
+      
     } catch (error) {
       console.error("Failed to submit quiz results:", error);
-      // Always default to direct email if API fails
-      window.location.href = `mailto:hello@grdverse.com?subject=Quiz Results - ${packageTitle}&body=Name: ${name || 'Not provided'}%0D%0AEmail: ${email}%0D%0A%0D%0AQuiz Answers:%0D%0A- Has Website: ${answers.hasWebsite}%0D%0A- Biggest Struggle: ${answers.biggestStruggle}%0D%0A- Launch Timeline: ${answers.launchTimeline}%0D%0A%0D%0ARecommended Package: ${packageInfo}`;
+      toast({
+        title: "Submission Error",
+        description: "There was a problem submitting your quiz results. Please try again later.",
+        variant: "destructive"
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -262,42 +288,62 @@ const Quiz = () => {
             ))}
           </ul>
           
-          <div className="space-y-5">
-            <div className="space-y-3">
-              <input
-                type="text"
-                placeholder="Your Name (Optional)"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white"
-              />
-              <input
-                type="email"
-                placeholder="Your Email *"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white"
-              />
+          {isSubmitted ? (
+            <div className="space-y-5">
+              <div className="bg-green-800/20 border border-green-500/30 p-4 rounded-lg text-left">
+                <h4 className="font-medium text-green-400 flex items-center gap-2 mb-2">
+                  <CheckCircle className="w-4 h-4" /> 
+                  Submission Complete
+                </h4>
+                <p className="text-sm text-gray-300">Thank you for completing the quiz! We've received your information and will be in touch soon about your {title} package.</p>
+              </div>
+              
+              <Link 
+                to={`/get-started?package=${packageParam}`}
+                className="bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 w-full"
+              >
+                Get Started Now
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-            
-            <button 
-              onClick={submitQuizResults}
-              disabled={isSubmitting || !email}
-              className={`w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${isSubmitting || !email ? 'opacity-70 cursor-not-allowed' : ''}`}
-            >
-              {isSubmitting ? 'Sending...' : 'Email My Results'}
-              {!isSubmitting && <Mail className="w-4 h-4" />}
-            </button>
-            
-            <Link 
-              to={`/get-started?package=${packageParam}`}
-              className="bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 w-full"
-            >
-              Get Started Now
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          ) : (
+            <div className="space-y-5">
+              <div className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Your Name (Optional)"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email *"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white"
+                />
+              </div>
+              
+              <button 
+                onClick={submitQuizResults}
+                disabled={isSubmitting || !email}
+                className={`w-full bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${isSubmitting || !email ? 'opacity-70 cursor-not-allowed' : ''}`}
+              >
+                {isSubmitting ? 'Sending...' : 'Submit Quiz Results'}
+                {!isSubmitting && <Mail className="w-4 h-4" />}
+              </button>
+              
+              <Link 
+                to={`/get-started?package=${packageParam}`}
+                className="bg-white hover:bg-neutral-200 text-neutral-900 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 w-full"
+              >
+                Get Started Now
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
         </div>
         
         <p className="text-neutral-400 mb-4">
@@ -310,12 +356,12 @@ const Quiz = () => {
           >
             See All Packages
           </Link>
-          <a 
-            href="mailto:hello@grdverse.com?subject=AI Website Inquiry"
+          <Link 
+            to="/consultation"
             className="text-neutral-400 hover:text-white transition-colors tracking-tight font-medium"
           >
-            Email Us Directly
-          </a>
+            Schedule a Consultation
+          </Link>
         </div>
       </motion.div>
     );
