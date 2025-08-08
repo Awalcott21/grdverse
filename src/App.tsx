@@ -56,3 +56,6 @@ export function SecurityScout() {
     </div>
   );
 }
+
+
+export default App;
