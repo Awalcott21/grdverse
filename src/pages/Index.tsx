@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
@@ -7,39 +6,34 @@ import Testimonials from "../components/Testimonials";
 import Blog from "../components/Blog";
 import Footer from "../components/Footer";
 import WhyAI from "../components/WhyAI";
+import { SecurityScout } from "@/components/SecurityScout";
 
-// src/components/Hero.tsx
-const Hero = () => {
+const Index = () => {
   return (
-    <section id="hero" className="mx-auto max-w-5xl px-6 py-16 md:py-24">
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-        GridVerse Security
-      </h1>
-      <p className="mt-4 text-lg md:text-xl text-slate-600 max-w-2xl">
-        Discover risks across Google/Microsoft, GitHub, and AWS — then <strong>autofix</strong> them and export
-        <strong> audit-ready evidence</strong>. Outcomes, not alerts.
-      </p>
-      <div className="mt-8 flex flex-wrap gap-3">
-        {/* Primary CTA → existing page so it always works */}
-        <a
-          href="/consultation"
-          className="inline-flex items-center rounded-md bg-teal-500 px-5 py-3 font-medium text-white hover:opacity-90"
-        >
-          Get a Free Security Health Check
-        </a>
-        {/* Secondary CTA → scrolls to Features on this page */}
-        <a
-          href="#features"
-          className="inline-flex items-center rounded-md border px-5 py-3 font-medium hover:bg-slate-50"
-        >
-          How it works
-        </a>
-      </div>
-    </section>
+    <>
+      <Header />
+      <Hero />
+      <Features />
+      <Stats />
+
+      {/* 🔐 GridVerse AI Security Scout Widget */}
+      <section id="security-scout" className="bg-white py-16 px-4">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold">🧠 Try GridVerse Security Scout</h2>
+          <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+            Simulated AI-powered vulnerability scanner with instant autofix suggestions. This is where real cyber automation begins.
+          </p>
+        </div>
+        <SecurityScout />
+      </section>
+
+      <WhyAI />
+      <Testimonials />
+      <Blog />
+      <Footer />
+    </>
   );
 };
 
-export default Hero;
-
-
 export default Index;
+
