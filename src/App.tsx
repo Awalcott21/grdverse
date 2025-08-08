@@ -27,7 +27,6 @@ function App() {
             <Route path="/consultation" element={<Consultation />} />
             <Route path="/get-started" element={<GetStarted />} />
             <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/quiz" element={<Quiz />} />
           </Routes>
         </Router>
       </TooltipProvider>
